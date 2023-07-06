@@ -1,25 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import Header from '../../../../Common/Header'
-import { columns } from './ColumnData'
-import { getBbpsBillFetchTxn, getBbpsTxn, getCreditCardTransactions } from '../../../../services/apiFunctions'
-import dayjs from 'dayjs'
+import React, { useEffect, useState } from "react";
+import { columns } from "./ColumnData";
+import { getBbpsTxn } from "../../../../services/apiFunctions";
+import dayjs from "dayjs";
 import {
-  Button,
-  DatePicker,
-  Input,
-  Pagination,
-  Select,
-  Spin,
-  Table,
   message,
 } from "antd";
-import { DmtTxnPredicate } from '../../../../Utils/Options'
-import PaginationComponent from '../../../../Common/Pagination'
-import { endpoint } from '../../../../services/global'
-import { handleDownloadExcel, messageConfiguration } from '../../../../Utils'
+import { DmtTxnPredicate } from "../../../../Utils/Options";
+import PaginationComponent from "../../../../Common/Pagination";
+import { endpoint } from "../../../../services/global";
+import { handleDownloadExcel, messageConfiguration } from "../../../../Utils";
+import CommonLayout from "../../../../Common/CommonLayout";
 const BbpsTxnData = () => {
-  const {RangePicker}=DatePicker
-  const dateFormat = "YYYY-MM-DD";
 
   const [start, setStart] = useState(0);
   const [current, setCurrent] = useState(1);
@@ -66,20 +57,19 @@ const BbpsTxnData = () => {
           return {
             sno: index + 1,
             partnerName: item.partnerName,
-            partnerEmail:item.partnerEmail,
+            partnerEmail: item.partnerEmail,
             status: item.status,
             billerId: item.billerId,
-            accountHolderName: item.accountHolderName,
-            billNumber: item.billNumber,
             category: item.category,
             userTransactionId: item.userTransactionId,
             amount: item.amount,
             pinWalletTransactionId: item.pinWalletTransactionId,
-            billDate: item.billDate,
-            dueDate:item.dueDate,
-            statusCode:item.statusCode,
-            statusMessage:item.statusMessage,
-            createdOn: item.createdOn,
+            operatorReferenceId: item.operatorReferenceId,
+            operatorMessage: item.operatorMessage,
+            apiorderId: item.apiorderId,
+            statusCode: item.statusCode,
+            statusMessage: item.statusMessage,
+            createdOn:item.createdOn,
             createdTime: item.createdOn,
             latestUpdatedOn: item.latestUpdatedOn,
             latestUpdatedTime: item.latestUpdatedOn,
@@ -124,72 +114,42 @@ const BbpsTxnData = () => {
     getAllBbpsBillTxn(numberOfData, startPage);
   };
   const handleExport = () => {
-    handleDownloadExcel(fields.fromDate,fields.toDate,setdisableExport,endpoint.exportToExcelBbpsBillFetch)
-    message.open(messageConfiguration("success","Your File will downloaded Shortly!",5))
+    handleDownloadExcel(
+      fields.fromDate,
+      fields.toDate,
+      setdisableExport,
+      endpoint.exportToExcelBbpsData
+    );
+    message.open(
+      messageConfiguration("success", "Your File will downloaded Shortly!", 5)
+    );
   };
   return (
     <>
-    <Header PageName={"BBPS Transactions Report"}/>
-    <div className="filters mt-5 flex justify-start md:justify-around gap-4 items-center flex-wrap">
-        <div className="input_fields">
-          <Select
-            className="mb-2 w-full"
-            value={fields.type}
-            onChange={(val) => setFields({ ...fields, type: val })}
-            defaultValue="UserTransactionId"
-            options={DmtTxnPredicate}
-          />
-          <br />
-          <Input.Search
-            value={fields.searchString}
-            onChange={(e) =>
-              setFields({ ...fields, searchString: e.target.value })
-            }
-            onSearch={handleSearchString}
-            className="searchBar"
-            placeholder="Select and Search"
-            enterButton="Search"
-            size="large"
-          />
-        </div>
-        <RangePicker
-          allowClear={false}
-          value={[
-            dayjs(fields.fromDate, dateFormat),
-            dayjs(fields.toDate, dateFormat),
-          ]}
-          onChange={handledateChange}
-          className="rounded-none"
-        />
-        <Button
-          className="bg-[#1572e8] hover:text-white text-white hover:border-none"
-          title="search"
-          onClick={handleSearch}
-        >
-          Search
-        </Button>
-        <Button
-          onClick={handleExport}
-          disabled={disableExport}
-          className="bg-black hover:text-white hover:border-none text-white"
-        >
-          Export
-        </Button>
-      </div>
-    <div className="mt-3">
-        <Spin spinning={showSpin} tip="Loading...">
-          <Table
-            className="custom-table overflow-x-scroll text-white rounded-none"
-            columns={columns}
-            pagination={false}
-            dataSource={dataSource}
-          />
-        </Spin>
-      </div>
-      <PaginationComponent current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllBbpsBillTxn} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
-
+      <CommonLayout
+        PageName={"BBPS Transactions Report"}
+        setFields={setFields}
+        fields={fields}
+        options={DmtTxnPredicate}
+        handleSearchString={handleSearchString}
+        handleSearch={handleSearch}
+        handledateChange={handledateChange}
+        handleExport={handleExport}
+        disableExport={disableExport}
+        showSpin={showSpin}
+        columns={columns}
+        dataSource={dataSource}
+      />
+      <PaginationComponent
+        current={current}
+        numberOfPAges={numberOfPAges}
+        start={start}
+        apiFunction={getAllBbpsBillTxn}
+        handlepageChange={handlepageChange}
+        numberOfData={numberOfData}
+      />
     </>
-  )
-}
+  );
+};
 
-export default BbpsTxnData
+export default BbpsTxnData;

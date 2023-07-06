@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import {
-  Button,
-  DatePicker,
-  Input,
-  Pagination,
-  Select,
-  Spin,
-  Table,
   message,
 } from "antd";
 import { columns } from "./ColumnData";
@@ -16,14 +9,12 @@ import {
   getDynamicUoiTrxReport,
 } from "../../../../services/apiFunctions";
 import { handleDownloadExcel, messageConfiguration } from "../../../../Utils";
-import Header from "../../../../Common/Header";
 import PaginationComponent from "../../../../Common/Pagination";
 import { endpoint } from "../../../../services/global";
+import CommonLayout from "../../../../Common/CommonLayout";
 
 const DynamicUpiTxn = () => {
-  const dateFormat = "YYYY-MM-DD";
 
-  const { RangePicker } = DatePicker;
   const [start, setStart] = useState(0);
   const [current, setCurrent] = useState(1);
   const numberOfData = 30;
@@ -141,87 +132,20 @@ const DynamicUpiTxn = () => {
   };
   return (
     <>
-    <Header PageName={"Dynamic UPI Transactions"}/>
-      <div className="filters mt-5 flex justify-start md:justify-around gap-4 items-center flex-wrap">
-        <div className="input_fields">
-          <Select
-            className="mb-2 w-full"
-            value={fields.type}
-            onChange={(val) => setFields({ ...fields, type: val })}
-            defaultValue="MerchantTranId"
-            options={DynamicUpiTxnPredicate}
-          />
-          <br />
-          <Input.Search
-            value={fields.searchString}
-            onChange={(e) =>
-              setFields({ ...fields, searchString: e.target.value })
-            }
-            onSearch={handleSearchString}
-            className="searchBar"
-            placeholder="Select and Search"
-            enterButton="Search"
-            size="large"
-          />
-        </div>
-        <RangePicker
-          allowClear={false}
-          value={[
-            dayjs(fields.fromDate, dateFormat),
-            dayjs(fields.toDate, dateFormat),
-          ]}
-          onChange={handledateChange}
-          className="rounded-none"
-        />
-        <Button
-          className="bg-[#1572e8] hover:text-white text-white hover:border-none"
-          title="search"
-          onClick={handleSearch}
-        >
-          Search
-        </Button>
-        <Button
-          onClick={handleExport}
-          disabled={disableExport}
-          className="bg-black hover:text-white hover:border-none text-white"
-        >
-          Export
-        </Button>
-      </div>
-      <div className="mt-3">
-        <Spin spinning={showSpin} tip="Loading...">
-          <Table
-            className="custom-table overflow-x-scroll text-white rounded-none"
-            columns={columns}
-            pagination={false}
-            dataSource={dataSource}
-          />
-        </Spin>
-      </div>
-      {/* <div className="flex justify-end mt-3 gap-10 items-center">
-        <Pagination
-          current={current}
-          total={numberOfPAges * 30}
-          pageSize={30}
-          // pageSizeOptions={false}
-          showQuickJumper={true}
-          showSizeChanger={false}
-          onChange={handlepageChange}
-        />
-        <div className="flex justify-around items-center gap-2">
-          <p>PageSize</p>
-          <Input.Search
-            type="number"
-            min={1}
-            onSearch={(value) =>
-              getAllDynamicTxn(value === "" ? numberOfData : value, start)
-            }
-            title="df"
-            className="w-20"
-            size="small"
-          />
-        </div>
-      </div> */}
+      <CommonLayout
+      PageName={"Dynamic UPI Transactions"}
+      setFields={setFields}
+      fields={fields}
+      options={DynamicUpiTxnPredicate}
+      handleSearchString={handleSearchString}
+      handleSearch={handleSearch}
+      handledateChange={handledateChange}
+      handleExport={handleExport}
+      disableExport={disableExport}
+      showSpin={showSpin}
+      columns={columns}
+      dataSource={dataSource}
+      />
       <PaginationComponent current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllDynamicTxn} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
 
     </>

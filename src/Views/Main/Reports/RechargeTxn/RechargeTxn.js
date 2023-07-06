@@ -151,21 +151,6 @@ const RechargeTxn = () => {
         />
         </Spin>
       </div>
-      {/* <div className="flex justify-end mt-3 gap-10 items-center">
-        <Pagination
-          current={current}
-          total={numberOfPAges * 30}
-          pageSize={30}
-          // pageSizeOptions={false}
-          showQuickJumper={true}
-          showSizeChanger={false}
-          onChange={handlepageChange}
-        />
-        <div className="flex justify-around items-center gap-2">
-          <p>PageSize</p>
-        <Input.Search type="number" min={1}  onSearch={(value)=>getAllTransaction(value===""?numberOfData:value,start)} title="df" className="w-20" size="small"/>
-        </div>
-      </div> */}
       <PaginationComponent current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllTransaction} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
    </>
   )

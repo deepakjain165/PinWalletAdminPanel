@@ -11,6 +11,7 @@ export const endpoint={
  exportToExcelDmt:"api/exportToExcel/DmtTransactions",
  exportToExcelCreditcard:"api/exportToExcel/CreditCardTransactionReport",
  exportToExcelBbpsBillFetch:"api/exportToExcel/BbpsBillFetchDataReport",
+ exportToExcelBbpsData:"api/exportToExcel/BbpsBillPayDataReport",
  dynamicUpiTrxReport:"api/transactionReports/getDynamicUpiTrxReport",
  rechargeTxn:"api/rechargeReport/getTrxbyDate",
  DmtTxnReport:"api/transactionReports/getDmtTransactions",

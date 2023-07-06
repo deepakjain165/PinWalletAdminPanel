@@ -70,16 +70,16 @@ export const columns = [
     },
     {
       title: "OperatorReferenceId",
-      dataIndex: "billDate",
+      dataIndex: "operatorReferenceId",
     },
     {
         title: "OperatorMessage",
-        dataIndex: "dueDate",
+        dataIndex: "operatorMessage",
       },
       
     {
         title: "ApiorderId",
-        dataIndex: "statusCode",
+        dataIndex: "apiorderId",
         
       },
 

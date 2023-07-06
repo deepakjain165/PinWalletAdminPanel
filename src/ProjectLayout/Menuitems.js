@@ -75,6 +75,102 @@ export const items = [
           setLocalStorageItem("selectedTab", "1.7");
         },
       },
+      {
+        key: "1.8",
+        label: (
+          <NavLink to={"/reports/account-verification-report"}>Account Verification Report
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "1.8");
+        },
+      },
+      {
+        key: "1.9",
+        label: (
+          <NavLink to={"/reports/digiLocker-kyc-report"}>DigiLocker Kyc Report
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "1.9");
+        },
+      },
+      {
+        key: "1.10",
+        label: (
+          <NavLink to={"/reports/verification-api-report"}>Verification API Report
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "1.10");
+        },
+      },
+      {
+        key: "1.11",
+        label: (
+          <NavLink to={"/reports/walletPayout-report"}>Wallet Payout Transactions
+
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "1.11");
+        },
+      },
+      {
+        key: "1.12",
+        label: (
+          <NavLink to={"/reports/upiDmt-report"}>Upi DMT Transactions
+
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "1.12");
+        },
+      },
+      {
+        key: "1.13",
+        label: (
+          <NavLink to={"/reports/dynamicUpiGenerated-report"}>Dynamic Upi Generated Reports
+
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "1.13");
+        },
+      },
+      {
+        key: "1.14",
+        label: (
+          <NavLink to={"/reports/dynamicUpiGenerated-report"}>Dynamic Upi Generated Reports
+
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "1.14");
+        },
+      },
+      {
+        key: "1.15",
+        label: (
+          <NavLink to={"/reports/chargeBack-added"}>Charge-Back Added
+
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "1.15");
+        },
+      },
+      {
+        key: "1.16",
+        label: (
+          <NavLink to={"/reports/success-transaction-report"}>SUCCESS Transactions
+
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "1.16");
+        },
+      },
     ],
   },
 ];

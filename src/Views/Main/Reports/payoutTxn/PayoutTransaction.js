@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, DatePicker, Input, Pagination, Select, Spin, Table, message } from "antd";
+import {  message } from "antd";
 import { predicateObjectNames } from "../../../../Utils/Options";
 import {
   getPayoutTransactions,
@@ -7,13 +7,10 @@ import {
 import dayjs from "dayjs";
 import { columns } from "./ColumnData";
 import { handleDownloadExcel, messageConfiguration } from "../../../../Utils";
-import Header from "../../../../Common/Header";
 import PaginationComponent from "../../../../Common/Pagination";
 import { endpoint } from "../../../../services/global";
+import CommonLayout from "../../../../Common/CommonLayout";
 const PayoutTransaction = () => {
-  const { RangePicker } = DatePicker;
-  const dateFormat = "YYYY-MM-DD";
-// const {Option}=Select
   
   const [start, setStart] = useState(0);
   const [current, setCurrent] = useState(1);
@@ -125,7 +122,7 @@ const PayoutTransaction = () => {
   };
   return (
     <>
-    <Header PageName={"Payout Transactions"}/>
+    {/* <Header PageName={"Payout Transactions"}/>
       <div className="filters mt-5 flex justify-start md:justify-around gap-4 items-center flex-wrap">
         <div className="input_fields">
           <Select
@@ -171,7 +168,21 @@ const PayoutTransaction = () => {
           dataSource={dataSource}
         />
         </Spin>
-      </div>
+      </div> */}
+      <CommonLayout
+      PageName={"Payout Transactions"}
+       setFields={setFields}
+       fields={fields}
+       options={predicateObjectNames}
+       handleSearchString={handleSearchString}
+       handleSearch={handleSearch}
+       handledateChange={handledateChange}
+       handleExport={handleExport}
+       disableExport={disableExport}
+       showSpin={showSpin}
+       columns={columns}
+       dataSource={dataSource}
+      />
       {/* <div className="flex justify-end mt-3 gap-10 items-center">
         <Pagination
           current={current}
