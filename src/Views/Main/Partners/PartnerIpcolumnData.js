@@ -2,7 +2,6 @@ import {
     EditFilled,
     PauseOutlined,
     PlayCircleOutlined,
-    SendOutlined,
   } from "@ant-design/icons";
   import { ExtractDate } from "../../../Utils";
   
@@ -95,9 +94,9 @@ import {
                 setDeleteModal(true);
                 setIpId(record);
               }}
-              className="bg-red-600 text-xs flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
+              className="bg-red-600 text-sm h-7 font-bold flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
             >
-              <SendOutlined />
+            x
             </p>
           </div>
         ),

@@ -10,23 +10,30 @@ import { handleDownloadExcel, messageConfiguration } from "../../../../Utils";
 import PaginationComponent from "../../../../Common/Pagination";
 import { endpoint } from "../../../../services/global";
 import CommonLayout from "../../../../Common/CommonLayout";
+import { useCustomState } from "../../../../Hooks/Usehooks";
 const PayoutTransaction = () => {
-  
-  const [start, setStart] = useState(0);
-  const [current, setCurrent] = useState(1);
-  const [numberOfData,setNumberOfData] = useState(30);
+  const {
+    handlepageChange,
+    start,
+    current,
+    setNumberOfData,
+    numberOfData,
+    setNumberOfPages,
+    numberOfPAges,
+    setShowSpin,
+    showSpin,
+    dataSource,
+    setDataSource,
+  } = useCustomState(getAllTransaction);
     const totalCount = 30;
-  const [numberOfPAges, setNumberOfPages] = useState(0);
-  const [dataSource, setDataSource] = useState([]);
   const[disableExport,setdisableExport]=useState(false)
-  const[showSpin,setShowSpin]=useState(false)
   const [fields, setFields] = useState({
     type: "PinWalletOrderId",
     searchString: "",
     fromDate: dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
     toDate: dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
   });
-  const getAllTransaction = (page, start) => {
+  function getAllTransaction (page, start){
     setShowSpin(true)
     const payload = {
       fromDate: fields.fromDate,
@@ -96,12 +103,6 @@ const PayoutTransaction = () => {
   const handleSearchString=()=>{
       getAllTransaction(numberOfData, 0);
   }
-  const handlepageChange = (page, pagesize) => {
-    setCurrent(page);
-    setStart((page - 1) * numberOfData)
-    const startPage = (page - 1) * numberOfData;
-    getAllTransaction(numberOfData, startPage);
-  };
   const handledateChange = (date) => {
     const dates = date.map(
       (i) => dayjs(i.$d).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z"

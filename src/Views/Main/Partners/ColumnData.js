@@ -64,7 +64,7 @@ export const Columns = (
           <p>{text}</p>
         </div>
       ),
-      sorter: (a, b) => a.partnerName.localeCompare(b.partnerName),
+      sorter: (a, b) => a.email.localeCompare(b.email),
       sortDirections: ["ascend"],
     },
     {
@@ -107,7 +107,7 @@ export const Columns = (
     },
     {
       title: "Action",
-      dataIndex: "netAmount",
+      dataIndex: "isActive",
       render: (text, record) => (
         <div className="flex justify-start items-center ">
           {" "}
@@ -139,9 +139,9 @@ export const Columns = (
               setDeleteModal(true);
               setpackageId(record);
             }}
-            className="bg-red-600 text-xs flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
+            className="bg-red-600 text-md h-7 font-bold flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
           >
-            <SendOutlined />
+           x
           </p>
         </div>
       ),

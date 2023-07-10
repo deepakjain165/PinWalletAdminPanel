@@ -12,23 +12,30 @@ import { messageConfiguration } from "../../../Utils";
 import ConfirmModal from "../../../Common/ConfirmModal";
 import { NavLink, useLocation } from "react-router-dom";
 import { PartnerIpcolumn } from "./PartnerIpcolumnData";
+import { useCustomState } from "../../../Hooks/Usehooks";
 
 const PartnerIps = () => {
   const location = useLocation();
-  console.log(location, "jkdwejkwe");
-  const [start, setStart] = useState(0);
-  const [current, setCurrent] = useState(1);
-  const [numberOfData, setNumberOfData] = useState(30);
   const totalCount = 30;
-  const [numberOfPAges, setNumberOfPages] = useState(0);
-  const [showSpin, setShowSpin] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
+  const {
+    handlepageChange,
+    start,
+    current,
+    setNumberOfData,
+    numberOfData,
+    setNumberOfPages,
+    numberOfPAges,
+    setShowSpin,
+    showSpin,
+    dataSource,
+    setDataSource,
+  } = useCustomState(getPArtnerIp);
   const [fields, setFields] = useState("");
   const [deleteModal, setDeleteModal] = useState(null);
   const [packageId, setPackageId] = useState(null);
   const [Ip, setIp] = useState("");
   const [ipId,setIpId]=useState(null)
-  const getPArtnerIp = (page, start) => {
+  function getPArtnerIp(page, start) {
     setShowSpin(true);
     const payload = {
       Pagination: {
@@ -60,13 +67,6 @@ const PartnerIps = () => {
   }, [deleteModal]);
   const handleSearchString = () => {
     getPArtnerIp(numberOfData, 0);
-  };
-  const handlepageChange = (page, pagesize) => {
-    setCurrent(page);
-    setStart((page - 1) * numberOfData);
-    // setStart((page - 1) * numberOfData)
-    const startPage = (page - 1) * numberOfData;
-    getPArtnerIp(numberOfData, startPage);
   };
   const handleDelete = () => {
     deleteIp(ipId.id)

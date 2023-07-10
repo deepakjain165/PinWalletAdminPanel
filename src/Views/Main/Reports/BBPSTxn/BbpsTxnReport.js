@@ -10,15 +10,22 @@ import PaginationComponent from "../../../../Common/Pagination";
 import { endpoint } from "../../../../services/global";
 import { handleDownloadExcel, messageConfiguration } from "../../../../Utils";
 import CommonLayout from "../../../../Common/CommonLayout";
+import { useCustomState } from "../../../../Hooks/Usehooks";
 const BbpsTxnData = () => {
-
-  const [start, setStart] = useState(0);
-  const [current, setCurrent] = useState(1);
-  const [numberOfData,setNumberOfData] = useState(30);
+  const {
+    handlepageChange,
+    start,
+    current,
+    setNumberOfData,
+    numberOfData,
+    setNumberOfPages,
+    numberOfPAges,
+    setShowSpin,
+    showSpin,
+    dataSource,
+    setDataSource,
+  } = useCustomState(getAllBbpsBillTxn);
   const totalCount = 30;
-  const [numberOfPAges, setNumberOfPages] = useState(0);
-  const [showSpin, setShowSpin] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
   const [disableExport, setdisableExport] = useState(false);
   const [fields, setFields] = useState({
     type: "UserTransactionId",
@@ -26,7 +33,7 @@ const BbpsTxnData = () => {
     fromDate: dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
     toDate: dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
   });
-  const getAllBbpsBillTxn = (page, start) => {
+  function getAllBbpsBillTxn(page, start) {
     setShowSpin(true);
     const payload = {
       fromDate: fields.fromDate,
@@ -101,13 +108,6 @@ const BbpsTxnData = () => {
   };
   const handleSearch = () => {
     getAllBbpsBillTxn(numberOfData, start);
-  };
-  const handlepageChange = (page, pagesize) => {
-    setCurrent(page);
-    setStart((page - 1) * numberOfData);
-    // setStart((page - 1) * numberOfData)
-    const startPage = (page - 1) * numberOfData;
-    getAllBbpsBillTxn(numberOfData, startPage);
   };
   const handleExport = () => {
     handleDownloadExcel(

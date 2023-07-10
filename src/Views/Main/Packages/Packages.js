@@ -10,21 +10,21 @@ import { Columns } from "./columnData";
 import CreateEditModal from "./CreateEditModal";
 import { messageConfiguration } from "../../../Utils";
 import ConfirmModal from "../../../Common/ConfirmModal";
+import { useCustomState } from "../../../Hooks/Usehooks";
 
 const Packages = () => {
-  const [start, setStart] = useState(0);
-  const [current, setCurrent] = useState(1);
-  const [numberOfData, setNumberOfData] = useState(30);
-  const totalCount = 30;
-  const [numberOfPAges, setNumberOfPages] = useState(0);
-  const [showSpin, setShowSpin] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
+  const {handlepageChange,
+    start,
+    current,
+    setNumberOfData,
+    numberOfData,setNumberOfPages,numberOfPAges,setShowSpin,showSpin,dataSource,setDataSource}=useCustomState(getAllPackages)
+    const totalCount = 30;
   const [fields, setFields] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [openFrom, setOpenFrom] = useState("");
   const [deleteModal, setDeleteModal] = useState(null);
   const [packageId, setPackageId] = useState(null);
-  const getAllPackages = (page, start) => {
+  function getAllPackages(page, start) {
     setShowSpin(true);
     const payload = {
       Pagination: {
@@ -57,13 +57,7 @@ const Packages = () => {
   const handleSearchString = () => {
     getAllPackages(numberOfData, 0);
   };
-  const handlepageChange = (page, pagesize) => {
-    setCurrent(page);
-    setStart((page - 1) * numberOfData);
-    // setStart((page - 1) * numberOfData)
-    const startPage = (page - 1) * numberOfData;
-    getAllPackages(numberOfData, startPage);
-  };
+
   const handleDelete = () => {
     deletePackage(packageId.id)
       .then((res) => {
@@ -146,7 +140,7 @@ const Packages = () => {
         <ConfirmModal
           deleteModal={deleteModal}
           setDeleteModal={setDeleteModal}
-          openby="package"
+          openby="Package"
           handleDelete={handleDelete}
         />
       )}

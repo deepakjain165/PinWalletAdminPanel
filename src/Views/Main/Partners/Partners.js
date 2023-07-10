@@ -4,15 +4,23 @@ import PaginationComponent from "../../../Common/Pagination";
 import { Columns } from "./ColumnData";
 import { PartnerPredicate } from "../../../Utils/Options";
 import { getPartnerList } from "../../../services/apiFunctions";
+import { useCustomState } from "../../../Hooks/Usehooks";
 
 const Partners = () => {
-  const [start, setStart] = useState(0);
-  const [current, setCurrent] = useState(1);
-  const [numberOfData,setNumberOfData] = useState(30);
+  const {
+    handlepageChange,
+    start,
+    current,
+    setNumberOfData,
+    numberOfData,
+    setNumberOfPages,
+    numberOfPAges,
+    setShowSpin,
+    showSpin,
+    dataSource,
+    setDataSource,
+  } = useCustomState(getAllPartnerList);
   const totalCount = 30;
-  const [numberOfPAges, setNumberOfPages] = useState(0);
-  const [showSpin, setShowSpin] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
   const [fields, setFields] = useState({
     type: PartnerPredicate[0].value,
     searchString: "",
@@ -20,7 +28,7 @@ const Partners = () => {
   const handleSearchString = () => {
     getAllPartnerList(numberOfData, 0);
   };
-  const getAllPartnerList = (page, start) => {
+  function getAllPartnerList  (page, start) {
     setShowSpin(true)
     const payload = {
       Pagination: {
@@ -51,13 +59,7 @@ const Partners = () => {
     getAllPartnerList(numberOfData, start);
         // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const handlepageChange = (page, pagesize) => {
-    setCurrent(page);
-    setStart((page - 1) * numberOfData);
-    // setStart((page - 1) * numberOfData)
-    const startPage = (page - 1) * numberOfData;
-    getAllPartnerList(numberOfData, startPage);
-  };
+
   return (
     <>
     <p className="font-bold text-lg mb-4">Partners List</p>

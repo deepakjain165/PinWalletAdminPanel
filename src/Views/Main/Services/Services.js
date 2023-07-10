@@ -10,21 +10,29 @@ import { Columns } from "./ColumnData";
 import CreateEditModal from "./CreateEditModal";
 import { messageConfiguration } from "../../../Utils";
 import ConfirmModal from "../../../Common/ConfirmModal";
+import { useCustomState } from "../../../Hooks/Usehooks";
 
 const Services = () => {
-  const [start, setStart] = useState(0);
-  const [current, setCurrent] = useState(1);
-  const [numberOfData, setNumberOfData] = useState(30);
-  const totalCount = 30;
-  const [numberOfPAges, setNumberOfPages] = useState(0);
-  const [showSpin, setShowSpin] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
+  const {
+    handlepageChange,
+    start,
+    current,
+    setNumberOfData,
+    numberOfData,
+    setNumberOfPages,
+    numberOfPAges,
+    setShowSpin,
+    showSpin,
+    dataSource,
+    setDataSource,
+  } = useCustomState(getAllServices);
   const [fields, setFields] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [openFrom, setOpenFrom] = useState("");
   const [deleteModal, setDeleteModal] = useState(null);
+  const totalCount = 30;
   const [packageId, setPackageId] = useState(null);
-  const getAllServices = (page, start) => {
+  function getAllServices(page, start) {
     setShowSpin(true);
     const payload = {
       Pagination: {
@@ -56,13 +64,6 @@ const Services = () => {
   }, [openModal, deleteModal]);
   const handleSearchString = () => {
     getAllServices(numberOfData, 0);
-  };
-  const handlepageChange = (page, pagesize) => {
-    setCurrent(page);
-    setStart((page - 1) * numberOfData);
-    // setStart((page - 1) * numberOfData)
-    const startPage = (page - 1) * numberOfData;
-    getAllServices(numberOfData, startPage);
   };
   const handleDelete = () => {
     deleteService(packageId.id)
@@ -146,7 +147,7 @@ const Services = () => {
         <ConfirmModal
           deleteModal={deleteModal}
           setDeleteModal={setDeleteModal}
-          openby="service"
+          openby="Service"
           handleDelete={handleDelete}
         />
       )}

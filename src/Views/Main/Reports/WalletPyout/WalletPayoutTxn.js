@@ -10,15 +10,24 @@ import { endpoint } from '../../../../services/global'
 import { handleDownloadExcel, messageConfiguration } from '../../../../Utils'
 import CommonLayout from '../../../../Common/CommonLayout'
 import { columns } from './ColumnData';
+import { useCustomState } from '../../../../Hooks/Usehooks';
 const WalletPayout = () => {
+  const {
+    handlepageChange,
+    start,
+    current,
+    setNumberOfData,
+    numberOfData,
+    setNumberOfPages,
+    numberOfPAges,
+    setShowSpin,
+    showSpin,
+    dataSource,
+    setDataSource,
+  } = useCustomState(getAllWalletPayout);
 
-  const [start, setStart] = useState(0);
-  const [current, setCurrent] = useState(1);
-  const [numberOfData,setNumberOfData] = useState(30);
   const totalCount = 30;
-  const [numberOfPAges, setNumberOfPages] = useState(0);
-  const [showSpin, setShowSpin] = useState(false);
-  const [dataSource, setDataSource] = useState([]);
+
   const [disableExport, setdisableExport] = useState(false);
   const [fields, setFields] = useState({
     type: DmtTxnPredicate[0].value,
@@ -26,7 +35,7 @@ const WalletPayout = () => {
     fromDate: dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
     toDate: dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
   });
-  const getAllWalletPayout = (page, start) => {
+  function getAllWalletPayout(page, start){
     setShowSpin(true);
     const payload = {
       fromDate: fields.fromDate,
@@ -79,13 +88,6 @@ const WalletPayout = () => {
   };
   const handleSearch = () => {
     getAllWalletPayout(numberOfData, start);
-  };
-  const handlepageChange = (page, pagesize) => {
-    setCurrent(page);
-    setStart((page - 1) * numberOfData);
-    // setStart((page - 1) * numberOfData)
-    const startPage = (page - 1) * numberOfData;
-    getAllWalletPayout(numberOfData, startPage);
   };
   const handleExport = () => {
     handleDownloadExcel(fields.fromDate,fields.toDate,setdisableExport,endpoint.exportToExcelWalletPayData)

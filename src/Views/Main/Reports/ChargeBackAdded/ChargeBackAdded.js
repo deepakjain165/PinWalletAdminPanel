@@ -9,15 +9,23 @@ import { handleDownloadExcel, messageConfiguration } from "../../../../Utils";
 import CommonLayout from "../../../../Common/CommonLayout";
 import Columns from "./ColumnData";
 import RrnDetailModal from "./RrnDetailModal";
+import { useCustomState } from "../../../../Hooks/Usehooks";
 const ChargeBackAdded = () => {
-  const [start, setStart] = useState(0);
-  const [current, setCurrent] = useState(1);
-  const [numberOfData,setNumberOfData] = useState(30);
   const totalCount = 30;
-  const [numberOfPAges, setNumberOfPages] = useState(0);
-  const [showSpin, setShowSpin] = useState(false);
+  const {
+    handlepageChange,
+    start,
+    current,
+    setNumberOfData,
+    numberOfData,
+    setNumberOfPages,
+    numberOfPAges,
+    setShowSpin,
+    showSpin,
+    dataSource,
+    setDataSource,
+  } = useCustomState(getAllChargeBackAdded);
   const [serviceType, setServiceType] = useState("All");
-  const [dataSource, setDataSource] = useState([]);
   const [disableExport, setdisableExport] = useState(false);
   const [fields, setFields] = useState({
     type: ChargeBackAddedPredicate[0].value,
@@ -27,7 +35,7 @@ const ChargeBackAdded = () => {
   });
   const [openModal, setOpenModal] = useState(false);
   const [rrnNo, setRrnNo] = useState("");
-  const getAllChargeBackAdded = (page, start) => {
+  function getAllChargeBackAdded  (page, start) {
     setShowSpin(true);
     let payload = {
       fromDate: fields.fromDate,
@@ -100,14 +108,6 @@ const ChargeBackAdded = () => {
 
   const handleSearch = () => {
     getAllChargeBackAdded(numberOfData, start);
-  };
-
-  const handlepageChange = (page, pagesize) => {
-    setCurrent(page);
-    setStart((page - 1) * numberOfData);
-    // setStart((page - 1) * numberOfData)
-    const startPage = (page - 1) * numberOfData;
-    getAllChargeBackAdded(numberOfData, startPage);
   };
 
   const handleExport = () => {
