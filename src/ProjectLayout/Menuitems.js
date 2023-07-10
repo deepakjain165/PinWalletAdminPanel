@@ -1,4 +1,4 @@
-import { FileTextOutlined, HomeOutlined } from "@ant-design/icons";
+import { BarChartOutlined, FileTextOutlined, GiftFilled, HomeOutlined, LockFilled, SettingFilled, WalletFilled } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import { setLocalStorageItem } from "../Utils";
 export const items = [
@@ -6,6 +6,52 @@ export const items = [
     key: "1",
     icon: <HomeOutlined />,
     label: "Dashboard",
+  },
+  {
+    key: "3",
+    icon: <BarChartOutlined />,
+    label: "Statistics",
+  },
+  {
+    key: "4",
+    icon: <LockFilled />,
+    label: "Accounts rights",
+  },
+  {
+    key: "5",
+    icon: <LockFilled />,
+    label: "Users",
+  },
+  {
+    key: "6",
+    icon: <SettingFilled />,
+    label:  <NavLink to={"/services"}>Services</NavLink>,
+    
+  },
+  {
+    key: "7",
+    icon: <GiftFilled />,
+    label: <NavLink to={"/packages"}>Packages</NavLink>,
+  },
+  {
+    key: "8",
+    icon: <GiftFilled />,
+    label: <NavLink to={"/partners"}>Partners</NavLink>,
+  },
+  {
+    key: "9",
+    icon: <WalletFilled />,
+    label: "Business Wallet",
+    children:[{
+      key: "9.1",
+      label: "Transactions",
+    },{
+      key: "9.2",
+      label: "Add/Deduct Fund",
+    },{
+      key: "9.3",
+      label: "Fund Requests",
+    }]
   },
   {
     key: "2",
@@ -37,6 +83,17 @@ export const items = [
         ),
         onClick: () => {
           setLocalStorageItem("selectedTab", "1.3");
+        },
+      },
+      {
+        key: "1.17",
+        label: (
+          <NavLink to={"/reports/recharge-report-live"}>Recharge Transactions (Live)
+
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "1.17");
         },
       },
       {
@@ -88,7 +145,7 @@ export const items = [
       {
         key: "1.9",
         label: (
-          <NavLink to={"/reports/digiLocker-kyc-report"}>DigiLocker Kyc Report
+          <NavLink to={"/reports/digiLocker-kyc-report"}>DigiLocker Kyc 
           </NavLink>
         ),
         onClick: () => {
@@ -98,7 +155,7 @@ export const items = [
       {
         key: "1.10",
         label: (
-          <NavLink to={"/reports/verification-api-report"}>Verification API Report
+          <NavLink to={"/reports/verification-api-report"}>Verification API 
           </NavLink>
         ),
         onClick: () => {
@@ -139,17 +196,6 @@ export const items = [
         },
       },
       {
-        key: "1.14",
-        label: (
-          <NavLink to={"/reports/dynamicUpiGenerated-report"}>Dynamic Upi Generated Reports
-
-          </NavLink>
-        ),
-        onClick: () => {
-          setLocalStorageItem("selectedTab", "1.14");
-        },
-      },
-      {
         key: "1.15",
         label: (
           <NavLink to={"/reports/chargeBack-added"}>Charge-Back Added
@@ -172,5 +218,10 @@ export const items = [
         },
       },
     ],
+  },
+  {
+    key: "10",
+    icon: <SettingFilled />,
+    label: "Services",
   },
 ];

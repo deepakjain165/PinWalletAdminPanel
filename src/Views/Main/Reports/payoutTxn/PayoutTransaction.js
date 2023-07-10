@@ -14,7 +14,7 @@ const PayoutTransaction = () => {
   
   const [start, setStart] = useState(0);
   const [current, setCurrent] = useState(1);
-  const numberOfData = 30;
+  const [numberOfData,setNumberOfData] = useState(30);
     const totalCount = 30;
   const [numberOfPAges, setNumberOfPages] = useState(0);
   const [dataSource, setDataSource] = useState([]);
@@ -94,12 +94,7 @@ const PayoutTransaction = () => {
   }, []);
 
   const handleSearchString=()=>{
-    let delayDebounce;
-    delayDebounce = setTimeout(() => {
       getAllTransaction(numberOfData, 0);
-    }, 300); // Adjust the delay as needed (e.g., 500ms)
-
-    return () => clearTimeout(delayDebounce);
   }
   const handlepageChange = (page, pagesize) => {
     setCurrent(page);
@@ -122,53 +117,6 @@ const PayoutTransaction = () => {
   };
   return (
     <>
-    {/* <Header PageName={"Payout Transactions"}/>
-      <div className="filters mt-5 flex justify-start md:justify-around gap-4 items-center flex-wrap">
-        <div className="input_fields">
-          <Select
-            className="mb-2 w-full"
-            value={fields.type}
-            onChange={(val) => setFields({ ...fields, type: val })}
-            defaultValue="PinWalletOrderId"
-            options={predicateObjectNames}
-          />
-          <br />
-          <Input.Search value={fields.searchString} onChange={(e)=>setFields({...fields,searchString:e.target.value})} onSearch={handleSearchString} className="searchBar" placeholder="Select and Search" enterButton="Search" size="large"  />
-        </div>
-        <RangePicker
-          allowClear={false}
-          value={[
-            dayjs(fields.fromDate, dateFormat),
-            dayjs(fields.toDate, dateFormat),
-          ]}
-          onChange={handledateChange}
-          className="rounded-none"
-        />
-        <Button
-          className="bg-[#1572e8] hover:text-white text-white hover:border-none"
-          title="search"
-          onClick={handleSearch}
-        >
-          Search
-        </Button>
-        <Button
-          onClick={handleExport}
-          disabled={disableExport}
-          className="bg-black hover:text-white hover:border-none text-white"
-        >
-          Export
-        </Button>
-      </div>
-      <div className="mt-3">
-        <Spin spinning={showSpin} tip="Loading...">
-        <Table
-          className="custom-table overflow-x-scroll text-white rounded-none"
-          columns={columns}
-          pagination={false}
-          dataSource={dataSource}
-        />
-        </Spin>
-      </div> */}
       <CommonLayout
       PageName={"Payout Transactions"}
        setFields={setFields}
@@ -198,7 +146,7 @@ const PayoutTransaction = () => {
         <Input.Search type="number" min={1}  onSearch={(value)=>getAllTransaction(value===""?numberOfData:value,start)} title="df" className="w-20" size="small"/>
         </div>
       </div> */}
-      <PaginationComponent current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllTransaction} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
+      <PaginationComponent setNumberOfData={setNumberOfData} current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllTransaction} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
 
     </>
   );

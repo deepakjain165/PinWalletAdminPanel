@@ -15,11 +15,15 @@ export const columns = [
     {
       title: "Status",
       dataIndex: "status",
-      render: (text) => (
+       render: (text) => (
         <p
           className={`${
-            text === "SUCCESS" ? "bg-[#31ce36]" : "bg-red-600"
-          } text-xs text-center text-white p-2 rounded-full`}
+            text === "SUCCESS" ||text=== "ACCEPTED"
+              ? "bg-[#31ce36]"
+              : text === "FAILED" ||text=== "REJECTED" ||text=== "FAILURE"
+              ? "bg-red-600"
+              : "bg-black"
+          } text-[10px] text-center text-white px-2 rounded-full`}
         >
           {text}
         </p>
@@ -74,6 +78,7 @@ export const columns = [
     {
       title: "Tds",
       dataIndex: "tds",
+      render:(text)=><p>{ConvertInRs(text)}</p>
     },
     {
       title: "PW Transaction Id",

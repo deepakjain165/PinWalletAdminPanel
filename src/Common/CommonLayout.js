@@ -15,26 +15,51 @@ const CommonLayout = ({
   fields,
   options,
   handleSearchString,
+  handleServiceType,
   handledateChange,
+  serviceType,
   handleSearch,
   handleExport,
   disableExport,
   showSpin,
+  from="",
   columns,
   dataSource,
 }) => {
       const dateFormat = "YYYY-MM-DD";
   const { RangePicker } = DatePicker;
+  
   return (
     <>
       <Header PageName={PageName}/>
       <div className="filters mt-5 flex justify-start md:justify-around gap-4 items-center flex-wrap">
+      {from==="ChargeBackAdded" &&
+      <div className="input_fields">
+        <Select
+            className="mb-2 w-40"
+            value={serviceType}
+            onChange={(val) => handleServiceType(val)}
+            defaultValue={"All"}
+            options={[{
+              value:"All",
+              label:"All"
+            },{
+              value:"DynamicUpi",
+              label:"dynamic Upi"
+            },{
+              value:"Payout",
+              label:"Payout"
+            },]}
+          />
+          </div>
+}
         <div className="input_fields">
+          
           <Select
             className="mb-2 w-full"
             value={fields.type}
             onChange={(val) => setFields({ ...fields, type: val })}
-            defaultValue="UserTransactionId"
+            defaultValue={options[0].value}
             options={options}
           />
           <br />
@@ -66,6 +91,7 @@ const CommonLayout = ({
         >
           Search
         </Button>
+        {from !=="ChargeBackAdded" &&
         <Button
           onClick={handleExport}
           disabled={disableExport}
@@ -73,6 +99,7 @@ const CommonLayout = ({
         >
           Export
         </Button>
+}
       </div>
       <div className="mt-3">
         <Spin spinning={showSpin} tip="Loading...">

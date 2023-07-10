@@ -18,11 +18,11 @@ const Login = () => {
   const handleLogin = () => {
     adminLogin(fields)
       .then((res) => {
-        if (res.responseCode >= 200 && res.responseCode < 300) {
+        if (res?.responseCode >= 200 && res?.responseCode < 300) {
           setLocalStorageItem("userDetails", res.data);
           navigate("/dashboard");
         } else {
-          message.open(messageConfiguration("error", res.message, 3));
+          message.open(messageConfiguration("error", res?.message??"Unable to Login", 3));
         }
       })
       .catch((err) => console.log(err));

@@ -47,6 +47,16 @@ body {
   height: 2px; 
   line-height: 24px; 
 }
+ .ant-table-filter-dropdown .ant-table-filter-dropdown-btns button:nth-child(2){
+  background-color: #113150 !important;
+}
+.table-rows  .ant-table-tbody{
+  background-color: #162636;
+  color: #ffffff;
+}
+.table-rows  .ant-table-tbody >tr:hover{
+  color: #000000;
+}
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;

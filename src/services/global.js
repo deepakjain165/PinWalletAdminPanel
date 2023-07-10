@@ -12,10 +12,46 @@ export const endpoint={
  exportToExcelCreditcard:"api/exportToExcel/CreditCardTransactionReport",
  exportToExcelBbpsBillFetch:"api/exportToExcel/BbpsBillFetchDataReport",
  exportToExcelBbpsData:"api/exportToExcel/BbpsBillPayDataReport",
+ exportToExcelAccVer:"api/exportToExcel/AccountVerificationReport",
+ exportToExcelVerAPIData:"api/exportToExcel/VerificationApiReport",
+ exportToExcelWalletPayData:"api/exportToExcel/WalletPayoutTransactions",
+ exportToExcelUPIDmt:"api/exportToExcel/UpiDmtTransactions",
+exportToExceldynamicupiGenerated:"api/exportToExcel/DynamicUpiGenerated",
+
+
+
+
  dynamicUpiTrxReport:"api/transactionReports/getDynamicUpiTrxReport",
  rechargeTxn:"api/rechargeReport/getTrxbyDate",
  DmtTxnReport:"api/transactionReports/getDmtTransactions",
  creditCardtxn:"api/transactionReports/getCreditCardTransactions",
  bbpsbillfetch:"api/transactionReports/getBbpsBillFetchData",
- bbpsTxn:"api/transactionReports/getBbpsTransactions"
+ bbpsTxn:"api/transactionReports/getBbpsTransactions",
+ accountverification:"api/transactionReports/getAccountVerificationReport",
+ digilockerKyc:"api/transactionReports/getDigiLockerKycReport",
+ verificationApi:"api/transactionReports/getVerificationApiReport",
+ walletPayout:"api/transactionReports/getWalletPayoutReport",
+ upiDmtTxn:"api/transactionReports/getUpiDmtTrxReport",
+ dynamicUpiGenerated:"api/transactionReports/getDynamicUpiGeneratedReport",
+ chargeBackAdded:"api/transactionReports/getChargeBackAddedReport",
+ liveRecharge:"api/rechargeReport/getTopRechTrx",
+ rrnDetails:"api/transactionReports/chargeBackCheckRrnDetails/",
+
+// REPORT END
+
+partnerList:"api/partner/grid",
+partnerIps:"api/partner/ipsList/",
+updateIp:"api/partner/updateIp",
+addIp:"api/partner/saveIp",
+deleteIp:"api/partner/deleteIp/",
+changeIpStatus:"api/partner/change-status-ip/",
+
+packages:"api/package/grid",
+Packagefun:"api/package/",
+changeStatus:"api/package/change-status/",
+
+// PACKAGES END
+services:"api/service/grid",
+servicefun:"api/service/",
+changeServiceStatus:"api/service/change-status/",
 }

@@ -17,26 +17,15 @@ export const Post = (url, data) =>
 export const Patch = (url, data) =>
   ApiService.patch(url, data, { headers: getHeaders() });
 
+  export const Put = (url, data) =>
+  ApiService.put(url, data, { headers: getHeaders() }); 
+  
 export const Delete = (url) =>
   ApiService.delete(url, { headers: getHeaders() });
 
 export const getAPIUrl = (url, params = "") => {
   return url + `${params}`;
 };
-export const UploadRooms = (url, data) =>
-  ApiService.post(url, data, {
-    headers: {
-      // ...getHeaders(requireAuth),
-      "Content-Type": "multipart/form-data",
-    },
-  });
-export const UpdateRooms = (url, data) =>
-  ApiService.put(url, data, {
-    headers: {
-      // ...getHeaders(requireAuth),
-      "Content-Type": "multipart/form-data",
-    },
-  });
 export const getErrors = (error) => {
   const errorData = error.response.data.error;
   const errors = {};

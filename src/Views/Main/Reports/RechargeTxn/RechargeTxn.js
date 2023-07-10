@@ -12,7 +12,7 @@ const RechargeTxn = () => {
   const dateFormat = "YYYY-MM-DD";
   const [start, setStart] = useState(0);
   const [current, setCurrent] = useState(1);
-  const numberOfData = 30;
+  const [numberOfData,setNumberOfData] = useState(30);
     const totalCount = 30;
   const [numberOfPAges, setNumberOfPages] = useState(0);
   const [dataSource, setDataSource] = useState([]);
@@ -84,12 +84,7 @@ const RechargeTxn = () => {
   }, []);
 
   const handleSearchString=()=>{
-    let delayDebounce;
-    delayDebounce = setTimeout(() => {
       getAllTransaction(numberOfData, 0);
-    }, 300); // Adjust the delay as needed (e.g., 500ms)
-
-    return () => clearTimeout(delayDebounce);
   }
   const handlepageChange = (page, pagesize) => {
     setCurrent(page);
@@ -151,7 +146,7 @@ const RechargeTxn = () => {
         />
         </Spin>
       </div>
-      <PaginationComponent current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllTransaction} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
+      <PaginationComponent setNumberOfData={setNumberOfData} current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllTransaction} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
    </>
   )
 }

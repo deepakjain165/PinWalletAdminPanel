@@ -14,7 +14,7 @@ const BbpsTxnData = () => {
 
   const [start, setStart] = useState(0);
   const [current, setCurrent] = useState(1);
-  const numberOfData = 30;
+  const [numberOfData,setNumberOfData] = useState(30);
   const totalCount = 30;
   const [numberOfPAges, setNumberOfPages] = useState(0);
   const [showSpin, setShowSpin] = useState(false);
@@ -90,12 +90,8 @@ const BbpsTxnData = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleSearchString = () => {
-    let delayDebounce;
-    delayDebounce = setTimeout(() => {
       getAllBbpsBillTxn(numberOfData, 0);
-    }, 300); // Adjust the delay as needed (e.g., 500ms)
 
-    return () => clearTimeout(delayDebounce);
   };
   const handledateChange = (date) => {
     const dates = date.map(
@@ -143,6 +139,7 @@ const BbpsTxnData = () => {
       <PaginationComponent
         current={current}
         numberOfPAges={numberOfPAges}
+        setNumberOfData={setNumberOfData}
         start={start}
         apiFunction={getAllBbpsBillTxn}
         handlepageChange={handlepageChange}

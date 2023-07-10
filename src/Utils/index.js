@@ -89,7 +89,7 @@ export const handleDownloadExcel = (fromDate,toDate,setdisableExport,endpoint) =
 
 };
 export const ConvertInRs=(data)=>{
-  const numberString = data.toString();
+  const numberString =data.toString();
   if(numberString.includes(".")){
 return `₹ ${data}`
   }else{

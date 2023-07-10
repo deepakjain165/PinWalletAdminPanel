@@ -18,11 +18,15 @@ export const columns = [
     {
       title: "Status",
       dataIndex: "status",
-      render: (text) => (
+       render: (text) => (
         <p
           className={`${
-            text === "SUCCESS" ? "bg-[#31ce36]" : "bg-red-600"
-          } text-xs text-center text-white p-2 rounded-full`}
+            text === "SUCCESS" ||text=== "ACCEPTED"
+              ? "bg-[#31ce36]"
+              : text === "FAILED" ||text=== "REJECTED" ||text=== "FAILURE"
+              ? "bg-red-600"
+              : "bg-black"
+          } text-[10px] text-center text-white px-2 rounded-full`}
         >
           {text}
         </p>
@@ -62,14 +66,17 @@ export const columns = [
     {
         title: "Credit Card Amount",
         dataIndex: "amount",
+        render:(text)=><p className="text-xs">{ConvertInRs(text)}</p>,
       },
     {
       title: "Deduct Amount",
       dataIndex: "netAmount",
+      render:(text)=><p className="text-xs">{ConvertInRs(text)}</p>,
     },
     {
       title: "Tds",
       dataIndex: "tds",
+      render:(text)=><p className="text-xs">{ConvertInRs(text)}</p>,
     },
     {
       title: "PW Transaction Id",
@@ -87,23 +94,19 @@ export const columns = [
     {
         title: "Status Code",
         dataIndex: "statusCode",
-        render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
       },
 
     {
       title: "StatusMessage",
       dataIndex: "statusMessage",
-      render: (text) => <p className="uppercase">{ExtractTime(text)}</p>,
     },
     {
       title: "Rrn",
       dataIndex: "rrn",
-      render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
     },
     {
       title: "Source",
       dataIndex: "source",
-      render: (text) => <p className="uppercase">{ExtractTime(text)}</p>,
     },
     {
         title: "Transfer Mode",
@@ -112,16 +115,20 @@ export const columns = [
       {
         title: "Created On",
         dataIndex: "createdOn",
+        render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
       },
       {
         title: "Created Time",
         dataIndex: "createdTime",
+        render: (text) => <p className="uppercase">{ExtractTime(text)}</p>,
       },{
         title: "Updated On",
         dataIndex: "latestUpdatedOn",
+        render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
       },{
         title: "Updated Time",
         dataIndex: "latestUpdatedTime",
+        render: (text) => <p className="uppercase">{ExtractTime(text)}</p>,
       },{
         title: "Latitude",
         dataIndex: "latitude",
