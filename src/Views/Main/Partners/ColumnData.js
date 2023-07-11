@@ -14,11 +14,7 @@ import { Tooltip } from "antd";
 import { NavLink } from "react-router-dom";
 
 export const Columns = (
-  setpackageId,
-  setDeleteModal,
-  setOpenModal,
-  setOpenFrom,
-  handlechangeStatus
+  handlechangeStatus,handleOpenKeyModal
 ) => {
   return [
     {
@@ -100,7 +96,6 @@ export const Columns = (
       dataIndex: "amount",
       render: (text) => (
         <div className="bg-purple-500 flex items-center justify-center py-2 m-2 cursor-pointer text-white rounded-md">
-          {" "}
           <FileTextOutlined />
         </div>
       ),
@@ -110,12 +105,11 @@ export const Columns = (
       dataIndex: "isActive",
       render: (text, record) => (
         <div className="flex justify-start items-center ">
-          {" "}
           <p
             onClick={() => {
-              setOpenModal(true);
-              setOpenFrom("edit");
-              setpackageId(record);
+              // setOpenModal(true);
+              // setOpenFrom("edit");
+              // setpackageId(record);
             }}
             className="bg-black text-xs flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
           >
@@ -136,12 +130,12 @@ export const Columns = (
           </NavLink>
           <p
             onClick={() => {
-              setDeleteModal(true);
-              setpackageId(record);
+              // setDeleteModal(true);
+              // setpackageId(record);
             }}
             className="bg-red-600 text-md h-7 font-bold flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
           >
-           x
+            x
           </p>
         </div>
       ),
@@ -151,7 +145,6 @@ export const Columns = (
       dataIndex: "pinWalletOrderId",
       render: (text) => (
         <div className="bg-blue-400 flex items-center justify-center py-2 m-2 cursor-pointer text-white rounded-md">
-          {" "}
           <DisconnectOutlined />
         </div>
       ),
@@ -159,13 +152,12 @@ export const Columns = (
     {
       title: "Passkey",
       dataIndex: "referenceId",
-      render: (text) => (
-        <div>
-          {" "}
-          <p className="bg-blue-800 text-xs flex items-center justify-center py-2 m-2 cursor-pointer text-white rounded-md">
+      render: (text,record) => (
+        <div className="flex justify-start items-center">
+          <p onClick={()=>handleOpenKeyModal(record.id)} className="bg-blue-800 text-xs flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md">
             <KeyOutlined />
           </p>
-          <p className="bg-blue-400 text-xs flex items-center justify-center py-2 m-2 cursor-pointer text-white rounded-md">
+          <p className="bg-blue-400 text-xs flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md">
             <SendOutlined />
           </p>
         </div>

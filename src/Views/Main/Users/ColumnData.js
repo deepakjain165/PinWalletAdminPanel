@@ -5,26 +5,17 @@ import {
   } from "@ant-design/icons";
   import { ExtractDate } from "../../../Utils";
   
-  export const PartnerIpcolumn = (
+  export const Columns = (
+    setpackageId,
     setDeleteModal,
-    handlechangeStatus,setIp,setIpId,setPackageId
+    setOpenModal,
+    setOpenFrom,
+    handlechangeStatus
   ) => {
     return [
       {
         title: "Sr No",
         dataIndex: "sno",
-      },
-
-      {
-        title: "Name",
-        dataIndex: "ipAddress",
-        render: (text, record) => (
-          <div className="text-xs">
-            <p>{text}</p>
-          </div>
-        ),
-        sorter: (a, b) => a.partnerName.localeCompare(b.partnerName),
-        sortDirections: ["ascend"],
       },
       {
         title: "Status",
@@ -58,13 +49,50 @@ import {
         // ),
       },
       {
-        title: "Created On",
-        dataIndex: "createdOn",
-        render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
+        title: "User Code",
+        dataIndex: "userCode",
+        render: (text, record) => (
+          <div className="text-xs">
+            <p>{text}</p>
+          </div>
+        ),
+        sorter: (a, b) => a.userCode.localeCompare(b.userCode),
+        sortDirections: ["ascend"],
       },
       {
-        title: "Updated On",
-        dataIndex: "updatedOn",
+        title: "Full Name",
+        dataIndex: "fullName",
+        render: (text, record) => (
+          <div className="text-xs">
+            <p>{text}</p>
+          </div>
+        ),
+        sorter: (a, b) => a.fullName.localeCompare(b.fullName),
+        sortDirections: ["ascend"],
+      },{
+        title: "Email",
+        dataIndex: "email",
+        render: (text, record) => (
+          <div className="text-xs">
+            <p>{text}</p>
+          </div>
+        ),
+        sorter: (a, b) => a.email.localeCompare(b.email),
+        sortDirections: ["ascend"],
+      },{
+        title: "Role",
+        dataIndex: "role",
+        render: (text, record) => (
+          <div className="text-xs">
+            <p>{text}</p>
+          </div>
+        ),
+        sorter: (a, b) => a.role.localeCompare(b.role),
+        sortDirections: ["ascend"],
+      },
+      {
+        title: "Created On",
+        dataIndex: "createdOn",
         render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
       },
       {
@@ -75,8 +103,9 @@ import {
             {" "}
             <p
               onClick={() => {
-                setPackageId(record)
-                setIp(record?.ipAddress);
+                setOpenModal(true);
+                setOpenFrom("edit");
+                setpackageId(record);
               }}
               className="bg-black text-xs flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
             >
@@ -92,12 +121,12 @@ import {
             </p>
             <p
               onClick={() => {
+                  setpackageId(record.id);
                 setDeleteModal(true);
-                setIpId(record);
               }}
-              className="bg-red-600 text-sm h-7 font-bold flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
+              className="bg-red-600 text-sm font-bold h-7 flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
             >
-            x
+              x
             </p>
           </div>
         ),

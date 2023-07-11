@@ -1,31 +1,42 @@
 import React, { useEffect, useState } from "react";
 import PaginationComponent from "../../../Common/Pagination";
-import { Input, Spin, Table, message } from "antd";
+import { Input, Select, Spin, Table, message } from "antd";
 import {
-  changePackageStatuseById,
-  deletePackage,
-  getPackageList,
+  DeleteUser,
+  changeUserStatus,
+  getUsers,
 } from "../../../services/apiFunctions";
-import { Columns } from "./columnData";
-import CreateEditModal from "./CreateEditModal";
+import { Columns } from "./ColumnData";
 import { messageConfiguration } from "../../../Utils";
 import ConfirmModal from "../../../Common/ConfirmModal";
 import { useCustomState } from "../../../Hooks/Usehooks";
+import CreateEditModal from "./CreateEditModal";
 
-const Packages = () => {
-  const {handlepageChange,
+const Users = () => {
+  const {
+    handlepageChange,
     start,
     current,
-    handlechangeStatus,
     setNumberOfData,
-    numberOfData,setNumberOfPages,numberOfPAges,setShowSpin,showSpin,dataSource,setDataSource}=useCustomState(getAllPackages,changePackageStatuseById)
-    const totalCount = 30;
-  const [fields, setFields] = useState("");
+    numberOfData,
+    setNumberOfPages,
+    numberOfPAges,
+    setShowSpin,
+    showSpin,
+    dataSource,
+    setDataSource,
+    handlechangeStatus
+  } = useCustomState(getAllUsers,changeUserStatus);
+  const [fields, setFields] = useState({
+    type: "Email",
+    search: "",
+  });
   const [openModal, setOpenModal] = useState(false);
   const [openFrom, setOpenFrom] = useState("");
   const [deleteModal, setDeleteModal] = useState(null);
+  const totalCount = 30;
   const [packageId, setPackageId] = useState(null);
-  function getAllPackages(page, start) {
+  function getAllUsers(page, start) {
     setShowSpin(true);
     const payload = {
       Pagination: {
@@ -36,11 +47,13 @@ const Packages = () => {
       },
       Search: {
         PredicateObject:
-          fields !== null && fields !== "" ? { Name: fields } : null,
+          fields.search !== null && fields.search !== ""
+            ? { [fields.type]: fields.search }
+            : null,
       },
       Sort: {},
     };
-    getPackageList(payload)
+    getUsers(payload)
       .then((res) => {
         const filterdData = res.items.map((item, index) => {
           return { ...item, sno: index + 1 };
@@ -50,35 +63,47 @@ const Packages = () => {
       })
       .catch((err) => console.log(err))
       .finally(() => setShowSpin(false));
-  };
+  }
   useEffect(() => {
-    getAllPackages(numberOfData, start);
+    getAllUsers(numberOfData, start);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [openModal, deleteModal]);
   const handleSearchString = () => {
-    getAllPackages(numberOfData, 0);
+    getAllUsers(numberOfData, 0);
   };
-
   const handleDelete = () => {
-    deletePackage(packageId.id)
+    DeleteUser(packageId)
       .then((res) => {
         message.open(
-          messageConfiguration("success", "Package Deleted Successfully", 3)
+          messageConfiguration("success", "User Deleted Successfully", 3)
         );
         setDeleteModal(false);
-        getAllPackages(numberOfData, start);
+        getAllUsers(numberOfData, start);
       })
       .catch((err) => console.log(err));
   };
   return (
     <>
-      <p className="font-bold text-lg mb-4">Packages List</p>
+      <p className="font-bold text-lg mb-4">User List</p>
       <div className="flex justify-between items-center flex-wrap gap-y-2">
         {" "}
         <div className="input_fields">
+          <Select
+            className="w-full mb-2"
+            defaultValue={"Email"}
+            value={fields.type}
+            onChange={(val) => setFields({ ...fields, type: val })}
+            options={[
+              {
+                value: "Email",
+                label: "Email",
+              },
+              { value: "FullName", label: "FullName" },
+            ]}
+          />
           <Input.Search
-            value={fields}
-            onChange={(e) => setFields(e.target.value)}
+            value={fields.search}
+            onChange={(e) => setFields({ ...fields, search: e.target.value })}
             onSearch={handleSearchString}
             className="searchBar w-full "
             placeholder="Name"
@@ -94,7 +119,7 @@ const Packages = () => {
           }}
           className="bg-[#113150] p-3 text-white rounded-lg cursor-pointer"
         >
-          Add Package
+          Add User
         </p>
       </div>
       <div className="mt-3">
@@ -133,7 +158,7 @@ const Packages = () => {
         <ConfirmModal
           deleteModal={deleteModal}
           setDeleteModal={setDeleteModal}
-          openby="Package"
+          openby="User"
           handleDelete={handleDelete}
         />
       )}
@@ -141,4 +166,4 @@ const Packages = () => {
   );
 };
 
-export default Packages;
+export default Users;

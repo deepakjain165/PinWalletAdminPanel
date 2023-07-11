@@ -137,6 +137,7 @@ const ChargeBackAdded = () => {
         disableExport={disableExport}
         handleServiceType={handleServiceType}
         showSpin={showSpin}
+        showExport={false}
         columns={Columns(dataSource, handleOpenDetailModal)}
         dataSource={dataSource}
       />

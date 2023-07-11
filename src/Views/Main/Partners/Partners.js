@@ -3,8 +3,9 @@ import React, { useEffect, useState } from "react";
 import PaginationComponent from "../../../Common/Pagination";
 import { Columns } from "./ColumnData";
 import { PartnerPredicate } from "../../../Utils/Options";
-import { getPartnerList } from "../../../services/apiFunctions";
+import { changePartnerStatus, getPartnerList } from "../../../services/apiFunctions";
 import { useCustomState } from "../../../Hooks/Usehooks";
+import KeyModal from "./KeyModal";
 
 const Partners = () => {
   const {
@@ -15,16 +16,19 @@ const Partners = () => {
     numberOfData,
     setNumberOfPages,
     numberOfPAges,
+    handlechangeStatus,
     setShowSpin,
     showSpin,
     dataSource,
     setDataSource,
-  } = useCustomState(getAllPartnerList);
+  } = useCustomState(getAllPartnerList,changePartnerStatus);
   const totalCount = 30;
   const [fields, setFields] = useState({
     type: PartnerPredicate[0].value,
     searchString: "",
   });
+  const[openKeyModal,setKeyModal]=useState(false)
+  const [rowData,setRowData]=useState(null)
   const handleSearchString = () => {
     getAllPartnerList(numberOfData, 0);
   };
@@ -59,7 +63,10 @@ const Partners = () => {
     getAllPartnerList(numberOfData, start);
         // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
+  const handleOpenKeyModal=(data)=>{
+    setRowData(data)
+setKeyModal(true)
+  }
   return (
     <>
     <p className="font-bold text-lg mb-4">Partners List</p>
@@ -89,7 +96,7 @@ const Partners = () => {
         <Spin spinning={showSpin} tip="Loading...">
           <Table
             className="custom-table overflow-x-scroll text-white rounded-none"
-            columns={Columns()}
+            columns={Columns(handlechangeStatus,handleOpenKeyModal)}
             pagination={false}
             dataSource={dataSource}
           />
@@ -104,6 +111,7 @@ const Partners = () => {
         handlepageChange={handlepageChange}
         numberOfData={numberOfData}
       />
+      {openKeyModal && <KeyModal id={rowData} keyModal={openKeyModal} setKeyModal={setKeyModal}/>}
     </>
   );
 };

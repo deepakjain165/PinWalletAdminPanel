@@ -23,6 +23,7 @@ const CommonLayout = ({
   disableExport,
   showSpin,
   from="",
+  showExport=true,
   columns,
   dataSource,
 }) => {
@@ -91,7 +92,7 @@ const CommonLayout = ({
         >
           Search
         </Button>
-        {from !=="ChargeBackAdded" &&
+        {showExport &&
         <Button
           onClick={handleExport}
           disabled={disableExport}

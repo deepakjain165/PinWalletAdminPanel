@@ -1,7 +1,7 @@
 // useCustomState.js
 import { useState } from "react";
 
-export const useCustomState = ( apifun ) => {
+export const useCustomState = ( apifun,apifunchangstatus ) => {
   const [start, setStart] = useState(0);
   const [current, setCurrent] = useState(1);
   const [numberOfData, setNumberOfData] = useState(30);
@@ -16,13 +16,19 @@ export const useCustomState = ( apifun ) => {
     apifun(numberOfData, startPage);
   };
 
-
+  const handlechangeStatus = (id) => {
+    apifunchangstatus(id)
+      .then((res) => {
+        apifun(numberOfData, start);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return {
     handlepageChange,
     start,
     current,
     setNumberOfData,
-    numberOfData,setNumberOfPages,numberOfPAges,setShowSpin,showSpin,dataSource,setDataSource
+    numberOfData,setNumberOfPages,numberOfPAges,setShowSpin,showSpin,dataSource,setDataSource,handlechangeStatus
   };
 };

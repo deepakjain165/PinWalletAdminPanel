@@ -21,6 +21,7 @@ const PartnerIps = () => {
     handlepageChange,
     start,
     current,
+    handlechangeStatus,
     setNumberOfData,
     numberOfData,
     setNumberOfPages,
@@ -29,12 +30,12 @@ const PartnerIps = () => {
     showSpin,
     dataSource,
     setDataSource,
-  } = useCustomState(getPArtnerIp);
+  } = useCustomState(getPArtnerIp, changeIpstatusDetail);
   const [fields, setFields] = useState("");
   const [deleteModal, setDeleteModal] = useState(null);
   const [packageId, setPackageId] = useState(null);
   const [Ip, setIp] = useState("");
-  const [ipId,setIpId]=useState(null)
+  const [ipId, setIpId] = useState(null);
   function getPArtnerIp(page, start) {
     setShowSpin(true);
     const payload = {
@@ -60,7 +61,7 @@ const PartnerIps = () => {
       })
       .catch((err) => console.log(err))
       .finally(() => setShowSpin(false));
-  };
+  }
   useEffect(() => {
     getPArtnerIp(numberOfData, start);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,39 +80,52 @@ const PartnerIps = () => {
       })
       .catch((err) => console.log(err));
   };
-  const handlechangeStatus = (id) => {
-    changeIpstatusDetail(id)
-      .then((res) => {
-        getPArtnerIp(numberOfData, start);
-      })
-      .catch((err) => console.log(err));
-  };
+  function ValidateIPaddress(Ip) {
+    if (
+      /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
+        Ip
+      )
+    ) {
+      return true;
+    }
+    return false;
+  }
   const handleAdd = (id) => {
-    packageId === null
-      ? addIp({ ipAddress: Ip, partnerId: location.state?.id })
-          .then((res) => {
-            message.open(messageConfiguration("success", res.message, 3));
-            getPArtnerIp(numberOfData, start);
-            setPackageId(null);
-            setIp("")
+    if (ValidateIPaddress(Ip)) {
+      packageId === null
+        ? addIp({ ipAddress: Ip, partnerId: location.state?.id })
+            .then((res) => {
+              message.open(messageConfiguration("success", res.message, 3));
+              getPArtnerIp(numberOfData, start);
+              setPackageId(null);
+            })
+            .catch((err) => console.log(err))
+        : updateIpDetail({
+            partnerId: packageId.partnerId,
+            user: null,
+            ipAddress: Ip,
+            createdOn: packageId.createdOn,
+            updatedOn: packageId.updatedOn,
+            isActive: true,
+            isDelete: false,
+            id: packageId.id,
           })
-          .catch((err) => console.log(err))
-      : updateIpDetail({
-          partnerId: packageId.partnerId,
-          user: null,
-          ipAddress: Ip,
-          createdOn: packageId.createdOn,
-          updatedOn: packageId.updatedOn,
-          isActive: true,
-          isDelete: false,
-          id: packageId.id,
-        })
-          .then((res) => {
-            message.open(messageConfiguration("success", res.message, 3));
-            getPArtnerIp(numberOfData, start);
-            setPackageId(null);
-          })
-          .catch((err) => console.log(err));
+            .then((res) => {
+              message.open(messageConfiguration("success", res.message, 3));
+              getPArtnerIp(numberOfData, start);
+              setPackageId(null);
+            })
+            .catch((err) => console.log(err));
+      setIp("");
+    } else {
+      message.open(
+        messageConfiguration(
+          "error",
+          "You have entered an invalid IP address!",
+          3
+        )
+      );
+    }
   };
   return (
     <>
@@ -160,7 +174,10 @@ const PartnerIps = () => {
             className="custom-table overflow-x-scroll text-white rounded-none"
             columns={PartnerIpcolumn(
               setDeleteModal,
-              handlechangeStatus,setIp,setIpId
+              handlechangeStatus,
+              setIp,
+              setIpId,
+              setPackageId
             )}
             pagination={false}
             dataSource={dataSource}

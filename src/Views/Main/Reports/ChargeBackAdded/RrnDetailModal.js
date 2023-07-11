@@ -24,19 +24,19 @@ getChargeBackrrnDetails(rrnno).then(res=>setDetails(res.data)).catch(err=>consol
         <div className='flex flex-col gap-y-6' >
         <div className='grid grid-cols-2 place-items-start'>
           <p className='font-bold uppercase'>From</p>
-          <p>{details? details.from:"Loading...."}</p>
+          <p>{details.from? details.from:"Loading...."}</p>
         </div>
         <div className='grid grid-cols-2 place-items-start'>
           <p className='font-bold uppercase'>To</p>
-          <p>{details? details.to:"Loading...."}</p>
+          <p>{details.to? details.to:"Loading...."}</p>
         </div>
         <div className='grid grid-cols-2 place-items-start'>
           <p className='font-bold uppercase'>Payer Amount</p>
-          <p>{details?ConvertInRs(Number(details.payerAmount)):"Loading...."}</p>
+          <p>{details.payerAmount?ConvertInRs(Number(details.payerAmount)):"Loading...."}</p>
         </div>
         <div className='grid grid-cols-2 place-items-start'>
           <p className='font-bold uppercase'>Date</p>
-          <p>{ details?ExtractTime(details.date) +" "+ ExtractDate(details.date):"Loading...."}</p>
+          <p>{ details.date?ExtractTime(details.date) +" "+ ExtractDate(details.date):"Loading...."}</p>
         </div>
         </div>
         <div className='text-right'>

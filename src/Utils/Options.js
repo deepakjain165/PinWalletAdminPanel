@@ -130,3 +130,19 @@ export const predicateObjectNames=[{
       label: '50',
     }
   ]
+  export const fundreqPredicate=[
+    {
+      value: 'Name',
+      label: 'Partner Name',
+    },{
+      value: 'Email',
+      label: 'Partner Email',
+    },
+    {
+      value: 'Phone',
+      label: 'Partner Phone',
+    }, {
+      value: 'PinWalletReferenceId',
+      label: 'Search by PinWallet RefId',
+    }
+  ]

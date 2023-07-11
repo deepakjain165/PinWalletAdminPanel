@@ -1,4 +1,7 @@
 
+import AccessRightList from "../Views/Main/AccessRights/AccessRightList"
+import RoleList from "../Views/Main/AccessRights/RoleList"
+import FundRequest from "../Views/Main/BusinessWallet/FundRequest/FundRequest"
 import Dashboard from "../Views/Main/Dashboard"
 import Packages from "../Views/Main/Packages/Packages"
 import PartnerIps from "../Views/Main/Partners/PartnerIps"
@@ -19,6 +22,7 @@ import DigilockerKyc from "../Views/Main/Reports/digilockerKyc/DigilockerKycRepo
 import DynamicUpiTxn from "../Views/Main/Reports/dynamicUpi/DynamicUpiTxn"
 import PayoutTransaction from "../Views/Main/Reports/payoutTxn/PayoutTransaction"
 import Services from "../Views/Main/Services/Services"
+import User from "../Views/Main/Users/User"
 import ProtectedAdmin from "./protectedAdmin"
 
 
@@ -201,6 +205,42 @@ const PrivateAdmin = () => {
           {
             path: '/services',
             element: <Services />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: '/users',
+            element: <User />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: '/business-wallet/fund-requests',
+            element: <FundRequest />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: '/roles',
+            element: <RoleList />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: '/role-permission',
+            element: <AccessRightList />,
           },
         ],
       },

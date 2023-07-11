@@ -19,13 +19,14 @@ const Services = () => {
     current,
     setNumberOfData,
     numberOfData,
+    handlechangeStatus,
     setNumberOfPages,
     numberOfPAges,
     setShowSpin,
     showSpin,
     dataSource,
     setDataSource,
-  } = useCustomState(getAllServices);
+  } = useCustomState(getAllServices,changeServiceStatuseById);
   const [fields, setFields] = useState("");
   const [openModal, setOpenModal] = useState(false);
   const [openFrom, setOpenFrom] = useState("");
@@ -72,13 +73,6 @@ const Services = () => {
           messageConfiguration("success", "Package Deleted Successfully", 3)
         );
         setDeleteModal(false);
-        getAllServices(numberOfData, start);
-      })
-      .catch((err) => console.log(err));
-  };
-  const handlechangeStatus = (id) => {
-    changeServiceStatuseById(id)
-      .then((res) => {
         getAllServices(numberOfData, start);
       })
       .catch((err) => console.log(err));

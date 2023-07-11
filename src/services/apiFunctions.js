@@ -66,13 +66,25 @@ export const getChargeBackrrnDetails=(param="")=>{
     const url=getAPIUrl(endpoint.rrnDetails,param)
     return Get(url)
 }
+
+/////////////////// REPORT API FUNCTION ENDED /////////////////////
+
+/////////////////// PARTNER SECTION API STARTED /////////////////////
 export const getPartnerList=(data,param="")=>{
     const url=getAPIUrl(endpoint.partnerList,param)
     return Post(url,data)
 }
+export const changePartnerStatus=(param="")=>{
+    const url=getAPIUrl(endpoint.changePartnerStatus,param)
+    return Post(url)
+}
 export const getPartnerIpsList=(data,param="")=>{
     const url=getAPIUrl(endpoint.partnerIps,param)
     return Post(url,data)
+}
+export const generatePartnerKey=(param="")=>{
+    const url=getAPIUrl(endpoint.generateKey,param)
+    return Get(url)
 }
 export const addIp=(data,param="")=>{
     const url=getAPIUrl(endpoint.addIp,param)
@@ -90,6 +102,10 @@ export const changeIpstatusDetail=(param="")=>{
     const url=getAPIUrl(endpoint.changeIpStatus,param)
     return Post(url)
 }
+
+////////////////////// PARTNER API FUNCTION ENDED ///////////////////
+
+///////////////////// PACKAGE API FUNCTION STARTED ///////////////////
 export const getPackageList=(data,param="")=>{
     const url=getAPIUrl(endpoint.packages,param)
     return Post(url,data)
@@ -114,6 +130,10 @@ export const changePackageStatuseById=(param="")=>{
     const url=getAPIUrl(endpoint.changeStatus,param)
     return Post(url)
 }
+
+//////////////////// PACKAGE API FUNCTION ENDED ///////////////////
+
+//////////////////// SERVICE API FUNCTION STARTED ////////////////
 export const getServicesList=(data,param="")=>{
     const url=getAPIUrl(endpoint.services,param)
     return Post(url,data)
@@ -138,6 +158,64 @@ export const changeServiceStatuseById=(param="")=>{
     const url=getAPIUrl(endpoint.changeServiceStatus,param)
     return Post(url)
 }
+
+////////////////// SERVICE API FUNCTION ENDED ///////////////////////
+
+////////////////// USER API FUNCTION STARTED ///////////////////////////
+export const getUsers=(data,param="")=>{
+    const url=getAPIUrl(endpoint.users,param)
+    return Post(url,data)
+}
+export const changeUserStatus=(param="")=>{
+    const url=getAPIUrl(endpoint.changeUserStatus,param)
+    return Post(url)
+}
+export const addUser=(data,param="")=>{
+    const url=getAPIUrl(endpoint.addUser,param)
+    return Post(url,data)
+}
+export const EditUser=(data,param="")=>{
+    const url=getAPIUrl(endpoint.userfun,param)
+    return Put(url,data)
+}
+export const DeleteUser=(param="")=>{
+    const url=getAPIUrl(endpoint.userfun,param)
+    return Delete(url)
+}
+export const getUserById=(param="")=>{
+    const url=getAPIUrl(endpoint.userfun,param)
+    return Get(url)
+}
+export const GetUserRoles=(param="")=>{
+    const url=getAPIUrl(endpoint.getUserRoles,param)
+    return Get(url)
+}
+
+///////////////////// USER API FUNCTION ENDED ////////////////
+
+//////////////////// BUSINESS API FUNCTION STARTED /////////////
+export const GetFundRequests=(data,param="")=>{
+    const url=getAPIUrl(endpoint.fundRequests,param)
+    return Post(url,data)
+} 
+
+//////////////////// BUSINES API FUNCTION ENDED/////////////////////
+
+////////////////// ACCESS RIGHT API FUNCTION STARTED ///////////////
+export const GetRoles=(data,param="")=>{
+    const url=getAPIUrl(endpoint.allroles,param)
+    return Post(url,data)
+} 
+export const GetMenuPermission=(data,param="")=>{
+    const url=getAPIUrl(endpoint.menuPermission,param)
+    return Post(url,data)
+}
+export const allowPermissions=(data,param="")=>{
+    const url=getAPIUrl(endpoint.saveMenuRight,param)
+    return Post(url,data)
+}
+
+///////////////// ACCESS RIGHT API FUNCTION ENDED ///////////////////
 export const getExcelSheetOfTxn=(data,param="",endpoint)=>{
     const url=getAPIUrl(endpoint,param)
     return Post(url,data)

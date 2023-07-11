@@ -41,10 +41,12 @@ exportToExceldynamicupiGenerated:"api/exportToExcel/DynamicUpiGenerated",
 
 partnerList:"api/partner/grid",
 partnerIps:"api/partner/ipsList/",
+changePartnerStatus:"api/partner/change-status/",
 updateIp:"api/partner/updateIp",
 addIp:"api/partner/saveIp",
 deleteIp:"api/partner/deleteIp/",
 changeIpStatus:"api/partner/change-status-ip/",
+generateKey:"api/partner/generatekey/",
 
 packages:"api/package/grid",
 Packagefun:"api/package/",
@@ -54,4 +56,21 @@ changeStatus:"api/package/change-status/",
 services:"api/service/grid",
 servicefun:"api/service/",
 changeServiceStatus:"api/service/change-status/",
+
+// SERVICES END
+
+users:"api/users/grid",
+changeUserStatus:"api/users/change-status/",
+addUser:"api/users/register",
+userfun:"api/users/",
+getUserRoles:"api/roles",
+
+//USERS END
+
+fundRequests:"api/businessWallet/getFundRequests",
+
+//ALL ROLES
+allroles:"api/roles/grid",
+menuPermission:"api/roles/menuspermission/",
+saveMenuRight:"api/roles/saveMenuRight"
 }
