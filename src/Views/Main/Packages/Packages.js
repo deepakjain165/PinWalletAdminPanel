@@ -131,9 +131,10 @@ const Packages = () => {
       )}
       {deleteModal && (
         <ConfirmModal
+        btnTxt={"Yes i delete it."}
           deleteModal={deleteModal}
+          desc={"You want to delete Package"}
           setDeleteModal={setDeleteModal}
-          openby="Package"
           handleDelete={handleDelete}
         />
       )}

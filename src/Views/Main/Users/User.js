@@ -157,8 +157,9 @@ const Users = () => {
       {deleteModal && (
         <ConfirmModal
           deleteModal={deleteModal}
+          btnTxt={"yes i delete it."}
+          desc={"You want to delete User"}
           setDeleteModal={setDeleteModal}
-          openby="User"
           handleDelete={handleDelete}
         />
       )}

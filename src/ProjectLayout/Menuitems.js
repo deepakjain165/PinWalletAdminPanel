@@ -25,26 +25,41 @@ export const items = [
     key: "4",
     icon: <LockFilled />,
     label: <NavLink to={"/roles"}>Access Rights</NavLink>,
+    onClick: () => {
+      setLocalStorageItem("selectedTab", "4");
+    },
   },
   {
     key: "5",
     icon:users,
     label: <NavLink to={"/users"}>Users</NavLink>,
+    onClick: () => {
+      setLocalStorageItem("selectedTab", "5");
+    },
   },
   {
     key: "6",
     icon: <SettingFilled />,
     label: <NavLink to={"/services"}>Services</NavLink>,
+    onClick: () => {
+      setLocalStorageItem("selectedTab", "6");
+    },
   },
   {
     key: "7",
     icon: <GiftFilled />,
     label: <NavLink to={"/packages"}>Packages</NavLink>,
+    onClick: () => {
+      setLocalStorageItem("selectedTab", "7");
+    },
   },
   {
     key: "8",
     icon: svghandshake,
     label: <NavLink to={"/partners"}>Partners</NavLink>,
+    onClick: () => {
+      setLocalStorageItem("selectedTab", "8");
+    },
   },
   {
     key: "9",
@@ -64,6 +79,9 @@ export const items = [
         label: (
           <NavLink to="/business-wallet/fund-requests">Fund Requests</NavLink>
         ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "9.3");
+        },
       },
     ],
   },

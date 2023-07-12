@@ -194,9 +194,10 @@ const PartnerIps = () => {
       />
       {deleteModal && (
         <ConfirmModal
+        btnTxt={"yes i delete it."}
+        desc={"You want to delete Ip Address"}
           deleteModal={deleteModal}
           setDeleteModal={setDeleteModal}
-          openby="Ip Address"
           handleDelete={handleDelete}
         />
       )}

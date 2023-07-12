@@ -1,10 +1,14 @@
 import { Spin, Table } from "antd";
 import React, { useEffect, useState } from "react";
-import { GetMenuPermission } from "../../../services/apiFunctions";
+import {
+  GetMenuPermission,
+  allowPermissions,
+} from "../../../services/apiFunctions";
 import { useCustomState } from "../../../Hooks/Usehooks";
 import PaginationComponent from "../../../Common/Pagination";
-import { useLocation } from "react-router-dom";
-import ConfirmChangeModal from "./ConfirmChangeModal";
+import { NavLink, useLocation } from "react-router-dom";
+import ConfirmModal from "../../../Common/ConfirmModal";
+import { CheckOutlined } from "@ant-design/icons";
 
 const AccessRightList = () => {
   const location = useLocation();
@@ -24,8 +28,10 @@ const AccessRightList = () => {
   const totalCount = 30;
   const [changeModal, setChange] = useState(false);
   const [detail, setDetail] = useState({
-    name:"",
-    data:null
+    name: "",
+    data: null,
+    rightTo: "",
+    rightToaccess: "",
   });
   const columns = [
     {
@@ -37,7 +43,7 @@ const AccessRightList = () => {
       dataIndex: "name",
       render: (text, record) => (
         <p className="m-2 font-semibold">
-          <i className={`fa${record.policy.split(" ")[1]}`}></i> {text}
+          <i className={`fa ${record.policy.split(" ")[1]}`}></i> {text}
         </p>
       ),
     },
@@ -47,12 +53,20 @@ const AccessRightList = () => {
       render: (text, record) => (
         <p
           onClick={() => {
-            setDetail({name:"view",data:record});
+            setDetail({
+              name: "view",
+              data: record,
+              rightTo: "view",
+              rightToaccess: record.canViewRight,
+            });
             setChange(true);
           }}
-          className="m-2 cursor-pointer bg-red-600 w-5 text-center text-white  font-bold rounded-md"
+          style={{ transition: "0.5s all ease-in-out" }}
+          className={`m-2 cursor-pointer ${
+            record.canViewRight ? "bg-black" : "bg-red-600"
+          }  w-5 flex justify-center items-center px-1 text-white  font-bold rounded-md`}
         >
-          x
+          {record.canViewRight ? <CheckOutlined className="py-1" /> : "x"}
         </p>
       ),
     },
@@ -61,13 +75,21 @@ const AccessRightList = () => {
       dataIndex: "canCreateRight",
       render: (text, record) => (
         <p
+          style={{ transition: "0.5s all ease-in-out" }}
           onClick={() => {
-            setDetail({name:"create",data:record});
+            setDetail({
+              name: "create",
+              data: record,
+              rightTo: "create",
+              rightToaccess: record.canCreateRight,
+            });
             setChange(true);
           }}
-          className="m-2 cursor-pointer bg-red-600 w-5 text-center text-white  font-bold rounded-md"
+          className={`m-2 cursor-pointer ${
+            record.canCreateRight ? "bg-black" : "bg-red-600"
+          }  w-5 flex justify-center items-center px-1 text-white  font-bold rounded-md`}
         >
-          x
+          {record.canCreateRight ? <CheckOutlined className="py-1"/> : "x"}
         </p>
       ),
     },
@@ -76,13 +98,21 @@ const AccessRightList = () => {
       dataIndex: "canEditRight",
       render: (text, record) => (
         <p
+          style={{ transition: "0.5s all ease-in-out" }}
           onClick={() => {
-            setDetail({name:"edit",data:record});
+            setDetail({
+              name: "edit",
+              data: record,
+              rightTo: "update",
+              rightToaccess: record.canEditRight,
+            });
             setChange(true);
           }}
-          className="m-2 cursor-pointer bg-red-600 w-5 text-center text-white  font-bold rounded-md"
+          className={`m-2 cursor-pointer ${
+            record.canEditRight ? "bg-black" : "bg-red-600"
+          }  w-5 flex justify-center items-center px-1 text-white  font-bold rounded-md`}
         >
-          x
+          {record.canEditRight ? <CheckOutlined className="py-1"/> : "x"}
         </p>
       ),
     },
@@ -91,13 +121,21 @@ const AccessRightList = () => {
       dataIndex: "canDeleteRight",
       render: (text, record) => (
         <p
+          style={{ transition: "0.5s all ease-in-out" }}
           onClick={() => {
-            setDetail({name:"delete",data:record});
+            setDetail({
+              name: "delete",
+              data: record,
+              rightTo: "delete",
+              rightToaccess: record.canDeleteRight,
+            });
             setChange(true);
           }}
-          className="m-2 cursor-pointer bg-red-600 w-5 text-center text-white  font-bold rounded-md"
+          className={`m-2 cursor-pointer ${
+            record.canDeleteRight ? "bg-black" : "bg-red-600"
+          }  w-5 flex justify-center items-center px-1 text-white  font-bold rounded-md`}
         >
-          x
+          {record.canDeleteRight ? <CheckOutlined className="py-1"/> : "x"}
         </p>
       ),
     },
@@ -129,14 +167,20 @@ const AccessRightList = () => {
       Id: detail.data.roleMenuPolicyId,
       RoleId: location.state.id,
       MenuId: detail.data.id,
-      Right: detail.name,
-      RightToAccess: true,
+      Right: detail.rightTo,
+      RightToAccess: !detail.rightToaccess,
     };
-    console.log(payload)
+    allowPermissions(payload)
+      .then((res) => {
+        setChange(false);
+        getAllPermission(numberOfData, start);
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <>
-      <p className="font-bold text-lg mb-4">Role List</p>
+      <div className="flex justify-between items-center"><p className="font-bold text-lg mb-4">Role List</p>
+      <NavLink to={"/roles"}><p className="bg-[#113150] p-2 rounded-md text-white">Back</p></NavLink></div>
       <hr />
       <div className="mt-3">
         <Spin spinning={showSpin} tip="Loading...">
@@ -157,10 +201,18 @@ const AccessRightList = () => {
         numberOfData={numberOfData}
       />
       {changeModal && (
-        <ConfirmChangeModal
-          handleChange={handleChange}
-          changeModal={changeModal}
-          setChange={setChange}
+        <ConfirmModal
+          handleDelete={handleChange}
+          deleteModal={changeModal}
+          btnTxt={`${
+            !detail.rightToaccess ? "Yes,grant it!" : "Yes,revoke it!"
+          }`}
+          desc={`${
+            !detail.rightToaccess
+              ? "You want to Provide Access Right to this menu!"
+              : "You want to revoke access right from this menu!"
+          }`}
+          setDeleteModal={setChange}
         />
       )}
     </>

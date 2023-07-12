@@ -140,8 +140,9 @@ const Services = () => {
       {deleteModal && (
         <ConfirmModal
           deleteModal={deleteModal}
+          btnTxt={"yes i delete it."}
+          desc={"You want to delete Service"}
           setDeleteModal={setDeleteModal}
-          openby="Service"
           handleDelete={handleDelete}
         />
       )}

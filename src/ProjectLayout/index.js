@@ -75,7 +75,7 @@ const ProjectLayout = ({ children }) => {
           />
           <Button
             type="primary"
-            className="bg-black button hover:bg-yellow-600"
+            className="bg-[#113150] button hover:bg-yellow-600"
             onClick={handlelogout}
           >
             Logout
