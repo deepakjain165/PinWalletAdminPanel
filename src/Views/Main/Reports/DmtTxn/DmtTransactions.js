@@ -150,7 +150,6 @@ const DmtTransactions = () => {
        dataSource={dataSource}
       />
       <PaginationComponent current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllDmtTxn} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
-
     </>
   )
 }

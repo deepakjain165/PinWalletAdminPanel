@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {  message } from "antd";
+import { message } from "antd";
 import { predicateObjectNames } from "../../../../Utils/Options";
-import {
-  getPayoutTransactions,
-} from "../../../../services/apiFunctions";
+import { getPayoutTransactions } from "../../../../services/apiFunctions";
 import dayjs from "dayjs";
 import { columns } from "./ColumnData";
 import { handleDownloadExcel, messageConfiguration } from "../../../../Utils";
@@ -11,15 +9,14 @@ import PaginationComponent from "../../../../Common/Pagination";
 import { endpoint } from "../../../../services/global";
 import CommonLayout from "../../../../Common/CommonLayout";
 const PayoutTransaction = () => {
-  
   const [start, setStart] = useState(0);
   const [current, setCurrent] = useState(1);
   const numberOfData = 30;
-    const totalCount = 30;
+  const totalCount = 30;
   const [numberOfPAges, setNumberOfPages] = useState(0);
   const [dataSource, setDataSource] = useState([]);
-  const[disableExport,setdisableExport]=useState(false)
-  const[showSpin,setShowSpin]=useState(false)
+  const [disableExport, setdisableExport] = useState(false);
+  const [showSpin, setShowSpin] = useState(false);
   const [fields, setFields] = useState({
     type: "PinWalletOrderId",
     searchString: "",
@@ -27,7 +24,7 @@ const PayoutTransaction = () => {
     toDate: dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
   });
   const getAllTransaction = (page, start) => {
-    setShowSpin(true)
+    setShowSpin(true);
     const payload = {
       fromDate: fields.fromDate,
       toDate: fields.toDate,
@@ -52,7 +49,7 @@ const PayoutTransaction = () => {
     };
     getPayoutTransactions(payload)
       .then((res) => {
-        setFields({...fields,searchString:""})
+        setFields({ ...fields, searchString: "" });
         const filterdData = res.items.map((item, index) => {
           return {
             sno: index + 1,
@@ -86,24 +83,25 @@ const PayoutTransaction = () => {
       })
       .catch((error) => {
         console.log(error);
-      }).finally(()=>setShowSpin(false))
+      })
+      .finally(() => setShowSpin(false));
   };
   useEffect(() => {
     getAllTransaction(numberOfData, start);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSearchString=()=>{
+  const handleSearchString = () => {
     let delayDebounce;
     delayDebounce = setTimeout(() => {
       getAllTransaction(numberOfData, 0);
     }, 300); // Adjust the delay as needed (e.g., 500ms)
 
     return () => clearTimeout(delayDebounce);
-  }
+  };
   const handlepageChange = (page, pagesize) => {
     setCurrent(page);
-    setStart((page - 1) * numberOfData)
+    setStart((page - 1) * numberOfData);
     const startPage = (page - 1) * numberOfData;
     getAllTransaction(numberOfData, startPage);
   };
@@ -117,12 +115,19 @@ const PayoutTransaction = () => {
     getAllTransaction(numberOfData, start);
   };
   const handleExport = () => {
-   handleDownloadExcel(fields.fromDate,fields.toDate,setdisableExport,endpoint.exportToExcelpayout)
-    message.open(messageConfiguration("success","Your File will downloaded Shortly!",5))
+    handleDownloadExcel(
+      fields.fromDate,
+      fields.toDate,
+      setdisableExport,
+      endpoint.exportToExcelpayout
+    );
+    message.open(
+      messageConfiguration("success", "Your File will downloaded Shortly!", 5)
+    );
   };
   return (
     <>
-    {/* <Header PageName={"Payout Transactions"}/>
+      {/* <Header PageName={"Payout Transactions"}/>
       <div className="filters mt-5 flex justify-start md:justify-around gap-4 items-center flex-wrap">
         <div className="input_fields">
           <Select
@@ -170,18 +175,18 @@ const PayoutTransaction = () => {
         </Spin>
       </div> */}
       <CommonLayout
-      PageName={"Payout Transactions"}
-       setFields={setFields}
-       fields={fields}
-       options={predicateObjectNames}
-       handleSearchString={handleSearchString}
-       handleSearch={handleSearch}
-       handledateChange={handledateChange}
-       handleExport={handleExport}
-       disableExport={disableExport}
-       showSpin={showSpin}
-       columns={columns}
-       dataSource={dataSource}
+        PageName={"Payout Transactions"}
+        setFields={setFields}
+        fields={fields}
+        options={predicateObjectNames}
+        handleSearchString={handleSearchString}
+        handleSearch={handleSearch}
+        handledateChange={handledateChange}
+        handleExport={handleExport}
+        disableExport={disableExport}
+        showSpin={showSpin}
+        columns={columns}
+        dataSource={dataSource}
       />
       {/* <div className="flex justify-end mt-3 gap-10 items-center">
         <Pagination
@@ -198,8 +203,14 @@ const PayoutTransaction = () => {
         <Input.Search type="number" min={1}  onSearch={(value)=>getAllTransaction(value===""?numberOfData:value,start)} title="df" className="w-20" size="small"/>
         </div>
       </div> */}
-      <PaginationComponent current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllTransaction} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
-
+      <PaginationComponent
+        current={current}
+        numberOfPAges={numberOfPAges}
+        start={start}
+        apiFunction={getAllTransaction}
+        handlepageChange={handlepageChange}
+        numberOfData={numberOfData}
+      />
     </>
   );
 };

@@ -19,7 +19,9 @@ const ProjectLayout = ({ children }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const handlelogout = () => {};
+  const handlelogout = () => {
+    
+  };
   useEffect(() => {
     const handleResize = () => {
       setwindowwidth(window.innerWidth);

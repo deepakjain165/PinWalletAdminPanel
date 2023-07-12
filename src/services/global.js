@@ -17,5 +17,7 @@ export const endpoint={
  DmtTxnReport:"api/transactionReports/getDmtTransactions",
  creditCardtxn:"api/transactionReports/getCreditCardTransactions",
  bbpsbillfetch:"api/transactionReports/getBbpsBillFetchData",
- bbpsTxn:"api/transactionReports/getBbpsTransactions"
+ bbpsTxn:"api/transactionReports/getBbpsTransactions",
+ rechargeCommission:"api/settings/getRechargeComm",
+ rechargeOperators:"api/settings/getRechargeOperators",
 }

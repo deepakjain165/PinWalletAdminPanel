@@ -51,3 +51,31 @@ export const predicateObjectNames=[{
       label: 'PinWallet Transaction Id',
     }
   ]
+  export const PackageName=[
+    {
+      value:'number:1',
+      label: 'B2BPackage',
+    },{
+      value:'number:2',
+      label: 'Game Package',
+    },{
+      value:'number:3',
+      label: 'E-com/ Other Package',
+    },{
+      value:'number:4',
+      label: 'Rishi Package',
+    },{
+      value:'number:5',
+      label: 'Dubai Package',
+    },{
+      value:'number:6',
+      label: 'Luck Pay',
+    },{
+      value:'number:7',
+      label: 'ScrapTech Rummy',
+    },
+    {
+      value:'number:8',
+      label: 'Nargis Payout',
+    }
+  ]

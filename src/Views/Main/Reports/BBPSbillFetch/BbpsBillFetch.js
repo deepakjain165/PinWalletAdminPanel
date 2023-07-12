@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { columns } from './ColumnData'
-import { getBbpsBillFetchTxn } from '../../../../services/apiFunctions'
-import dayjs from 'dayjs'
-import {
-  message,
-} from "antd";
-import { DmtTxnPredicate } from '../../../../Utils/Options'
-import PaginationComponent from '../../../../Common/Pagination'
-import { endpoint } from '../../../../services/global'
-import { handleDownloadExcel, messageConfiguration } from '../../../../Utils'
-import CommonLayout from '../../../../Common/CommonLayout'
+import React, { useEffect, useState } from "react";
+import { columns } from "./ColumnData";
+import { getBbpsBillFetchTxn } from "../../../../services/apiFunctions";
+import dayjs from "dayjs";
+import { message } from "antd";
+import { DmtTxnPredicate } from "../../../../Utils/Options";
+import PaginationComponent from "../../../../Common/Pagination";
+import { endpoint } from "../../../../services/global";
+import { handleDownloadExcel, messageConfiguration } from "../../../../Utils";
+import CommonLayout from "../../../../Common/CommonLayout";
 const BbpsBillFetch = () => {
-
   const [start, setStart] = useState(0);
   const [current, setCurrent] = useState(1);
   const numberOfData = 30;
@@ -57,7 +54,7 @@ const BbpsBillFetch = () => {
           return {
             sno: index + 1,
             partnerName: item.partnerName,
-            partnerEmail:item.partnerEmail,
+            partnerEmail: item.partnerEmail,
             status: item.status,
             billerId: item.billerId,
             accountHolderName: item.accountHolderName,
@@ -67,9 +64,9 @@ const BbpsBillFetch = () => {
             amount: item.amount,
             pinWalletTransactionId: item.pinWalletTransactionId,
             billDate: item.billDate,
-            dueDate:item.dueDate,
-            statusCode:item.statusCode,
-            statusMessage:item.statusMessage,
+            dueDate: item.dueDate,
+            statusCode: item.statusCode,
+            statusMessage: item.statusMessage,
             createdOn: item.createdOn,
             createdTime: item.createdOn,
             latestUpdatedOn: item.latestUpdatedOn,
@@ -115,29 +112,42 @@ const BbpsBillFetch = () => {
     getAllBbpsBillFetch(numberOfData, startPage);
   };
   const handleExport = () => {
-    handleDownloadExcel(fields.fromDate,fields.toDate,setdisableExport,endpoint.exportToExcelBbpsBillFetch)
-    message.open(messageConfiguration("success","Your File will downloaded Shortly!",5))
+    handleDownloadExcel(
+      fields.fromDate,
+      fields.toDate,
+      setdisableExport,
+      endpoint.exportToExcelBbpsBillFetch
+    );
+    message.open(
+      messageConfiguration("success", "Your File will downloaded Shortly!", 5)
+    );
   };
   return (
     <>
       <CommonLayout
-     PageName={"BBPS Bill Fetch Data Report"}
-      setFields={setFields}
-      fields={fields}
-      options={DmtTxnPredicate}
-      handleSearchString={handleSearchString}
-      handleSearch={handleSearch}
-      handledateChange={handledateChange}
-      handleExport={handleExport}
-      disableExport={disableExport}
-      showSpin={showSpin}
-      columns={columns}
-      dataSource={dataSource}
+        PageName={"BBPS Bill Fetch Data Report"}
+        setFields={setFields}
+        fields={fields}
+        options={DmtTxnPredicate}
+        handleSearchString={handleSearchString}
+        handleSearch={handleSearch}
+        handledateChange={handledateChange}
+        handleExport={handleExport}
+        disableExport={disableExport}
+        showSpin={showSpin}
+        columns={columns}
+        dataSource={dataSource}
       />
-      <PaginationComponent current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllBbpsBillFetch} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
-
+      <PaginationComponent
+        current={current}
+        numberOfPAges={numberOfPAges}
+        start={start}
+        apiFunction={getAllBbpsBillFetch}
+        handlepageChange={handlepageChange}
+        numberOfData={numberOfData}
+      />
     </>
-  )
-}
+  );
+};
 
-export default BbpsBillFetch
+export default BbpsBillFetch;
