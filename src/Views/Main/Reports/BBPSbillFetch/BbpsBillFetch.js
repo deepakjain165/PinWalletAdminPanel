@@ -64,7 +64,7 @@ const BbpsBillFetch = () => {
           return {
             sno: index + 1,
             partnerName: item.partnerName,
-            partnerEmail:item.partnerEmail,
+            partnerEmail: item.partnerEmail,
             status: item.status,
             billerId: item.billerId,
             accountHolderName: item.accountHolderName,
@@ -74,9 +74,9 @@ const BbpsBillFetch = () => {
             amount: item.amount,
             pinWalletTransactionId: item.pinWalletTransactionId,
             billDate: item.billDate,
-            dueDate:item.dueDate,
-            statusCode:item.statusCode,
-            statusMessage:item.statusMessage,
+            dueDate: item.dueDate,
+            statusCode: item.statusCode,
+            statusMessage: item.statusMessage,
             createdOn: item.createdOn,
             createdTime: item.createdOn,
             latestUpdatedOn: item.latestUpdatedOn,
@@ -111,29 +111,44 @@ const BbpsBillFetch = () => {
     getAllBbpsBillFetch(numberOfData, start);
   };
   const handleExport = () => {
-    handleDownloadExcel(fields.fromDate,fields.toDate,setdisableExport,endpoint.exportToExcelBbpsBillFetch)
-    message.open(messageConfiguration("success","Your File will downloaded Shortly!",5))
+    handleDownloadExcel(
+      fields.fromDate,
+      fields.toDate,
+      setdisableExport,
+      endpoint.exportToExcelBbpsBillFetch
+    );
+    message.open(
+      messageConfiguration("success", "Your File will downloaded Shortly!", 5)
+    );
   };
   return (
     <>
       <CommonLayout
-     PageName={"BBPS Bill Fetch Data Report"}
-      setFields={setFields}
-      fields={fields}
-      options={DmtTxnPredicate}
-      handleSearchString={handleSearchString}
-      handleSearch={handleSearch}
-      handledateChange={handledateChange}
-      handleExport={handleExport}
-      disableExport={disableExport}
-      showSpin={showSpin}
-      columns={columns}
-      dataSource={dataSource}
+        PageName={"BBPS Bill Fetch Data Report"}
+        setFields={setFields}
+        fields={fields}
+        options={DmtTxnPredicate}
+        handleSearchString={handleSearchString}
+        handleSearch={handleSearch}
+        handledateChange={handledateChange}
+        handleExport={handleExport}
+        disableExport={disableExport}
+        showSpin={showSpin}
+        columns={columns}
+        dataSource={dataSource}
+      />
+      <PaginationComponent
+        current={current}
+        numberOfPAges={numberOfPAges}
+        start={start}
+        apiFunction={getAllBbpsBillFetch}
+        handlepageChange={handlepageChange}
+        numberOfData={numberOfData}
       />
       <PaginationComponent current={current} setNumberOfData={setNumberOfData} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllBbpsBillFetch} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
 
     </>
-  )
-}
+  );
+};
 
-export default BbpsBillFetch
+export default BbpsBillFetch;

@@ -260,7 +260,225 @@ export const items = [
   },
   {
     key: "10",
-    icon: <SettingFilled />,
-    label: "Services",
+    icon: <FileTextOutlined />,
+    label: "Settings",
+    children: [
+      {
+        key: "10.1",
+        label: (
+          <NavLink to={"/settings/aadhar-pay-surcharges"}>
+            Aadhar Pay surcharges
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.1");
+        },
+      },
+      {
+        key: "10.2",
+        label: (
+          <NavLink to={"/settings/aeps-commission"}>AEPS Commissions</NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.2");
+        },
+      },
+      {
+        key: "10.3",
+        label: (
+          <NavLink to={"/settings/bbps service commissions"}>
+            BBPS Service Commissions
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.3");
+        },
+      },
+      {
+        key: "10.4",
+        label: (
+          <NavLink to={"/settings/civil-api-commission"}>
+            Civil API Commission
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.4");
+        },
+      },
+      {
+        key: "10.5",
+        label: (
+          <NavLink to={"/settings/creditCard-surcharges"}>
+            CreditCard surcharges
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.5");
+        },
+      },
+      {
+        key: "10.6",
+        label: (
+          <NavLink to={"/settings/dmt-surcharges"}>DMT surcharges</NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.6");
+        },
+      },
+      {
+        key: "10.7",
+        label: (
+          <NavLink to={"/settings/dynamic-upi-surcharges"}>
+            Dynamic UPI Surcharges
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.7");
+        },
+      },
+      {
+        key: "10.8",
+        label: (
+          <NavLink to={"/settings/mini-statement-commission"}>
+            Mini Statement Commission
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.8");
+        },
+      },
+      {
+        key: "10.9",
+        label: (
+          <NavLink to={"/settings/move-service-all-setting"}>
+            Move Service All Setting
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.9");
+        },
+      },
+      {
+        key: "10.10",
+        label: (
+          <NavLink to={"/settings/move-service-member-setting"}>
+            Move Service Member Setting
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.10");
+        },
+      },
+      {
+        key: "10.11",
+        label: (
+          <NavLink to={"/settings/nsdl-pan-card-fee-setting"}>
+            NSDL PAN Card Fee Setting
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.11");
+        },
+      },
+      {
+        key: "10.12",
+        label: (
+          <NavLink to={"/settings/payout-surcharges"}>
+            PayOut Surcharges
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.12");
+        },
+      },
+      {
+        key: "10.13",
+        label: (
+          <NavLink to={"/settings/recharge-commission"}>
+            Recharge Commission
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.13");
+        },
+      },
+      {
+        key: "10.14",
+        label: (
+          <NavLink to={"/settings/recharge-operators-api"}>
+            Recharge Operators API
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.14");
+        },
+      },
+      {
+        key: "10.15",
+        label: (
+          <NavLink to={"/settings/service-block-time-setting"}>
+            Service Block Time Setting
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.15");
+        },
+      },
+      {
+        key: "10.16",
+        label: (
+          <NavLink to={"/settings/settlement-process-setting"}>
+            Settlement Process Setting
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.16");
+        },
+      },
+      {
+        key: "10.17",
+        label: (
+          <NavLink to={"/settings/upi-dmt-surcharges"}>
+            UPI DMT Surcharges
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.17");
+        },
+      },
+      {
+        key: "10.18",
+        label: (
+          <NavLink to={"/settings/uti-coupon-fee-setting"}>
+            UTI coupon Fee Setting
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.18");
+        },
+      },
+      {
+        key: "10.19",
+        label: (
+          <NavLink to={"/settings/verification-api-service-commission"}>
+            Verification API Service Commission
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.19");
+        },
+      },
+      {
+        key: "10.20",
+        label: (
+          <NavLink to={"/settings/wallet-capping-setting"}>
+           Wallet Capping Setting
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "10.20");
+        },
+      },
+    ],
   },
 ];

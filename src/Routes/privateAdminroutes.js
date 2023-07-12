@@ -244,7 +244,188 @@ const PrivateAdmin = () => {
           },
         ],
       },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/aadhar-pay-surcharges",
+            element: <AadharPaySurcharges />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/aeps-commission",
+            element: <AEPScommission />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/bbps service commissions",
+            element: <BBPSservicecommission />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/civil-api-commission",
+            element: <CivilAPIcommission />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/creditCard-surcharges",
+            element: <CreditCardSurcharges />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/dmt-surcharges",
+            element: <DMTsurcharges />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/dynamic-upi-surcharges",
+            element: <DynamicUpiSurcharges />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/mini-statement-commission",
+            element: <MiniStatementCommission />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/move-service-all-setting",
+            element: <MoveServiceAllSetting />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/move-service-member-setting",
+            element: <MoveServiceMemberSetting />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/nsdl-pan-card-fee-setting",
+            element: <NSDLpanCardFeeSetting />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/payout-surcharges",
+            element: <PayoutSurcharges />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/recharge-commission",
+            element: <RechargeCommission />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/recharge-operators-api",
+            element: <RechargeOperatorsAPI />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/service-block-time-setting",
+            element: <ServiceBlockTimeSetting />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/settlement-process-setting",
+            element: <SettlementProcessSetting />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/upi-dmt-surcharges",
+            element: <UPIdmtSurcharges />,
+          },
+        ],
+      },
+  
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/uti-coupon-fee-setting",
+            element: <UTIcouponFeeSetting />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/verification-api-service-commission",
+            element: <VerificationAPIserviceCommission />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/settings/wallet-capping-setting",
+            element: <WalletCappingSetting />,
+          },
+        ],
+      },
   ]
-}
+};
 
-export default PrivateAdmin
+export default PrivateAdmin;

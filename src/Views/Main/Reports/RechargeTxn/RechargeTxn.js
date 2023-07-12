@@ -9,7 +9,7 @@ import PaginationComponent from '../../../../Common/Pagination'
 import { endpoint } from '../../../../services/global'
 import { useCustomState } from '../../../../Hooks/Usehooks'
 const RechargeTxn = () => {
-  const {RangePicker}=DatePicker
+  const { RangePicker } = DatePicker;
   const dateFormat = "YYYY-MM-DD";
   const {
     handlepageChange,
@@ -46,7 +46,7 @@ const RechargeTxn = () => {
         Search: {
           PredicateObject:
             fields.searchString !== null && fields.searchString !== ""
-              ? {"UserTransactionId": fields.searchString }
+              ? { UserTransactionId: fields.searchString }
               : null,
         },
         Sort: {
@@ -57,7 +57,7 @@ const RechargeTxn = () => {
     };
     getRechargeTransactions(payload)
       .then((res) => {
-        setFields({...fields,searchString:""})
+        setFields({ ...fields, searchString: "" });
         const filterdData = res.items.map((item, index) => {
           return {
             sno: index + 1,
@@ -76,7 +76,7 @@ const RechargeTxn = () => {
             apiMessage: item.apiMessage,
             apiResponseTransactionId: item.apiResponseTransactionId,
             operatorReferenceId: item.operatorReferenceId,
-            createdOn: item.createdOn
+            createdOn: item.createdOn,
           };
         });
         setDataSource(filterdData);
@@ -84,11 +84,12 @@ const RechargeTxn = () => {
       })
       .catch((error) => {
         console.log(error);
-      }).finally(()=>setShowSpin(false))
+      })
+      .finally(() => setShowSpin(false));
   };
   useEffect(() => {
     getAllTransaction(numberOfData, start);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearchString=()=>{
@@ -104,15 +105,32 @@ const RechargeTxn = () => {
     getAllTransaction(numberOfData, start);
   };
   const handleExport = () => {
-   handleDownloadExcel(fields.fromDate,fields.toDate,setdisableExport,endpoint.exportToExcelRecharge)
-    message.open(messageConfiguration("success","Your File will downloaded Shortly!",5))
+    handleDownloadExcel(
+      fields.fromDate,
+      fields.toDate,
+      setdisableExport,
+      endpoint.exportToExcelRecharge
+    );
+    message.open(
+      messageConfiguration("success", "Your File will downloaded Shortly!", 5)
+    );
   };
   return (
-   <>
-     <Header PageName={"Recharge Transactions"}/>
+    <>
+      <Header PageName={"Recharge Transactions"} />
       <div className="filters mt-5 flex justify-start md:justify-around gap-4 items-center flex-wrap">
         <div className="input_fields">
-          <Input.Search  value={fields.searchString} onChange={(e)=>setFields({...fields,searchString:e.target.value})} onSearch={handleSearchString} className="searchBar text-xs" placeholder="Search by UserTransaction Id"  enterButton="Search" size="large"  />
+          <Input.Search
+            value={fields.searchString}
+            onChange={(e) =>
+              setFields({ ...fields, searchString: e.target.value })
+            }
+            onSearch={handleSearchString}
+            className="searchBar text-xs"
+            placeholder="Search by UserTransaction Id"
+            enterButton="Search"
+            size="large"
+          />
         </div>
         <RangePicker
           allowClear={false}
@@ -140,12 +158,12 @@ const RechargeTxn = () => {
       </div>
       <div className="mt-3">
         <Spin spinning={showSpin} tip="Loading...">
-        <Table
-          className="custom-table overflow-x-scroll text-white rounded-none"
-          columns={columns}
-          pagination={false}
-          dataSource={dataSource}
-        />
+          <Table
+            className="custom-table overflow-x-scroll text-white rounded-none"
+            columns={columns}
+            pagination={false}
+            dataSource={dataSource}
+          />
         </Spin>
       </div>
       <PaginationComponent setNumberOfData={setNumberOfData} current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllTransaction} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
@@ -153,4 +171,4 @@ const RechargeTxn = () => {
   )
 }
 
-export default RechargeTxn
+export default RechargeTxn;

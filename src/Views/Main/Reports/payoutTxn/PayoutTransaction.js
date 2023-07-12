@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {  message } from "antd";
+import { message } from "antd";
 import { predicateObjectNames } from "../../../../Utils/Options";
-import {
-  getPayoutTransactions,
-} from "../../../../services/apiFunctions";
+import { getPayoutTransactions } from "../../../../services/apiFunctions";
 import dayjs from "dayjs";
 import { columns } from "./ColumnData";
 import { handleDownloadExcel, messageConfiguration } from "../../../../Utils";
@@ -59,7 +57,7 @@ const PayoutTransaction = () => {
     };
     getPayoutTransactions(payload)
       .then((res) => {
-        setFields({...fields,searchString:""})
+        setFields({ ...fields, searchString: "" });
         const filterdData = res.items.map((item, index) => {
           return {
             sno: index + 1,
@@ -93,11 +91,12 @@ const PayoutTransaction = () => {
       })
       .catch((error) => {
         console.log(error);
-      }).finally(()=>setShowSpin(false))
+      })
+      .finally(() => setShowSpin(false));
   };
   useEffect(() => {
     getAllTransaction(numberOfData, start);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSearchString=()=>{
@@ -113,24 +112,31 @@ const PayoutTransaction = () => {
     getAllTransaction(numberOfData, start);
   };
   const handleExport = () => {
-   handleDownloadExcel(fields.fromDate,fields.toDate,setdisableExport,endpoint.exportToExcelpayout)
-    message.open(messageConfiguration("success","Your File will downloaded Shortly!",5))
+    handleDownloadExcel(
+      fields.fromDate,
+      fields.toDate,
+      setdisableExport,
+      endpoint.exportToExcelpayout
+    );
+    message.open(
+      messageConfiguration("success", "Your File will downloaded Shortly!", 5)
+    );
   };
   return (
     <>
       <CommonLayout
-      PageName={"Payout Transactions"}
-       setFields={setFields}
-       fields={fields}
-       options={predicateObjectNames}
-       handleSearchString={handleSearchString}
-       handleSearch={handleSearch}
-       handledateChange={handledateChange}
-       handleExport={handleExport}
-       disableExport={disableExport}
-       showSpin={showSpin}
-       columns={columns}
-       dataSource={dataSource}
+        PageName={"Payout Transactions"}
+        setFields={setFields}
+        fields={fields}
+        options={predicateObjectNames}
+        handleSearchString={handleSearchString}
+        handleSearch={handleSearch}
+        handledateChange={handledateChange}
+        handleExport={handleExport}
+        disableExport={disableExport}
+        showSpin={showSpin}
+        columns={columns}
+        dataSource={dataSource}
       />
       {/* <div className="flex justify-end mt-3 gap-10 items-center">
         <Pagination

@@ -1,7 +1,6 @@
 import {  Delete, Get, getAPIUrl, Post, Put } from './apiMethod'
 import {  endpoint } from './global'
 
-
 export const getPayoutTransactions=(data,param="")=>{
     const url = getAPIUrl(endpoint.payoutTransaction,param);
     return Post(url, data);
@@ -218,5 +217,13 @@ export const allowPermissions=(data,param="")=>{
 ///////////////// ACCESS RIGHT API FUNCTION ENDED ///////////////////
 export const getExcelSheetOfTxn=(data,param="",endpoint)=>{
     const url=getAPIUrl(endpoint,param)
+    return Post(url,data)
+}
+export const getRechargeCommission=(data,param="")=>{
+    const url=getAPIUrl(endpoint.rechargeCommission,param)
+    return Post(url,data)
+}
+export const getRechargeOpertatorsApi=(data,param="")=>{
+    const url=getAPIUrl(endpoint.rechargeOperators,param)
     return Post(url,data)
 }

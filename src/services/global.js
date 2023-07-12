@@ -72,5 +72,7 @@ fundRequests:"api/businessWallet/getFundRequests",
 //ALL ROLES
 allroles:"api/roles/grid",
 menuPermission:"api/roles/menuspermission/",
-saveMenuRight:"api/roles/saveMenuRight"
+saveMenuRight:"api/roles/saveMenuRight",
+ rechargeCommission:"api/settings/getRechargeComm",
+ rechargeOperators:"api/settings/getRechargeOperators",
 }
