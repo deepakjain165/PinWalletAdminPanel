@@ -289,7 +289,7 @@ export const items = [
       {
         key: "10.3",
         label: (
-          <NavLink to={"/settings/bbps service commissions"}>
+          <NavLink to={"/common-settings/bbps-services-commission"}>
             BBPS Service Commissions
           </NavLink>
         ),
@@ -397,7 +397,7 @@ export const items = [
       {
         key: "10.13",
         label: (
-          <NavLink to={"/settings/recharge-commission"}>
+          <NavLink to={"/common-settings/recharge-commission"}>
             Recharge Commission
           </NavLink>
         ),

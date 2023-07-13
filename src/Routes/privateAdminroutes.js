@@ -32,7 +32,8 @@ import DMTsurcharges from "../Views/Main/Settings/DMTsurcharges"
 import RechargeOperatorsAPI from "../Views/Main/Settings/RechargeOperatorsApi"
 import User from "../Views/Main/Users/User"
 import ProtectedAdmin from "./protectedAdmin"
-
+import RechargeCommission from "../Views/Main/Settings/RechargeCommission"
+import BBPSservicecommission from "../Views/Main/Settings/BBPSserviceCommission"
 
 const PrivateAdmin = () => {
   return [
@@ -315,15 +316,15 @@ const PrivateAdmin = () => {
       //     },
       //   ],
       // },
-      // {
-      //   element: <ProtectedAdmin />,
-      //   children: [
-      //     {
-      //       path: "/settings/bbps service commissions",
-      //       element: <BBPSservicecommission />,
-      //     },
-      //   ],
-      // },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/comm0n-settings/bbps-services-commissions",
+            element: <BBPSservicecommission />,
+          },
+        ],
+      },
       // {
       //   element: <ProtectedAdmin />,
       //   children: [

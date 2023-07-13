@@ -29,6 +29,13 @@ export const useCustomState = ( apifun,apifunchangstatus=null,data=30 ) => {
     start,
     current,
     setNumberOfData,
-    numberOfData,setNumberOfPages,numberOfPAges,setShowSpin,showSpin,dataSource,setDataSource,handlechangeStatus
+    numberOfData,
+    setNumberOfPages,
+    numberOfPAges,
+    setShowSpin,
+    showSpin,
+    dataSource,
+    setDataSource,
+    handlechangeStatus,
   };
 };

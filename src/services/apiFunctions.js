@@ -285,3 +285,12 @@ export const getdmtsurcharg=(data,param="")=>{
     const url=getAPIUrl(endpoint.getDmtsurcharge,param)
     return Post(url,data)
 }
+export const getupdateRechargeCommission=(data,param="")=>{
+    const url=getAPIUrl(endpoint.updaterechargeCommission,param)
+    return Post(url,data)
+}
+
+export const getPackageDetails=(param="")=>{
+    const url=getAPIUrl(endpoint.getPackageDetails,param)
+    return Get(url)
+}

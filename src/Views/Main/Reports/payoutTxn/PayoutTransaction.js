@@ -23,16 +23,16 @@ const PayoutTransaction = () => {
     dataSource,
     setDataSource,
   } = useCustomState(getAllTransaction);
-    const totalCount = 30;
-  const[disableExport,setdisableExport]=useState(false)
+  const totalCount = 30;
+  const [disableExport, setdisableExport] = useState(false);
   const [fields, setFields] = useState({
     type: "PinWalletOrderId",
     searchString: "",
     fromDate: dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
     toDate: dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
   });
-  function getAllTransaction (page, start){
-    setShowSpin(true)
+  function getAllTransaction(page, start) {
+    setShowSpin(true);
     const payload = {
       fromDate: fields.fromDate,
       toDate: fields.toDate,
@@ -93,15 +93,15 @@ const PayoutTransaction = () => {
         console.log(error);
       })
       .finally(() => setShowSpin(false));
-  };
+  }
   useEffect(() => {
     getAllTransaction(numberOfData, start);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleSearchString=()=>{
-      getAllTransaction(numberOfData, 0);
-  }
+  const handleSearchString = () => {
+    getAllTransaction(numberOfData, 0);
+  };
   const handledateChange = (date) => {
     const dates = date.map(
       (i) => dayjs(i.$d).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z"
@@ -153,8 +153,15 @@ const PayoutTransaction = () => {
         <Input.Search type="number" min={1}  onSearch={(value)=>getAllTransaction(value===""?numberOfData:value,start)} title="df" className="w-20" size="small"/>
         </div>
       </div> */}
-      <PaginationComponent setNumberOfData={setNumberOfData} current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllTransaction} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
-
+      <PaginationComponent
+        setNumberOfData={setNumberOfData}
+        current={current}
+        numberOfPAges={numberOfPAges}
+        start={start}
+        apiFunction={getAllTransaction}
+        handlepageChange={handlepageChange}
+        numberOfData={numberOfData}
+      />
     </>
   );
 };

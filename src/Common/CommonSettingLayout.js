@@ -4,7 +4,7 @@ import Header from "./Header";
 const CommonSettingLayout = ({
   PageName,
   setFields,
-  handlButton,
+  handleButton,
   fields,
   options,
   showSpin,
@@ -29,7 +29,7 @@ const CommonSettingLayout = ({
           <Button
             className="bg-[#000000] rounded-full hover:text-white text-white hover:border-none"
             title="search"
-            onClick={handlButton}
+            onClick={handleButton}
           >
             {btnText}
           </Button>
