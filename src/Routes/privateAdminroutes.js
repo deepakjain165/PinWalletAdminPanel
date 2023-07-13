@@ -406,15 +406,15 @@ const PrivateAdmin = () => {
       //     },
       //   ],
       // },
-      // {
-      //   element: <ProtectedAdmin />,
-      //   children: [
-      //     {
-      //       path: "/settings/recharge-commission",
-      //       element: <RechargeCommission />,
-      //     },
-      //   ],
-      // },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: "/common-settings/recharge-commission",
+            element: <RechargeCommission />,
+          },
+        ],
+      },
       {
         element: <ProtectedAdmin />,
         children: [

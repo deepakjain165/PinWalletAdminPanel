@@ -94,5 +94,4 @@ saveMenuRight:"api/roles/saveMenuRight",
  updateRechargeOperator:"api/settings/updateRechargeOperator/",
  getDmtsurcharge:"api/settings/dmtSurchargeSetting/grid",
  updaterechargeCommission:"api/settings/updateRechargeComm",
- getPackageDetails:"api/package/packagesListDrp",
 }

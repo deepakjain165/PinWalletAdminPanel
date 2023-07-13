@@ -290,7 +290,4 @@ export const getupdateRechargeCommission=(data,param="")=>{
     return Post(url,data)
 }
 
-export const getPackageDetails=(param="")=>{
-    const url=getAPIUrl(endpoint.getPackageDetails,param)
-    return Get(url)
-}
+

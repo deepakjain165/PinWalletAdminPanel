@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Select, Spin, Table, Button } from "antd";
 import Header from "./Header";
+import { getPackageListdata } from "../services/apiFunctions";
 const CommonSettingLayout = ({
   PageName,
   setFields,
   handleButton,
   fields,
-  options,
   showSpin,
   showButton,
   columns,
   btnText,
   dataSource,
 }) => {
+    const [packagelist,setpackageList]=useState([])
+    useEffect(()=>{
+getPackageListdata().then((res)=>{
+  const changes=res.data.map((i,index)=>{
+    return {label:i.text,value:`number:${index+1}`}
+  })
+  setpackageList(changes)
+})
+    },[])
   return (
     <>
       <Header PageName={PageName} />
@@ -21,9 +30,9 @@ const CommonSettingLayout = ({
           className="w-1/6 mb-2 "
           value={fields}
           onChange={(val) => setFields(val)}
-          defaultValue={options[0].value}
+          defaultValue={packagelist[0]?.value}
           placeholder="Selact a Package"
-          options={options}
+          options={packagelist}
         />
         {showButton ? (
           <Button

@@ -4,7 +4,6 @@ import PaginationComponent from "../../../../Common/Pagination";
 import { message } from "antd";
 import { messageConfiguration } from "../../../../Utils";
 import { columns } from "./ColumnData";
-import { PackageName } from "../../../../Utils/Options";
 import { useCustomState } from "../../../../Hooks/Usehooks";
 import { getupdateRechargeCommission } from "../../../../services/apiFunctions";
 import CommonSettingLayout from "../../../../Common/CommonSettingLayout";
@@ -24,7 +23,7 @@ function RechargeCommission() {
     dataSource,
     setDataSource,
   } = useCustomState(getDetailsRechargeCommission, null, 100);
-  const [fields, setFields] = useState(PackageName[0].value);
+  const [fields, setFields] = useState("");
   const[amount, setAmount] =useState();
   function getDetailsRechargeCommission(page, start) {
     setShowSpin(true);
@@ -105,7 +104,6 @@ function RechargeCommission() {
     <div>
       <CommonSettingLayout
         PageName={"Recharge Commission"}
-        options={PackageName}
         setFields={setFields}
         fields={fields}
         btnText={"Update"}
