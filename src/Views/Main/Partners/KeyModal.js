@@ -27,10 +27,10 @@ const KeyModal = ({ id, keyModal, setKeyModal }) => {
       >
        <div className="text-center"> <p><span className="font-bold">Partner Email: </span>{keyDetail.email}</p>
         <p className="font-bold">Secret key to Generate Hash-Key:</p></div>
-        <p className="h-12 mt-4 overflow-scroll border border-gray-200 px-3">{keyDetail.secretKey || keyDetail.passkey}</p>
+        <p className="h-12 mt-4 overflow-scroll border border-gray-200 px-3">{keyDetail.passkey??keyDetail.secretKey}</p>
         <div className="flex cursor-pointer justify-end gap-3 items-center mt-3">
             <p onClick={()=>setKeyModal(false)} className="font-bold ">Cancel</p>
-            <p className="bg-[#113150] text-white p-3 rounded-sm ">Re-Generate</p>
+            <p className="bg-[#113150] text-white p-3 rounded-sm ">{keyDetail.passkey===null?"Generate":"Re-Generate"}</p>
         </div>
       </Modal>
     </>

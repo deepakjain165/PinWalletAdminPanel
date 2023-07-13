@@ -3,59 +3,70 @@
 @tailwind utilities;
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.input_fields .ant-select-selector{
+.input_fields .ant-select-selector {
   border-radius: 0 !important;
   height: 2.75rem !important;
 }
-.sidebar aside.ant-layout-sider.ant-layout-sider-dark{
+.sidebar aside.ant-layout-sider.ant-layout-sider-dark {
   background: black !important;
 }
 
 /* searchbar */
-.searchBar button{
+.searchBar button {
   background-color: #113150;
 }
-.searchBar:hover{
+.searchBar:hover {
   border: none !important;
 }
-.searchBar button:hover{
+.searchBar button:hover {
   background-color: #113150 !important;
 }
 /* custom-table.css */
 .custom-table thead.ant-table-thead tr th {
   background-color: #113150;
   color: #fff;
-  padding: 14px 20px; 
+  padding: 14px 20px;
   font-size: 14px;
+  text-align: center !important;
   /* Set your desired background color */
   /* Add any other styles you want for the table header */
 }
-.custom-table th.ant-table-cell.ant-table-column-has-sorters{
+.custom-table th.ant-table-cell .ant-table-column-has-sorters {
   background-color: #113150 !important;
+  text-align: center !important;
+}
+.custom-table th.ant-table-cell {
+  text-align: center;
 }
 .custom-table .ant-table-tbody > tr > td {
-  padding: 10px 8px; 
+  padding: 10px 8px;
+  text-align: center;
 }
 
 .custom-table .ant-table-tbody > tr {
-  height: 2px; 
-  line-height: 24px; 
+  height: 2px;
+  line-height: 24px;
 }
- .ant-table-filter-dropdown .ant-table-filter-dropdown-btns button:nth-child(2){
+.ant-table-filter-dropdown .ant-table-filter-dropdown-btns button:nth-child(2) {
   background-color: #113150 !important;
 }
-.table-rows  .ant-table-tbody{
+.table-rows .ant-table-tbody {
   background-color: #162636;
   color: #ffffff;
 }
-.table-rows  .ant-table-tbody >tr:hover{
+
+.table-rows .ant-table-tbody > tr:hover {
   color: #000000;
+}
+.required:after {
+  content: " *";
+  color: red;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -65,17 +76,16 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent; 
+  background: transparent;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #8ba6c2; 
+  background: #8ba6c2;
   border-radius: 5px;
-
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }

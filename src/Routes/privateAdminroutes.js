@@ -1,9 +1,15 @@
 
+import AddSurcharge from "../Common/AddSurcharge"
 import AccessRightList from "../Views/Main/AccessRights/AccessRightList"
 import RoleList from "../Views/Main/AccessRights/RoleList"
 import FundRequest from "../Views/Main/BusinessWallet/FundRequest/FundRequest"
+import PartnerTxn from "../Views/Main/BusinessWallet/Transactions/PartnerTxn"
+import TransactionDetail from "../Views/Main/BusinessWallet/Transactions/TransactionDetail"
 import Dashboard from "../Views/Main/Dashboard"
 import Packages from "../Views/Main/Packages/Packages"
+import DocumentPage from "../Views/Main/Partners/DocumentPage"
+import EditPartnerDetail from "../Views/Main/Partners/EditPartnerDetail"
+import PartnerCallBackSetting from "../Views/Main/Partners/PartnerCallBackSetting"
 import PartnerIps from "../Views/Main/Partners/PartnerIps"
 import Partners from "../Views/Main/Partners/Partners"
 import AccountVerification from "../Views/Main/Reports/AccountVer/AccountVerification"
@@ -22,6 +28,8 @@ import DigilockerKyc from "../Views/Main/Reports/digilockerKyc/DigilockerKycRepo
 import DynamicUpiTxn from "../Views/Main/Reports/dynamicUpi/DynamicUpiTxn"
 import PayoutTransaction from "../Views/Main/Reports/payoutTxn/PayoutTransaction"
 import Services from "../Views/Main/Services/Services"
+import DMTsurcharges from "../Views/Main/Settings/DMTsurcharges"
+import RechargeOperatorsAPI from "../Views/Main/Settings/RechargeOperatorsApi"
 import User from "../Views/Main/Users/User"
 import ProtectedAdmin from "./protectedAdmin"
 
@@ -185,6 +193,33 @@ const PrivateAdmin = () => {
         element: <ProtectedAdmin />,
         children: [
           {
+            path: '/partners/documents',
+            element: <DocumentPage />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: '/partner-callBack-setting',
+            element: <PartnerCallBackSetting />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: '/partner/edit',
+            element: <EditPartnerDetail />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
             path: '/partner-ips',
             element: <PartnerIps />,
           },
@@ -230,6 +265,24 @@ const PrivateAdmin = () => {
         element: <ProtectedAdmin />,
         children: [
           {
+            path: '/business-wallet',
+            element: <PartnerTxn />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
+            path: '/business-wallet/transactions',
+            element: <TransactionDetail />,
+          },
+        ],
+      },
+      {
+        element: <ProtectedAdmin />,
+        children: [
+          {
             path: '/roles',
             element: <RoleList />,
           },
@@ -244,187 +297,187 @@ const PrivateAdmin = () => {
           },
         ],
       },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/aadhar-pay-surcharges",
+      //       element: <AadharPaySurcharges />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/aeps-commission",
+      //       element: <AEPScommission />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/bbps service commissions",
+      //       element: <BBPSservicecommission />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/civil-api-commission",
+      //       element: <CivilAPIcommission />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/creditCard-surcharges",
+      //       element: <CreditCardSurcharges />,
+      //     },
+      //   ],
+      // },
       {
         element: <ProtectedAdmin />,
         children: [
           {
-            path: "/settings/aadhar-pay-surcharges",
-            element: <AadharPaySurcharges />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/aeps-commission",
-            element: <AEPScommission />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/bbps service commissions",
-            element: <BBPSservicecommission />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/civil-api-commission",
-            element: <CivilAPIcommission />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/creditCard-surcharges",
-            element: <CreditCardSurcharges />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/dmt-surcharges",
+            path: "/common-settings/dmt-surcharge-setting",
             element: <DMTsurcharges />,
           },
         ],
       },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/dynamic-upi-surcharges",
+      //       element: <DynamicUpiSurcharges />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/mini-statement-commission",
+      //       element: <MiniStatementCommission />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/move-service-all-setting",
+      //       element: <MoveServiceAllSetting />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/move-service-member-setting",
+      //       element: <MoveServiceMemberSetting />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/nsdl-pan-card-fee-setting",
+      //       element: <NSDLpanCardFeeSetting />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/payout-surcharges",
+      //       element: <PayoutSurcharges />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/recharge-commission",
+      //       element: <RechargeCommission />,
+      //     },
+      //   ],
+      // },
       {
         element: <ProtectedAdmin />,
         children: [
           {
-            path: "/settings/dynamic-upi-surcharges",
-            element: <DynamicUpiSurcharges />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/mini-statement-commission",
-            element: <MiniStatementCommission />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/move-service-all-setting",
-            element: <MoveServiceAllSetting />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/move-service-member-setting",
-            element: <MoveServiceMemberSetting />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/nsdl-pan-card-fee-setting",
-            element: <NSDLpanCardFeeSetting />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/payout-surcharges",
-            element: <PayoutSurcharges />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/recharge-commission",
-            element: <RechargeCommission />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/recharge-operators-api",
+            path: "/common-settings/recharge-OpAPI",
             element: <RechargeOperatorsAPI />,
           },
         ],
       },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/service-block-time-setting",
-            element: <ServiceBlockTimeSetting />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/settlement-process-setting",
-            element: <SettlementProcessSetting />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/upi-dmt-surcharges",
-            element: <UPIdmtSurcharges />,
-          },
-        ],
-      },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/service-block-time-setting",
+      //       element: <ServiceBlockTimeSetting />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/settlement-process-setting",
+      //       element: <SettlementProcessSetting />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/upi-dmt-surcharges",
+      //       element: <UPIdmtSurcharges />,
+      //     },
+      //   ],
+      // },
   
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/uti-coupon-fee-setting",
-            element: <UTIcouponFeeSetting />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/verification-api-service-commission",
-            element: <VerificationAPIserviceCommission />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedAdmin />,
-        children: [
-          {
-            path: "/settings/wallet-capping-setting",
-            element: <WalletCappingSetting />,
-          },
-        ],
-      },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/uti-coupon-fee-setting",
+      //       element: <UTIcouponFeeSetting />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/verification-api-service-commission",
+      //       element: <VerificationAPIserviceCommission />,
+      //     },
+      //   ],
+      // },
+      // {
+      //   element: <ProtectedAdmin />,
+      //   children: [
+      //     {
+      //       path: "/settings/wallet-capping-setting",
+      //       element: <WalletCappingSetting />,
+      //     },
+      //   ],
+      // },
   ]
 };
 

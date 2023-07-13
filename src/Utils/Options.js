@@ -171,6 +171,24 @@ export const fundreqPredicate = [
     label: "Search by PinWallet RefId",
   },
 ];
+export const BusinesswalletTxnPredicate = [
+  {
+    value: "TransactionId",
+    label: "TransactionId",
+  },
+  {
+    value: "Service",
+    label: "Service",
+  },
+  {
+    value: "Remark",
+    label: "Remark",
+  },
+  {
+    value: "ClientTransactionId",
+    label: "ClientTransactionId",
+  },
+];
 export const PackageName = [
   {
     value: "number:1",

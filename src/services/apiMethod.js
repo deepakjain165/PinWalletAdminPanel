@@ -26,6 +26,12 @@ export const Delete = (url) =>
 export const getAPIUrl = (url, params = "") => {
   return url + `${params}`;
 };
+export const FormData=(url,data)=>{
+  return ApiService.post(url, data, { headers: {
+    "Content-Type": "multipart/form-data",
+  } }); 
+
+}
 export const getErrors = (error) => {
   const errorData = error.response.data.error;
   const errors = {};

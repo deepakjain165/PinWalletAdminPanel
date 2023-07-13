@@ -68,7 +68,7 @@ import {
         title: "Action",
         dataIndex: "isActive",
         render: (text, record) => (
-          <div className="flex justify-start items-center flex-wrap">
+          <div className="flex justify-start items-center ">
             {" "}
             <p
               onClick={() => {

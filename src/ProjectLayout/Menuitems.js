@@ -68,7 +68,10 @@ export const items = [
     children: [
       {
         key: "9.1",
-        label: "Transactions",
+        label: (<NavLink to={"/business-wallet"}><p>Transactions</p></NavLink>),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "9.1");
+        },
       },
       {
         key: "9.2",
@@ -319,7 +322,7 @@ export const items = [
       {
         key: "10.6",
         label: (
-          <NavLink to={"/settings/dmt-surcharges"}>DMT surcharges</NavLink>
+          <NavLink to={"/common-settings/dmt-surcharge-setting"}>DMT surcharges</NavLink>
         ),
         onClick: () => {
           setLocalStorageItem("selectedTab", "10.6");
@@ -405,7 +408,7 @@ export const items = [
       {
         key: "10.14",
         label: (
-          <NavLink to={"/settings/recharge-operators-api"}>
+          <NavLink to={"/common-settings/recharge-OpAPI"}>
             Recharge Operators API
           </NavLink>
         ),

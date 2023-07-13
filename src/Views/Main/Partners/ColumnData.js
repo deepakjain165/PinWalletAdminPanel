@@ -53,7 +53,7 @@ export const Columns = (
       // ),
     },
     {
-      title: "email",
+      title: "Email",
       dataIndex: "email",
       render: (text, record) => (
         <div className="text-xs">
@@ -94,10 +94,10 @@ export const Columns = (
     {
       title: "Doc",
       dataIndex: "amount",
-      render: (text) => (
-        <div className="bg-purple-500 flex items-center justify-center py-2 m-2 cursor-pointer text-white rounded-md">
-          <FileTextOutlined />
-        </div>
+      render: (text,record) => (
+        <NavLink to={"/partners/documents"} state={record}><div className="bg-purple-500 flex items-center justify-center py-2 m-2 cursor-pointer text-white rounded-md">
+        <FileTextOutlined />
+      </div></NavLink>
       ),
     },
     {
@@ -105,7 +105,7 @@ export const Columns = (
       dataIndex: "isActive",
       render: (text, record) => (
         <div className="flex justify-start items-center ">
-          <p
+          <NavLink to={"/partner/edit"} state={record}><p
             onClick={() => {
               // setOpenModal(true);
               // setOpenFrom("edit");
@@ -114,7 +114,7 @@ export const Columns = (
             className="bg-black text-xs flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
           >
             <EditFilled />
-          </p>
+          </p></NavLink>
           <p
             onClick={() => {
               handlechangeStatus(record.id);
@@ -143,10 +143,10 @@ export const Columns = (
     {
       title: "CallBack",
       dataIndex: "pinWalletOrderId",
-      render: (text) => (
-        <div className="bg-blue-400 flex items-center justify-center py-2 m-2 cursor-pointer text-white rounded-md">
-          <DisconnectOutlined />
-        </div>
+      render: (text,record) => (
+        <NavLink to={"/partner-callBack-setting"} state={record}><div className="bg-blue-400 flex items-center justify-center py-2 m-2 cursor-pointer text-white rounded-md">
+        <DisconnectOutlined />
+      </div></NavLink>
       ),
     },
     {

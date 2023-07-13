@@ -2,7 +2,13 @@ import React from "react";
 import { Modal } from "antd";
 import { Images } from "../Controller/image";
 
-const ConfirmModal = ({ deleteModal, setDeleteModal, handleDelete,btnTxt,desc }) => {
+const ConfirmModal = ({
+  deleteModal,
+  setDeleteModal,
+  handleDelete,
+  btnTxt,
+  desc,
+}) => {
   const handleOk = () => {
     setDeleteModal(false);
   };
@@ -21,7 +27,7 @@ const ConfirmModal = ({ deleteModal, setDeleteModal, handleDelete,btnTxt,desc })
         onCancel={handleCancel}
       >
         <div className=" flex justify-center items-center flex-col font-semibold gap-y-3">
-            <img src={Images.exclamation} alt="exclamation" width={120}/>
+          <img src={Images.exclamation} alt="exclamation" width={120} />
           <p>Are You Sure ?</p>
           <p>{desc}</p>
         </div>
@@ -34,7 +40,7 @@ const ConfirmModal = ({ deleteModal, setDeleteModal, handleDelete,btnTxt,desc })
           </p>
           <button
             onClick={handleDelete}
-            className="      bg-[#113150] text-white font-bold p-3 rounded-sm"
+            className="bg-[#113150] text-white font-bold p-3 rounded-sm"
           >
             {btnTxt}
           </button>

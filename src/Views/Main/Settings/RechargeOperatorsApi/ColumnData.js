@@ -1,50 +1,18 @@
-import { ConvertInRs, ExtractDate, ExtractTime } from "../../../../Utils/index";
-
-export const columns = [
+import { Select } from "antd";
+import {ReloadOutlined} from "@ant-design/icons"
+export const columns =(setOpenModal,ApiList,setField,field)=>{
+  return  [
     {
       title: "Id",
-      dataIndex: "id",
+      dataIndex: "sno",
     },
     {
       title: "Operator Name",
-      dataIndex: "operator_name",
-    //   render:(text,record)=><div className="text-xs">
-    //     <p>{text}</p>
-    //     <p>{record.partnerEmail}</p>
-    //   </div>,
-    //   sorter: (a, b) => a.partnerName.localeCompare(b.partnerName),
-    //   sortDirections: ['ascend'],
+      dataIndex: "operatorName",
     },
     {
       title: "Service Type",
       dataIndex: "serviceType",
-    //   render: (text) => (
-    //     <p
-    //       className={`${
-    //         text === "SUCCESS" ? "bg-[#31ce36]" : "bg-red-600"
-    //       } text-xs text-center text-white p-2 rounded-full`}
-    //     >
-    //       {text}
-    //     </p>
-    //   ),
-      // filterDropdown:({ setSelectedKeys, selectedKeys, confirm })=>(
-      //   <div>
-      //      <Select
-      //                 placeholder="Select Status"
-      //                 value={selectedKeys[0]}
-      //                 className="w-full"
-      //                 onChange={(val)=>getAllTransaction(numberOfData,start)}
-      //                 onSelect={confirm}
-      //                 allowClear
-      //       >
-      //       <Option value="">All</Option>
-      //       <Option value="success">Success</Option>
-      //       <Option value="failed">Failed</Option>
-      //       <Option value="pending">Pending</Option>
-
-      //       </Select>
-      //   </div>
-      // ),
     },
     {
       title: "API Name",
@@ -53,67 +21,31 @@ export const columns = [
     {
       title: "IsActive",
       dataIndex: "isActive",
+      render:(text)=>(
+        <p className="text-center text-xs uppercase">
+        {text? (
+          <p className="bg-green-600 rounded-full p-1 text-xs text-white w-11">Yes</p>
+        ) : <p>No</p>}
+      </p>
+      )
    
     },
     {
       title: "Change API",
       dataIndex: "changeapi",
+      render:(text,record)=>(
+        <Select labelInValue onChange={(val)=>setField({record:record,label:val})} placeholder="Select An Api" options={ApiList}/>
+      )
     },
     {
         title: "Actions",
-        dataIndex: "actions",
+        dataIndex: "",
+        render:(text,record)=>(
+         <p onClick={()=>{
+          setField({...field,record})
+          setOpenModal(true)}} className="flex justify-center items-center border border-yellow-400 w-9 rounded-md p-1 text-yellow-600 cursor-pointer hover:bg-yellow-400 hover:text-black transition-all"> <ReloadOutlined /></p>
+        )
       },
-    // {
-    //   title: "User Transaction Id",
-    //   dataIndex: "userTransactionId",
-    // },
-    // {
-    //   title: "Amount",
-    //   dataIndex: "amount",
-    //   render: (text) => <p className="uppercase">{ConvertInRs(text)}</p>,
 
-    // },
-    // {
-    //   title: "PW Transaction Id",
-    //   dataIndex: "pinWalletTransactionId",
-    // },
-    // {
-    //   title: "Bill Date",
-    //   dataIndex: "billDate",
-    // },
-    // {
-    //     title: "Due Date",
-    //     dataIndex: "dueDate",
-    //   },
-      
-    // {
-    //     title: "Status Code",
-    //     dataIndex: "statusCode",
-        
-    //   },
-
-    // {
-    //   title: "StatusMessage",
-    //   dataIndex: "statusMessage",
-    // },
-    //   {
-    //     title: "Created On",
-    //     dataIndex: "createdOn",
-    //     render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
-    //   },
-    //   {
-    //     title: "Created Time",
-    //     dataIndex: "createdTime",
-    //     render: (text) => <p className="uppercase">{ExtractTime(text)}</p>,
-    //   },{
-    //     title: "Updated On",
-    //     dataIndex: "latestUpdatedOn",
-    //     render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
-
-    //   },{
-    //     title: "Updated Time",
-    //     dataIndex: "latestUpdatedTime",
-    //     render: (text) => <p className="uppercase">{ExtractTime(text)}</p>,
-
-    //   },
   ];
+}

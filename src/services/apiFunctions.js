@@ -1,4 +1,4 @@
-import {  Delete, Get, getAPIUrl, Post, Put } from './apiMethod'
+import {  Delete, FormData, Get, getAPIUrl, Post, Put } from './apiMethod'
 import {  endpoint } from './global'
 
 export const getPayoutTransactions=(data,param="")=>{
@@ -101,7 +101,46 @@ export const changeIpstatusDetail=(param="")=>{
     const url=getAPIUrl(endpoint.changeIpStatus,param)
     return Post(url)
 }
-
+export const getDocstatus=(param="")=>{
+    const url=getAPIUrl(endpoint.getDocStatus,param)
+    return Get(url)
+}
+export const getPartnerDoc=(param="")=>{
+    const url=getAPIUrl(endpoint.getDocuments,param)
+    return Get(url)
+}
+export const getPartnercallbackDetail=(param="")=>{
+    const url=getAPIUrl(endpoint.partneCallback,param)
+    return Get(url)
+}
+export const getpartnerEvents=(param="")=>{
+    const url=getAPIUrl(endpoint.callbackEventmaster,param)
+    return Get(url)
+}
+export const updatePartnerCallback=(data,param="")=>{
+    const url=getAPIUrl(endpoint.updatePartnerCallback,param)
+    return Post(url,data)
+}
+export const agreementUpload=(data,param="")=>{
+    const url=getAPIUrl(endpoint.docUpload,param)
+    return FormData(url,data)
+}
+export const getPartnerServiceList=(param="")=>{
+    const url=getAPIUrl(endpoint.partnerServiceList,param)
+    return Get(url)
+}
+export const getPartnerDetail=(param="")=>{
+    const url=getAPIUrl(endpoint.partnerfun,param)
+    return Get(url)
+}
+export const getPackageListdata=(param="")=>{
+    const url=getAPIUrl(endpoint.packageListDropData,param)
+    return Get(url)
+}
+export const updatePartnerDetail=(data,param="")=>{
+    const url=getAPIUrl(endpoint.editPartner,param)
+    return FormData(url,data)
+}
 ////////////////////// PARTNER API FUNCTION ENDED ///////////////////
 
 ///////////////////// PACKAGE API FUNCTION STARTED ///////////////////
@@ -197,7 +236,14 @@ export const GetFundRequests=(data,param="")=>{
     const url=getAPIUrl(endpoint.fundRequests,param)
     return Post(url,data)
 } 
-
+export const GetPartnerTxn=(data,param="")=>{
+    const url=getAPIUrl(endpoint.partnerTxn,param)
+    return Post(url,data)
+} 
+export const GetPartnerTxnbyId=(data,param="")=>{
+    const url=getAPIUrl(endpoint.txnById,param)
+    return Post(url,data)
+} 
 //////////////////// BUSINES API FUNCTION ENDED/////////////////////
 
 ////////////////// ACCESS RIGHT API FUNCTION STARTED ///////////////
@@ -225,5 +271,17 @@ export const getRechargeCommission=(data,param="")=>{
 }
 export const getRechargeOpertatorsApi=(data,param="")=>{
     const url=getAPIUrl(endpoint.rechargeOperators,param)
+    return Post(url,data)
+}
+export const getRechargeApiList=(param="")=>{
+    const url=getAPIUrl(endpoint.rechargeApiList,param)
+    return Get(url)
+}
+export const updateRechargeOperator=(data,param="")=>{
+    const url=getAPIUrl(endpoint.updateRechargeOperator,param)
+    return Put(url,data)
+}
+export const getdmtsurcharg=(data,param="")=>{
+    const url=getAPIUrl(endpoint.getDmtsurcharge,param)
     return Post(url,data)
 }

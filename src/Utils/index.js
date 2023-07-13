@@ -56,16 +56,16 @@ return formattedDate
 return time
   }
 
-export const handleDownloadExcel = (fromDate,toDate,setdisableExport,endpoint) => {
+export const handleDownloadExcel = (FromDate,ToDate,setdisableExport,endpoint,param="") => {
   setdisableExport(true)
   let payload = {
-    fromDate,
-     toDate,
+    FromDate,
+     ToDate,
   };
-  getExcelSheetOfTxn(payload,"",endpoint)
+  getExcelSheetOfTxn(payload,param,endpoint)
     .then((response) => {
       const file = new Blob([response], { type: 'application/octet-stream' });
-      saveAs(file, `PW-PayoutTransactions(${new Date(fromDate).toDateString()} - ${new Date(toDate).toDateString()}).xlsx`);
+      saveAs(file, `PW-PayoutTransactions(${new Date(FromDate).toDateString()} - ${new Date(ToDate).toDateString()}).xlsx`);
     }).catch((err)=>console.log(err)).finally(()=>setdisableExport(false))
   
   // getExcelSheetOfTxn(payload)

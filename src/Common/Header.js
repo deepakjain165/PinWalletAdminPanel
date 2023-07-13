@@ -13,7 +13,7 @@ const Header = ({PageName}) => {
     <p>Transactions</p>
   </div> */}
   </div>
-  <hr/>
+  <hr className='mt-4'/>
    </>
   )
 }
