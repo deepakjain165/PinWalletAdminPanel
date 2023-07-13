@@ -1,10 +1,10 @@
 // useCustomState.js
 import { useState } from "react";
 
-export const useCustomState = ( apifun,apifunchangstatus ) => {
+export const useCustomState = (apifun, apifunchangstatus=null,data=30) => {
   const [start, setStart] = useState(0);
   const [current, setCurrent] = useState(1);
-  const [numberOfData, setNumberOfData] = useState(30);
+  const [numberOfData, setNumberOfData] = useState(data);
   const [numberOfPAges, setNumberOfPages] = useState(0);
   const [showSpin, setShowSpin] = useState(false);
   const [dataSource, setDataSource] = useState([]);
@@ -29,6 +29,13 @@ export const useCustomState = ( apifun,apifunchangstatus ) => {
     start,
     current,
     setNumberOfData,
-    numberOfData,setNumberOfPages,numberOfPAges,setShowSpin,showSpin,dataSource,setDataSource,handlechangeStatus
+    numberOfData,
+    setNumberOfPages,
+    numberOfPAges,
+    setShowSpin,
+    showSpin,
+    dataSource,
+    setDataSource,
+    handlechangeStatus,
   };
 };

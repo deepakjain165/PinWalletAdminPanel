@@ -75,4 +75,6 @@ menuPermission:"api/roles/menuspermission/",
 saveMenuRight:"api/roles/saveMenuRight",
  rechargeCommission:"api/settings/getRechargeComm",
  rechargeOperators:"api/settings/getRechargeOperators",
+ updaterechargeCommission:"api/settings/updateRechargeComm",
+ getPackageDetails:"api/package/packagesListDrp",
 }
