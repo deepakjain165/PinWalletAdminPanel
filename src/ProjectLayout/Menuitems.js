@@ -357,7 +357,7 @@ export const items = [
       {
         key: "10.8",
         label: (
-          <NavLink to={"/settings/mini-statement-commission"}>
+          <NavLink to={"/common-settings/miniStatement-comm-setting"}>
             Mini Statement Commission
           </NavLink>
         ),

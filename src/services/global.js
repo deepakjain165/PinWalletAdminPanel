@@ -88,7 +88,7 @@ saveMenuRight:"api/roles/saveMenuRight",
 
 
 // SETTINGS API
- rechargeCommission:"api/settings/getRechargeComm",
+
  rechargeOperators:"api/settings/getRechargeOperators",
  rechargeApiList:"api/settings/rechApiList",
  updateRechargeOperator:"api/settings/updateRechargeOperator/",

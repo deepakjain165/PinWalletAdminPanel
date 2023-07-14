@@ -421,15 +421,15 @@ const PrivateAdmin = () => {
         },
       ],
     },
-    // {
-    //   element: <ProtectedAdmin />,
-    //   children: [
-    //     {
-    //       path: "/settings/mini-statement-commission",
-    //       element: <MiniStatementCommission />,
-    //     },
-    //   ],
-    // },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/miniStatement-comm-setting",
+          element: <MiniStatementCommission />,
+        },
+      ],
+    },
     // {
     //   element: <ProtectedAdmin />,
     //   children: [

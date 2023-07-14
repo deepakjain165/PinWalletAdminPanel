@@ -13,21 +13,14 @@ const CommonSettingLayout = ({
   btnText,
   dataSource,
 }) => {
-  const [packagelist, setpackageList] = useState([
-    {
-      value: "Select a Package",
-      label: "Select a Package",
-      disabled: true,
-    },
-  ]);
+  const [packagelist, setpackageList] = useState([]);
   useEffect(() => {
     getPackageListdata().then((res) => {
       const changes = res.data.map((i, index) => {
         return { label: i.text, value: `number:${index + 1}` };
       });
-      setpackageList([...packagelist, ...changes]);
+      setpackageList(changes);
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>
