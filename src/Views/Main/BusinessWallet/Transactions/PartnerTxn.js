@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import PaginationComponent from '../../../../Common/Pagination'
 import { useCustomState } from '../../../../Hooks/Usehooks';
 import { Columns } from './ColumnData';
-import { GetPartnerTxn } from '../../../../services/apiFunctions';
+import { GetPartnerTxn } from './ApiFun';
 
 const PartnerTxn = () => {
   const {

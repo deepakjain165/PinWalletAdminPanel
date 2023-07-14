@@ -1,30 +1,64 @@
-export const columns = [
+import { ConvertInRs, ExtractDate } from "../../../../Utils";
+import { EditFilled } from "@ant-design/icons";
+import { NavLink } from "react-router-dom";
+import { endpoint } from "../../../../services/global";
+export const columns = (setRecordDetail,setOpenmodal)=>{
+  return [
     {
       title: "Id",
-      dataIndex: "id",
+      dataIndex: "sno",
     },
     {
       title: "Start Range",
-      dataIndex: "start_range",
+      dataIndex: "startRange",
     },
     {
       title: "End Range",
-      dataIndex: "end_range",
+      dataIndex: "endRange",
     },
     {
       title: "Surcharge",
-      dataIndex: "billerId",
+      dataIndex: "surcharge",
+      render: (text) => <p>{ConvertInRs(text)}</p>,
     },
     {
       title: "Created On",
-      dataIndex: "created_on",
+      dataIndex: "createdOn",
+      render: (text) => <p>{ExtractDate(text)}</p>,
     },
     {
       title: "Updated On",
-      dataIndex: "updated_on",
+      dataIndex: "latestUpdatedOn",
+      render: (text) => <p>{ExtractDate(text)}</p>,
     },
     {
-        title: "Actions",
-        dataIndex: "actions",
-      },
+      title: "Actions",
+      dataIndex: "actions",
+      render: (text, record) => (
+        <div className="flex justify-start items-center ">
+          <NavLink to={"/common-settings/dmt-surcharge-setting/Change"} state={{endpoint:endpoint.updateDmtsurchargeFun,from:"Edit DMT Surcharge",record,getEndpoint:endpoint.updateDmtsurchargeFun}}>
+            <p
+              onClick={() => {
+                // setOpenModal(true);
+                // setOpenFrom("edit");
+                // setpackageId(record);
+              }}
+              className="bg-black text-xs flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
+            >
+              <EditFilled />
+            </p>
+          </NavLink>
+          <p
+            onClick={() => {
+              setRecordDetail(record)
+              setOpenmodal(true)
+            }}
+            className="bg-red-600 text-md h-7 font-bold flex items-center justify-center p-2 m-2 cursor-pointer text-white rounded-md"
+          >
+            x
+          </p>
+        </div>
+      ),
+    },
   ];
+}

@@ -5,7 +5,7 @@ import {
   getPartnercallbackDetail,
   getpartnerEvents,
   updatePartnerCallback,
-} from "../../../services/apiFunctions";
+} from "./ApiFun";
 import { messageConfiguration } from "../../../Utils";
 
 const PartnerCallBackSetting = () => {

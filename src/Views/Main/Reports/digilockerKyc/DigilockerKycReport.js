@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { columns } from './ColumnData'
-import {  getDigiLockerKycReport } from '../../../../services/apiFunctions'
+import {  getDigiLockerKycReport } from './ApiFun'
 import dayjs from 'dayjs'
 import {
   message,

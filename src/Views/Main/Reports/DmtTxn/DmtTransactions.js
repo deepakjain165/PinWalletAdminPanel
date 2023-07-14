@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { columns } from './ColumnData'
-import { getDmtTransactions } from '../../../../services/apiFunctions'
+import { getDmtTransactions } from './ApiFun'
 import dayjs from 'dayjs'
 import {
   message,

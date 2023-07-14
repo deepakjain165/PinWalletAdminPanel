@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {  getDynamicupiGen } from '../../../../services/apiFunctions'
+import {  getDynamicupiGen } from './ApiFun'
 import dayjs from 'dayjs'
 import {
   message,

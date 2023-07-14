@@ -1,6 +1,6 @@
 import { Spin, Table } from "antd";
 import React, { useEffect } from "react";
-import { GetRoles } from "../../../services/apiFunctions";
+import { GetRoles } from "./ApiFun";
 import { useCustomState } from "../../../Hooks/Usehooks";
 import { EditFilled } from "@ant-design/icons";
 import PaginationComponent from "../../../Common/Pagination";

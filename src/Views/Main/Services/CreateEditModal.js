@@ -4,7 +4,7 @@ import {
   addService,
   getServiceById,
   updateServiceById,
-} from "../../../services/apiFunctions";
+} from "./ApiFun";
 import { messageConfiguration } from "../../../Utils";
 
 const CreateEditModal = ({ openModal, setOpenModal, openFrom, packageId }) => {

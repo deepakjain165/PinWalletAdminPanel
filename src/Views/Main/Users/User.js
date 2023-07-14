@@ -5,7 +5,7 @@ import {
   DeleteUser,
   changeUserStatus,
   getUsers,
-} from "../../../services/apiFunctions";
+} from "./ApiFun";
 import { Columns } from "./ColumnData";
 import { messageConfiguration } from "../../../Utils";
 import ConfirmModal from "../../../Common/ConfirmModal";

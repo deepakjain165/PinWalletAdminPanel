@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
-import Header from "../../../../Common/Header";
 import CommonSettingLayout from "../../../../Common/CommonSettingLayout";
 import { PackageName } from "../../../../Utils/Options";
 import { useCustomState } from "../../../../Hooks/Usehooks";
 import { columns } from "./ColumnData";
-import { data } from "autoprefixer";
-import { getdmtsurcharg } from "../../../../services/apiFunctions";
+import {
+  deletedmtsurcharge,
+  getdmtsurcharg,
+} from "../../../../services/apiFunctions";
 import PaginationComponent from "../../../../Common/Pagination";
-function DMTsurcharges(){
+import { useNavigate } from "react-router-dom";
+import ConfirmModal from "../../../../Common/ConfirmModal";
+import { message } from "antd";
+import { messageConfiguration } from "../../../../Utils";
+import { endpoint } from "../../../../services/global";
+function DMTsurcharges() {
   const {
     handlepageChange,
     start,
@@ -22,7 +28,10 @@ function DMTsurcharges(){
     setDataSource,
   } = useCustomState(getAllDmtsurcharge, null, 100);
   const totalCount = 100;
-  const [fields,setFields]=useState("")
+  const navigate = useNavigate();
+  const [fields, setFields] = useState("");
+  const [openModal, setOpenmodal] = useState(false);
+  const [recordDetail, setRecordDetail] = useState(null);
   function getAllDmtsurcharge(page, start) {
     setShowSpin(true);
     const payload = {
@@ -30,10 +39,13 @@ function DMTsurcharges(){
       Pagination: {
         Start: start,
         TotalItemCount: totalCount,
-        numberOfPages:numberOfPAges,
         Number: page,
+        NumberOfPages: numberOfPAges,
       },
-      Search: {},
+      Search: {
+        PredicateObject:
+          fields !== null && fields !== "" ? { PackageId: fields } : null,
+      },
     };
     getdmtsurcharg(payload)
       .then((response) => {
@@ -46,24 +58,48 @@ function DMTsurcharges(){
       .catch((err) => console.log(err))
       .finally(() => setShowSpin(false));
   }
-  useEffect(()=>{
-    getAllDmtsurcharge()
-  },[])
-    return (
-       <>
-       <CommonSettingLayout 
-       PageName={"DMT Surcharge List"}
-       fields={fields}
-       handlButton={()=>{}}
-       setFields={setFields}
-       options={PackageName}
+  useEffect(() => {
+    getAllDmtsurcharge(numberOfData, start);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fields]);
+  const handleNavigate = () => {
+    navigate("/common-settings/dmt-surcharge-setting/Change", {
+      state: {
+        endpoint: endpoint.updateDmtsurchargeFun,
+        from: "Add DMT Surcharge",
+      },
+    });
+  };
+  const handleDelete = () => {
+    deletedmtsurcharge(`/${recordDetail.id}`)
+      .then((res) => {
+        message.open(
+          messageConfiguration(
+            "success",
+            "surcharge setting has been deleted.",
+            3
+          )
+        );
+        setOpenmodal(false);
+        getAllDmtsurcharge(numberOfData, start);
+      })
+      .catch((err) => console.log(err));
+  };
+  return (
+    <>
+      <CommonSettingLayout
+        PageName={"DMT Surcharge List"}
+        fields={fields}
+        handleButton={handleNavigate}
+        setFields={setFields}
+        options={PackageName}
         showSpin={showSpin}
         btnText={"Add Surcharge"}
         showButton={true}
-        columns={columns}
+        columns={columns(setRecordDetail, setOpenmodal)}
         dataSource={dataSource}
-       />
-       <PaginationComponent
+      />
+      <PaginationComponent
         current={current}
         numberOfPAges={numberOfPAges}
         start={start}
@@ -72,7 +108,16 @@ function DMTsurcharges(){
         handlepageChange={handlepageChange}
         numberOfData={numberOfData}
       />
-       </>
-    )
+      {openModal && (
+        <ConfirmModal
+          btnTxt={"Yes i delete it."}
+          deleteModal={openModal}
+          desc={"You want to delete this surcharge setting."}
+          setDeleteModal={setOpenmodal}
+          handleDelete={handleDelete}
+        />
+      )}
+    </>
+  );
 }
 export default DMTsurcharges;

@@ -5,7 +5,7 @@ import {
   changeServiceStatuseById,
   deleteService,
   getServicesList,
-} from "../../../services/apiFunctions";
+} from "./ApiFun";
 import { Columns } from "./ColumnData";
 import CreateEditModal from "./CreateEditModal";
 import { messageConfiguration } from "../../../Utils";

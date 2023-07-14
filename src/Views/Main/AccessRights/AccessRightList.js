@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   GetMenuPermission,
   allowPermissions,
-} from "../../../services/apiFunctions";
+} from "./ApiFun";
 import { useCustomState } from "../../../Hooks/Usehooks";
 import PaginationComponent from "../../../Common/Pagination";
 import { NavLink, useLocation } from "react-router-dom";

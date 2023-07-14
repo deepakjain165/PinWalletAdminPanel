@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import { setLocalStorageItem } from "../Utils";
-import {  svghandshake, users } from "../Controller/image";
+import { svghandshake, users } from "../Controller/image";
 export const items = [
   {
     key: "1",
@@ -31,7 +31,7 @@ export const items = [
   },
   {
     key: "5",
-    icon:users,
+    icon: users,
     label: <NavLink to={"/users"}>Users</NavLink>,
     onClick: () => {
       setLocalStorageItem("selectedTab", "5");
@@ -68,14 +68,25 @@ export const items = [
     children: [
       {
         key: "9.1",
-        label: (<NavLink to={"/business-wallet"}><p>Transactions</p></NavLink>),
+        label: (
+          <NavLink to={"/business-wallet"}>
+            <p>Transactions</p>
+          </NavLink>
+        ),
         onClick: () => {
           setLocalStorageItem("selectedTab", "9.1");
         },
       },
       {
         key: "9.2",
-        label: "Add/Deduct Fund",
+        label: (
+          <NavLink to={"/business-wallet/add-deduct-fund"}>
+            <p>Add/Deduct Fund</p>
+          </NavLink>
+        ),
+        onClick: () => {
+          setLocalStorageItem("selectedTab", "9.2");
+        },
       },
       {
         key: "9.3",
@@ -269,7 +280,7 @@ export const items = [
       {
         key: "10.1",
         label: (
-          <NavLink to={"/settings/aadhar-pay-surcharges"}>
+          <NavLink to={"/common-settings/aadharPay-surcharge-setting"}>
             Aadhar Pay surcharges
           </NavLink>
         ),
@@ -280,7 +291,9 @@ export const items = [
       {
         key: "10.2",
         label: (
-          <NavLink to={"/settings/aeps-commission"}>AEPS Commissions</NavLink>
+          <NavLink to={"/common-settings/aeps-comm-setting"}>
+            AEPS Commissions
+          </NavLink>
         ),
         onClick: () => {
           setLocalStorageItem("selectedTab", "10.2");
@@ -311,7 +324,7 @@ export const items = [
       {
         key: "10.5",
         label: (
-          <NavLink to={"/settings/creditCard-surcharges"}>
+          <NavLink to={"/common-settings/creditCard-surcharge-setting"}>
             CreditCard surcharges
           </NavLink>
         ),
@@ -322,7 +335,9 @@ export const items = [
       {
         key: "10.6",
         label: (
-          <NavLink to={"/common-settings/dmt-surcharge-setting"}>DMT surcharges</NavLink>
+          <NavLink to={"/common-settings/dmt-surcharge-setting"}>
+            DMT surcharges
+          </NavLink>
         ),
         onClick: () => {
           setLocalStorageItem("selectedTab", "10.6");
@@ -331,7 +346,7 @@ export const items = [
       {
         key: "10.7",
         label: (
-          <NavLink to={"/settings/dynamic-upi-surcharges"}>
+          <NavLink to={"/common-settings/dynamicUpi-surcharge-setting"}>
             Dynamic UPI Surcharges
           </NavLink>
         ),
@@ -386,7 +401,7 @@ export const items = [
       {
         key: "10.12",
         label: (
-          <NavLink to={"/settings/payout-surcharges"}>
+          <NavLink to={"/common-settings/payout-surcharge-setting"}>
             PayOut Surcharges
           </NavLink>
         ),
@@ -441,7 +456,7 @@ export const items = [
       {
         key: "10.17",
         label: (
-          <NavLink to={"/settings/upi-dmt-surcharges"}>
+          <NavLink to={"/common-settings/upiDmt-surcharge-setting"}>
             UPI DMT Surcharges
           </NavLink>
         ),
@@ -475,7 +490,7 @@ export const items = [
         key: "10.20",
         label: (
           <NavLink to={"/settings/wallet-capping-setting"}>
-           Wallet Capping Setting
+            Wallet Capping Setting
           </NavLink>
         ),
         onClick: () => {

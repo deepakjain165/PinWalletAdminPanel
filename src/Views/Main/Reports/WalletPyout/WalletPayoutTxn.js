@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {  getWalletPayoutData } from '../../../../services/apiFunctions'
+import {  getWalletPayoutData } from './ApiFun'
 import dayjs from 'dayjs'
 import {
   message,

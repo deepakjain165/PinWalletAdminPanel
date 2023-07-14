@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {  getUPIDmtData } from '../../../../services/apiFunctions'
+import {  getUPIDmtData } from './ApiFun'
 import dayjs from 'dayjs'
 import {
   message,

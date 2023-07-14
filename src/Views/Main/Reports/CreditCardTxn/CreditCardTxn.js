@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { columns } from './ColumnData'
-import { getCreditCardTransactions } from '../../../../services/apiFunctions'
+import { getCreditCardTransactions } from './ApiFun'
 import dayjs from 'dayjs'
 import {
   message,

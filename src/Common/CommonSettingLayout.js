@@ -13,21 +13,28 @@ const CommonSettingLayout = ({
   btnText,
   dataSource,
 }) => {
-    const [packagelist,setpackageList]=useState([])
-    useEffect(()=>{
-getPackageListdata().then((res)=>{
-  const changes=res.data.map((i,index)=>{
-    return {label:i.text,value:`number:${index+1}`}
-  })
-  setpackageList(changes)
-})
-    },[])
+  const [packagelist, setpackageList] = useState([
+    {
+      value: "Select a Package",
+      label: "Select a Package",
+      disabled: true,
+    },
+  ]);
+  useEffect(() => {
+    getPackageListdata().then((res) => {
+      const changes = res.data.map((i, index) => {
+        return { label: i.text, value: `number:${index + 1}` };
+      });
+      setpackageList([...packagelist, ...changes]);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <Header PageName={PageName} />
-      <div className="filters mt-5 flex justify-between gap-4 items-center flex-wrap">
+      <div className="filters mt-5 flex justify-between gap-2 items-center flex-wrap">
         <Select
-          className="w-1/6 mb-2 "
+          className="w-1/2"
           value={fields}
           onChange={(val) => setFields(val)}
           defaultValue={packagelist[0]?.value}

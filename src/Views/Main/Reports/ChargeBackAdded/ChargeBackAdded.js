@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getChargeBackAdded } from "../../../../services/apiFunctions";
+import { getChargeBackAdded } from "./ApiFun";
 import dayjs from "dayjs";
 import { message } from "antd";
 import { ChargeBackAddedPredicate } from "../../../../Utils/Options";

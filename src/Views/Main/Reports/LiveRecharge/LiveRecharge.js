@@ -1,6 +1,6 @@
 import { Table } from "antd";
 import React, { useEffect, useState } from "react";
-import { getLiveRecharge } from "../../../../services/apiFunctions";
+import { getLiveRecharge } from "./ApiFun";
 import { columns } from "./ColumnData";
 import { ReloadOutlined } from "@ant-design/icons";
 

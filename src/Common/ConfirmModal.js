@@ -29,18 +29,18 @@ const ConfirmModal = ({
         <div className=" flex justify-center items-center flex-col font-semibold gap-y-3">
           <img src={Images.exclamation} alt="exclamation" width={120} />
           <p>Are You Sure ?</p>
-          <p>{desc}</p>
+          <p className="text-center">{desc}</p>
         </div>
         <div className="buttons flex justify-center items-center gap-3 mt-3">
           <p
             onClick={() => setDeleteModal(false)}
-            className="font-bold cursor-pointer"
+            className="font-bold  cursor-pointer"
           >
             Cancel
           </p>
           <button
             onClick={handleDelete}
-            className="bg-[#113150] text-white font-bold p-3 rounded-sm"
+            className="bg-green-600 w-auto text-white font-bold p-3 rounded-sm"
           >
             {btnTxt}
           </button>

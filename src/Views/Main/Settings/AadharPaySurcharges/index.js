@@ -1,65 +1,119 @@
-import React from "react";
-import Header from "../../../../Common/Header";
+import React, { useEffect, useState } from "react";
+import CommonSettingLayout from "../../../../Common/CommonSettingLayout";
+import { PackageName } from "../../../../Utils/Options";
+import { useCustomState } from "../../../../Hooks/Usehooks";
 import { columns } from "./ColumnData";
-import { Table,Select } from "antd";
-function AadharPaySurcharges(){
-    return (
-    <div>
-     <Header PageName={"Aadhar Pay Surcharges"}/>
-     <div className="input_fields mt-8">
-          <Select
-            className="mb-2 w-1/4"
-            defaultValue={"--Select Package--"}
-          />
-          <br />
-          {/* <Input.Search value={fields.searchString} onChange={(e)=>setFields({...fields,searchString:e.target.value})} onSearch={handleSearchString} className="searchBar" placeholder="Select and Search" enterButton="Search" size="large"  /> */}
-        </div> 
-      {/* <div className="filters mt-5 flex justify-start md:justify-around gap-4 items-center flex-wrap">
-        <div className="input_fields">
-          <Select
-            className="mb-2 w-full"
-            value={fields.type}
-            onChange={(val) => setFields({ ...fields, type: val })}
-            defaultValue="PinWalletOrderId"
-            options={predicateObjectNames}
-          />
-          <br />
-          <Input.Search value={fields.searchString} onChange={(e)=>setFields({...fields,searchString:e.target.value})} onSearch={handleSearchString} className="searchBar" placeholder="Select and Search" enterButton="Search" size="large"  />
-        </div>
-        <RangePicker
-          allowClear={false}
-          value={[
-            dayjs(fields.fromDate, dateFormat),
-            dayjs(fields.toDate, dateFormat),
-          ]}
-          onChange={handledateChange}
-          className="rounded-none"
+import PaginationComponent from "../../../../Common/Pagination";
+import { useNavigate } from "react-router-dom";
+import ConfirmModal from "../../../../Common/ConfirmModal";
+import { message } from "antd";
+import { messageConfiguration } from "../../../../Utils";
+import { aadharPayEndpoint, deleteAadharsurcharge, getAadharPaySurcharge } from "./ApiFun";
+function AadharPay() {
+  const {
+    handlepageChange,
+    start,
+    current,
+    setNumberOfData,
+    numberOfData,
+    setNumberOfPages,
+    numberOfPAges,
+    setShowSpin,
+    showSpin,
+    dataSource,
+    setDataSource,
+  } = useCustomState(getAllAadharPaySurcharge, null, 100);
+  const totalCount = 100;
+  const navigate = useNavigate();
+  const [fields, setFields] = useState("");
+  const [openModal, setOpenmodal] = useState(false);
+  const [recordDetail, setRecordDetail] = useState(null);
+  function getAllAadharPaySurcharge(page, start) {
+    setShowSpin(true);
+    const payload = {
+      Sort: {},
+      Pagination: {
+        Start: start,
+        TotalItemCount: totalCount,
+        Number: page,
+        NumberOfPages: numberOfPAges,
+      },
+      Search: {
+        PredicateObject:
+          fields !== null && fields !== "" ? { PackageId: fields } : null,
+      },
+    };
+    getAadharPaySurcharge(payload)
+      .then((response) => {
+        const addSno = response.items.map((i, index) => {
+          return { ...i, sno: index + 1 };
+        });
+        setDataSource(addSno);
+        setNumberOfPages(response.numberOfPages);
+      })
+      .catch((err) => console.log(err))
+      .finally(() => setShowSpin(false));
+  }
+  useEffect(() => {
+    getAllAadharPaySurcharge(numberOfData, start);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fields]);
+  const handleNavigate = () => {
+    navigate("/common-settings/aadharPay-surcharge-setting/change", {
+      state: {
+        endpoint: aadharPayEndpoint.aadharpayfun,
+        from: "Add Aadhar Pay Surcharge List",
+      },
+    });
+  };
+  const handleDelete = () => {
+    deleteAadharsurcharge(`/${recordDetail.id}`)
+      .then((res) => {
+        message.open(
+          messageConfiguration(
+            "success",
+            "surcharge setting has been deleted.",
+            3
+          )
+        );
+        setOpenmodal(false);
+        getAllAadharPaySurcharge(numberOfData, start);
+      })
+      .catch((err) => console.log(err));
+  };
+  return (
+    <>
+      <CommonSettingLayout
+        PageName={"Aadhar Pay Surcharge List"}
+        fields={fields}
+        handleButton={handleNavigate}
+        setFields={setFields}
+        options={PackageName}
+        showSpin={showSpin}
+        btnText={"Add Surcharge"}
+        showButton={true}
+        columns={columns(setRecordDetail, setOpenmodal)}
+        dataSource={dataSource}
+      />
+      <PaginationComponent
+        current={current}
+        numberOfPAges={numberOfPAges}
+        start={start}
+        setNumberOfData={setNumberOfData}
+        apiFunction={getAllAadharPaySurcharge}
+        handlepageChange={handlepageChange}
+        numberOfData={numberOfData}
+      />
+      {openModal && (
+        <ConfirmModal
+          btnTxt={"Yes i delete it."}
+          deleteModal={openModal}
+          desc={"You want to delete this surcharge setting."}
+          setDeleteModal={setOpenmodal}
+          handleDelete={handleDelete}
         />
-        <Button
-          className="bg-[#1572e8] hover:text-white text-white hover:border-none"
-          title="search"
-          onClick={handleSearch}
-        >
-          Search
-        </Button>
-        <Button
-          onClick={handleExport}
-          disabled={disableExport}
-          className="bg-black hover:text-white hover:border-none text-white"
-        >
-          Export
-        </Button>
-      </div> */}
-      <div className="mt-3">
-        {/* <Spin spinning={showSpin} tip="Loading..."> */}
-        <Table
-          className="custom-table overflow-x-scroll text-white rounded-none"
-          columns={columns}
-        />
-        {/* </Spin> */}
-      </div>
-    </div>
-
-    )
+      )}
+    </>
+  );
 }
-export default AadharPaySurcharges;
+export default AadharPay;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {   getVerificationApiData } from '../../../../services/apiFunctions'
+import {   getVerificationApiData } from './ApiFun'
 import dayjs from 'dayjs'
 import {
   message,

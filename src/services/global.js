@@ -93,5 +93,6 @@ saveMenuRight:"api/roles/saveMenuRight",
  rechargeApiList:"api/settings/rechApiList",
  updateRechargeOperator:"api/settings/updateRechargeOperator/",
  getDmtsurcharge:"api/settings/dmtSurchargeSetting/grid",
+ updateDmtsurchargeFun:"api/settings/dmtSurchargeSetting",
  updaterechargeCommission:"api/settings/updateRechargeComm",
 }

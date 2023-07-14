@@ -7,7 +7,7 @@ import {
   deleteIp,
   getPartnerIpsList,
   updateIpDetail,
-} from "../../../services/apiFunctions";
+} from "./ApiFun";
 import { messageConfiguration } from "../../../Utils";
 import ConfirmModal from "../../../Common/ConfirmModal";
 import { NavLink, useLocation } from "react-router-dom";
@@ -84,7 +84,7 @@ const PartnerIps = () => {
     if (
       /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(
         Ip
-      )
+      ) || Ip==="::1"
     ) {
       return true;
     }
@@ -194,8 +194,8 @@ const PartnerIps = () => {
       />
       {deleteModal && (
         <ConfirmModal
-        btnTxt={"yes i delete it."}
-        desc={"You want to delete Ip Address"}
+          btnTxt={"yes i delete it."}
+          desc={"You want to delete Ip Address"}
           deleteModal={deleteModal}
           setDeleteModal={setDeleteModal}
           handleDelete={handleDelete}

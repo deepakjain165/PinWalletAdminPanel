@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { message } from "antd";
 import { predicateObjectNames } from "../../../../Utils/Options";
-import { getPayoutTransactions } from "../../../../services/apiFunctions";
+import { getPayoutTransactions } from "./ApiFun";
 import dayjs from "dayjs";
 import { columns } from "./ColumnData";
 import { handleDownloadExcel, messageConfiguration } from "../../../../Utils";

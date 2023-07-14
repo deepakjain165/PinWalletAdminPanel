@@ -7,12 +7,13 @@ import { columns } from "./ColumnData";
 import { DynamicUpiTxnPredicate } from "../../../../Utils/Options";
 import {
   getDynamicUoiTrxReport,
-} from "../../../../services/apiFunctions";
+} from "./ApiFun";
 import { handleDownloadExcel, messageConfiguration } from "../../../../Utils";
 import PaginationComponent from "../../../../Common/Pagination";
 import { endpoint } from "../../../../services/global";
 import CommonLayout from "../../../../Common/CommonLayout";
 import { useCustomState } from "../../../../Hooks/Usehooks";
+import ConfirmModal from "../../../../Common/ConfirmModal";
 
 const DynamicUpiTxn = () => {
   const {
@@ -36,6 +37,8 @@ const DynamicUpiTxn = () => {
     fromDate: dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
     toDate: dayjs(new Date()).format("YYYY-MM-DDTHH:mm:ss.SSS") + "Z",
   });
+  const [openModal,setOpenModal]=useState(false)
+  const[recordDetail,setRecordDetail]=useState(null)
   function getAllDynamicTxn  (page, start) {
     setShowSpin(true);
     const payload = {
@@ -139,11 +142,21 @@ const DynamicUpiTxn = () => {
       handleExport={handleExport}
       disableExport={disableExport}
       showSpin={showSpin}
-      columns={columns}
+      columns={columns(setOpenModal,setRecordDetail)}
       dataSource={dataSource}
       />
       <PaginationComponent setNumberOfData={setNumberOfData} current={current} numberOfPAges={numberOfPAges} start={start} apiFunction={getAllDynamicTxn} handlepageChange={handlepageChange} numberOfData={numberOfData}/>
-
+      {openModal && (
+        <ConfirmModal
+          btnTxt={"Yes!"}
+          deleteModal={openModal}
+          desc={`You want to Re-Hit CallBack for
+          TrxId: ${recordDetail.PwTxnId}
+          for partner: ${recordDetail.partnerName}`}
+          setDeleteModal={setOpenModal}
+          handleDelete={()=>{}}
+        />
+      )}
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { columns } from './ColumnData'
-import { getBbpsBillFetchTxn } from '../../../../services/apiFunctions'
+import { getBbpsBillFetchTxn } from './ApiFun'
 import dayjs from 'dayjs'
 import {
   message,

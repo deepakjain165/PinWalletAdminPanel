@@ -1,13 +1,13 @@
 import { Checkbox, Input, Select, message } from "antd";
 import React, { useEffect, useState } from "react";
 import {
-  getPackageListdata,
   getPartnerDetail,
   getPartnerServiceList,
   updatePartnerDetail,
-} from "../../../services/apiFunctions";
+} from "./ApiFun";
 import { useLocation, useNavigate } from "react-router-dom";
 import { messageConfiguration } from "../../../Utils/index";
+import { getPackageListdata } from "../../../services/apiFunctions";
 
 const EditPartnerDetail = () => {
   const location = useLocation();

@@ -6,7 +6,7 @@ import { PartnerPredicate } from "../../../Utils/Options";
 import {
   changePartnerStatus,
   getPartnerList,
-} from "../../../services/apiFunctions";
+} from "./ApiFun";
 import { useCustomState } from "../../../Hooks/Usehooks";
 import KeyModal from "./KeyModal";
 

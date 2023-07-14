@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {  Modal } from "antd";
-import { generatePartnerKey } from "../../../services/apiFunctions";
+import { generatePartnerKey } from "./ApiFun";
 
 const KeyModal = ({ id, keyModal, setKeyModal }) => {
     const[keyDetail,setKeyDetail]=useState({})

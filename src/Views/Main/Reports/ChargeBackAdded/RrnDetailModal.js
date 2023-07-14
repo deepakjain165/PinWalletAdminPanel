@@ -1,6 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import { Modal } from 'antd';
-import { getChargeBackrrnDetails } from '../../../../services/apiFunctions';
+import { getChargeBackrrnDetails } from './ApiFun';
 import { ConvertInRs, ExtractDate, ExtractTime } from '../../../../Utils';
 
 const RrnDetailModal = ({openModal,setOpenModal,rrnno}) => {

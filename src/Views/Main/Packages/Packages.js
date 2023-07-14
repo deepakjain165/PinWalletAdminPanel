@@ -5,7 +5,7 @@ import {
   changePackageStatuseById,
   deletePackage,
   getPackageList,
-} from "../../../services/apiFunctions";
+} from "./ApiFun";
 import { Columns } from "./columnData";
 import CreateEditModal from "./CreateEditModal";
 import { messageConfiguration } from "../../../Utils";

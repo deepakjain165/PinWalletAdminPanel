@@ -19,12 +19,10 @@ function RechargeCommission() {
     numberOfPAges,
     setShowSpin,
     showSpin,
-    showSelect,
     dataSource,
     setDataSource,
   } = useCustomState(getDetailsRechargeCommission, null, 100);
   const [fields, setFields] = useState("");
-  const[amount, setAmount] =useState();
   function getDetailsRechargeCommission(page, start) {
     setShowSpin(true);
     const payload = {
@@ -65,6 +63,7 @@ function RechargeCommission() {
   }
   useEffect(() => {
     getDetailsRechargeCommission(numberOfData, start);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fields]);
   const handleCheckboxChange = (record) => {
     let newData = [...dataSource];
@@ -85,7 +84,6 @@ function RechargeCommission() {
       return (i.amount=value)
       }
     })
-    console.log(newData)
     setDataSource(newData);
   };
   function updateRechargeCommission(page) {
@@ -113,19 +111,6 @@ function RechargeCommission() {
         columns={columns(handleCheckboxChange,handleAmoutChange)}
         dataSource={dataSource}
       />
-      {/* <div className="input_fields mt-8">
-        <Select
-          onChange={(value) => setFields(value)}
-          className=" w-1/6  "
-          defaultValue={PackageName[0].value}
-          options={PackageName}
-        />
-
-        <br />
-      </div> */}
-      {/* <button className="bg-slate-400" onClick={updateRechargeCommission}>
-        Update
-      </button> */}
       <div className="mt-3">
         <PaginationComponent
           setNumberOfData={setNumberOfData}

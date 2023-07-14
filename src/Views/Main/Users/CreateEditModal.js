@@ -5,7 +5,7 @@ import {
   GetUserRoles,
   addUser,
   getUserById,
-} from "../../../services/apiFunctions";
+} from "./ApiFun";
 import { messageConfiguration } from "../../../Utils";
 
 const CreateEditModal = ({ openModal, setOpenModal, openFrom, packageId }) => {

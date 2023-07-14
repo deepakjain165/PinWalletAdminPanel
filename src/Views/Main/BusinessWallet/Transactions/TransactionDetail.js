@@ -6,7 +6,7 @@ import { BusinesswalletTxnPredicate } from '../../../../Utils/Options';
 import { TransactionColumn } from './ColumnData';
 import dayjs from 'dayjs';
 import { useLocation } from 'react-router-dom';
-import { GetPartnerTxnbyId } from '../../../../services/apiFunctions';
+import { GetPartnerTxnbyId } from './ApiFun';
 import { handleDownloadExcel, messageConfiguration } from '../../../../Utils';
 import { endpoint } from '../../../../services/global';
 import { message } from 'antd';

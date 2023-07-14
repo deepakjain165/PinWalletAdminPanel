@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { columns } from './ColumnData'
-import { getAccountVerification } from '../../../../services/apiFunctions'
+import { getAccountVerification } from './ApiFun'
 import dayjs from 'dayjs'
 import {
   message,

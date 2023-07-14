@@ -11,7 +11,7 @@ import {
   agreementUpload,
   getDocstatus,
   getPartnerDoc,
-} from "../../../services/apiFunctions";
+} from "./ApiFun";
 import { ExtractDate, ExtractTime, messageConfiguration } from "../../../Utils";
 
 const DocumentPage = () => {

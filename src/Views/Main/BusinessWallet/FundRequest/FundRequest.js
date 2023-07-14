@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { columns } from './ColumnData'
-import { GetFundRequests } from '../../../../services/apiFunctions'
+import { GetFundRequests } from './ApiFun'
 import dayjs from 'dayjs'
 
 import {  fundreqPredicate } from '../../../../Utils/Options'
