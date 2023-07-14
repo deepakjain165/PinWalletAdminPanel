@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getRechargeCommission } from "../../../../services/apiFunctions";
+import { getRechargeCommission, getupdateRechargeCommission } from "./ApiFun";
 import PaginationComponent from "../../../../Common/Pagination";
 import { message } from "antd";
 import { messageConfiguration } from "../../../../Utils";
 import { columns } from "./ColumnData";
+import ConfirmModal from "../../../../Common/ConfirmModal";
 import { useCustomState } from "../../../../Hooks/Usehooks";
-import { getupdateRechargeCommission } from "../../../../services/apiFunctions";
 import CommonSettingLayout from "../../../../Common/CommonSettingLayout";
 function RechargeCommission() {
   const totalCount = 100;
@@ -24,7 +24,7 @@ function RechargeCommission() {
     setDataSource,
   } = useCustomState(getDetailsRechargeCommission, null, 100);
   const [fields, setFields] = useState("");
-  const[amount, setAmount] =useState();
+  const [openModal, setOpenModal] = useState(false);
   function getDetailsRechargeCommission(page, start) {
     setShowSpin(true);
     const payload = {
@@ -40,9 +40,7 @@ function RechargeCommission() {
       },
       Search: {
         PredicateObject:
-          fields.type !== null && fields.type !== ""
-            ? { PackageId: fields }
-            : null,
+          fields !== null && fields !== "" ? { PackageId: fields } : null,
       },
     };
     getRechargeCommission(payload)
@@ -70,35 +68,35 @@ function RechargeCommission() {
     let newData = [...dataSource];
     newData.map((i, index) => {
       if (i.id === record.id) {
-        return (
-          (i.isFlat = !i.isFlat)
-        )
-      
+        return (i.isFlat = !i.isFlat);
       }
     });
     setDataSource(newData);
   };
-  const handleAmoutChange = (record,value) => {
+  const handleAmoutChange = (record, value) => {
     let newData = [...dataSource];
-    newData.map((i)=>{
-      if(i.id === record.id){
-      return (i.amount=value)
+    newData.map((i) => {
+      if (i.id === record.id) {
+        return (i.amount = value);
       }
-    })
-    console.log(newData)
+    });
+    console.log(newData);
     setDataSource(newData);
   };
   function updateRechargeCommission(page) {
     getupdateRechargeCommission(dataSource)
       .then((res) => {
-        message.open(
-          messageConfiguration("success", "User Updated Successfully", 3)
-        );
+        if (res.success == true) {
+          message.open(messageConfiguration("success", res.message, 3));
+        } else {
+          message.open(messageConfiguration("error", "Try Again", 3));
+        }
         setShowSpin(false);
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
+      .finally(() => setOpenModal(false));
   }
   return (
     <div>
@@ -109,8 +107,8 @@ function RechargeCommission() {
         btnText={"Update"}
         showButton={true}
         showSpin={showSpin}
-        handleButton={updateRechargeCommission}
-        columns={columns(handleCheckboxChange,handleAmoutChange)}
+        handleButton={setOpenModal}
+        columns={columns(handleCheckboxChange, handleAmoutChange)}
         dataSource={dataSource}
       />
       {/* <div className="input_fields mt-8">
@@ -126,17 +124,25 @@ function RechargeCommission() {
       {/* <button className="bg-slate-400" onClick={updateRechargeCommission}>
         Update
       </button> */}
-      <div className="mt-3">
-        <PaginationComponent
-          setNumberOfData={setNumberOfData}
-          current={current}
-          numberOfPAges={numberOfPAges}
-          start={start}
-          apiFunction={getDetailsRechargeCommission}
-          handlepageChange={handlepageChange}
-          numberOfData={numberOfData}
+
+      <PaginationComponent
+        setNumberOfData={setNumberOfData}
+        current={current}
+        numberOfPAges={numberOfPAges}
+        start={start}
+        apiFunction={getDetailsRechargeCommission}
+        handlepageChange={handlepageChange}
+        numberOfData={numberOfData}
+      />
+      {openModal && (
+        <ConfirmModal
+          handleDelete={updateRechargeCommission}
+          deleteModal={openModal}
+          btnTxt={"Yes, Update!"}
+          desc={"You want to Update this Recharge Commission settings."}
+          setDeleteModal={setOpenModal}
         />
-      </div>
+      )}
     </div>
   );
 }

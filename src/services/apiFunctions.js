@@ -265,10 +265,8 @@ export const getExcelSheetOfTxn=(data,param="",endpoint)=>{
     const url=getAPIUrl(endpoint,param)
     return Post(url,data)
 }
-export const getRechargeCommission=(data,param="")=>{
-    const url=getAPIUrl(endpoint.rechargeCommission,param)
-    return Post(url,data)
-}
+
+
 export const getRechargeOpertatorsApi=(data,param="")=>{
     const url=getAPIUrl(endpoint.rechargeOperators,param)
     return Post(url,data)
@@ -285,9 +283,6 @@ export const getdmtsurcharg=(data,param="")=>{
     const url=getAPIUrl(endpoint.getDmtsurcharge,param)
     return Post(url,data)
 }
-export const getupdateRechargeCommission=(data,param="")=>{
-    const url=getAPIUrl(endpoint.updaterechargeCommission,param)
-    return Post(url,data)
-}
+
 
 

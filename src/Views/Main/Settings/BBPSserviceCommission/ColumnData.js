@@ -1,11 +1,14 @@
-export const columns = [
+import { ExtractDate } from "../../../../Utils";
+import { Checkbox, Input } from "antd";
+export const columns =(handleAmoutChange,handleCheckboxChange)=>{
+  return [
     {
       title: "Id",
-      dataIndex: "id",
+      dataIndex: "sno",
     },
     {
       title: "Service Name",
-      dataIndex: "service_name",
+      dataIndex: "serviceName",
     //   render:(text,record)=><div className="text-xs">
     //     <p>{text}</p>
     //     <p>{record.partnerEmail}</p>
@@ -16,45 +19,46 @@ export const columns = [
     {
       title: "Amount",
       dataIndex: "amount",
-    //   render: (text) => (
-    //     <p
-    //       className={`${
-    //         text === "SUCCESS" ? "bg-[#31ce36]" : "bg-red-600"
-    //       } text-xs text-center text-white p-2 rounded-full`}
-    //     >
-    //       {text}
-    //     </p>
-    //   ),
-      // filterDropdown:({ setSelectedKeys, selectedKeys, confirm })=>(
-      //   <div>
-      //      <Select
-      //                 placeholder="Select Status"
-      //                 value={selectedKeys[0]}
-      //                 className="w-full"
-      //                 onChange={(val)=>getAllTransaction(numberOfData,start)}
-      //                 onSelect={confirm}
-      //                 allowClear
-      //       >
-      //       <Option value="">All</Option>
-      //       <Option value="success">Success</Option>
-      //       <Option value="failed">Failed</Option>
-      //       <Option value="pending">Pending</Option>
-
-      //       </Select>
-      //   </div>
-      // ),
+      render: (text, record) => (
+        <div >
+          <Input 
+            min={0}
+            value={text}
+            type="number"  
+            className="w-1/2"
+            onChange={(e)=> handleAmoutChange(record,e.target.value) }
+          />
+          {record.isFlat ? <span>Rs.</span> : <span>%</span>}
+        </div>
+      ),
     },
     {
       title: "IsFLat",
       dataIndex: "isFlat",
+      render: (text, record) => (
+        // {
+        //   const onChange = (e) => {
+        //     console.log(`checked = ${e.target.checked}`);
+        //   };
+
+        //   return
+        <div className="flex justify-center  bg-neutral-500 h-5 w-5">
+          <Checkbox
+            onChange={() => handleCheckboxChange(record)}
+            checked={text}
+          />
+        </div>
+      ),
     },
     {
       title: "Created On",
-      dataIndex: "created_on",
+      dataIndex: "createdOn",
+      render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
     },
     {
       title: "Updated On",
-      dataIndex: "updated_on",
+      dataIndex: "latestUpdatedOn",
+      render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
     },
     // {
     //     title: "Actions",
@@ -114,3 +118,6 @@ export const columns = [
 
     //   },
   ];
+  
+}
+ 

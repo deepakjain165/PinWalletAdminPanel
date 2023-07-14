@@ -13,15 +13,15 @@ const CommonSettingLayout = ({
   btnText,
   dataSource,
 }) => {
-    const [packagelist,setpackageList]=useState([])
-    useEffect(()=>{
-getPackageListdata().then((res)=>{
-  const changes=res.data.map((i,index)=>{
-    return {label:i.text,value:`number:${index+1}`}
-  })
-  setpackageList(changes)
-})
-    },[])
+  const [packagelist, setpackageList] = useState([]);
+  useEffect(() => {
+    getPackageListdata().then((res) => {
+      const changes = res.data.map((i, index) => {
+        return { label: i.text, value: `number:${index + 1}` };
+      });
+      setpackageList(changes);
+    });
+  }, []);
   return (
     <>
       <Header PageName={PageName} />
