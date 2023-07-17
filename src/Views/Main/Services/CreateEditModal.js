@@ -54,7 +54,7 @@ const CreateEditModal = ({ openModal, setOpenModal, openFrom, packageId }) => {
           .catch((err) => console.log(err));
       }
       openFrom==="add" && setData({name:"",description:"",link:""})
-          // eslint-disable-next-line react-hooks/exhaustive-deps
+         
     }, [packageId]);
   return (
     <>

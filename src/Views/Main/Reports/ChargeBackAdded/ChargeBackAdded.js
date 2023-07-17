@@ -83,7 +83,7 @@ const ChargeBackAdded = () => {
   };
   useEffect(() => {
     getAllChargeBackAdded(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [serviceType]);
 
   const handleOpenDetailModal = (value) => {

@@ -28,7 +28,7 @@ const CommonSettingLayout = ({
       <div className="filters mt-5 flex justify-between gap-2 items-center flex-wrap">
         <Select
           className="w-1/2"
-          value={fields}
+          // value={fields}
           onChange={(val) => setFields(val)}
           defaultValue={packagelist[0]?.value}
           placeholder="Selact a Package"

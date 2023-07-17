@@ -62,7 +62,7 @@ function RechargeCommission() {
   }
   useEffect(() => {
     getDetailsRechargeCommission(numberOfData, start);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+       
   }, [fields]);
   const handleCheckboxChange = (record) => {
     let newData = [...dataSource];
@@ -85,7 +85,7 @@ function RechargeCommission() {
   function updateRechargeCommission(page) {
     getupdateRechargeCommission(dataSource)
       .then((res) => {
-        if (res.success == true) {
+        if (res.success ) {
           message.open(messageConfiguration("success", res.message, 3));
         } else {
           message.open(messageConfiguration("error", "Try Again", 3));

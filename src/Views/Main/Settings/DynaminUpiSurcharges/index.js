@@ -56,7 +56,7 @@ function DynamicUpiSurcharge() {
   }
   useEffect(() => {
     getAllDynamicUpiSurcharge(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [fields]);
   const handleNavigate = () => {
     navigate("/common-settings/dynamicUpi-surcharge-setting/change", {

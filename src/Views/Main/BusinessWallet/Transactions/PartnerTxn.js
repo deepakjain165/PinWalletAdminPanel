@@ -55,7 +55,7 @@ const PartnerTxn = () => {
   }
   useEffect(() => {
     getAllPartnerTxn(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleSearchString = () => {
     getAllPartnerTxn(numberOfData, 0);

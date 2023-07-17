@@ -73,7 +73,7 @@ const AccountVerification = () => {
   };
   useEffect(() => {
     getAllaccountverData(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleSearchString = () => {
       getAllaccountverData(numberOfData, 0);

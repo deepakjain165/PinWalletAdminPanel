@@ -44,7 +44,7 @@ const navigate=useNavigate()
   useEffect(() => {
     getEvents();
     getcallbackDetail();
-     // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, []);
   const handleUpload = () => {
     const payload = {

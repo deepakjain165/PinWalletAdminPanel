@@ -49,7 +49,7 @@ const AddSurcharge = () => {
     if (location.state.from.includes("Edit")) {
       getSurchargeById();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleAddMore = () => {
     const data = {

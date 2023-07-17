@@ -20,7 +20,6 @@ function BBPSserviceCommission() {
     numberOfPAges,
     setShowSpin,
     showSpin,
-    showSelect,
     dataSource,
     setDataSource,
   } = useCustomState(getDetailsBBPSserviceCommission, null, 100);

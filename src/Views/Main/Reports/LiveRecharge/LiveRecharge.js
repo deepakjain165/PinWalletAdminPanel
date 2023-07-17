@@ -22,7 +22,7 @@ const LiveRecharge = () => {
       getAllLiveRecharge();
     }, 2000);
     return () => clearInterval(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   return (
     <>

@@ -73,7 +73,7 @@ const DigilockerKyc = () => {
   };
   useEffect(() => {
     getAllDigiLockerKyc(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleSearchString = () => {
       getAllDigiLockerKyc(numberOfData, 0);

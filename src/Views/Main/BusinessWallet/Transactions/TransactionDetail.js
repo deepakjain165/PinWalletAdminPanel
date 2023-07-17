@@ -72,7 +72,7 @@ const TransactionDetail = () => {
       };
       useEffect(() => {
         getAllPartnerTxnById(numberOfData, start);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+       
       }, []);
       const handleSearchString = () => {
           getAllPartnerTxnById(numberOfData, 0);

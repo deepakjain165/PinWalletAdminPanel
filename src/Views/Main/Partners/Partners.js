@@ -65,7 +65,7 @@ const Partners = () => {
   }
   useEffect(() => {
     getAllPartnerList(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleOpenKeyModal = (data) => {
     setRowData(data);

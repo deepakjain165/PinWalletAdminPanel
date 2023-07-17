@@ -66,7 +66,7 @@ const Users = () => {
   }
   useEffect(() => {
     getAllUsers(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [openModal, deleteModal]);
   const handleSearchString = () => {
     getAllUsers(numberOfData, 0);

@@ -103,7 +103,7 @@ const DmtTransactions = () => {
   };
   useEffect(() => {
     getAllDmtTxn(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleSearchString = () => {
       getAllDmtTxn(numberOfData, 0);

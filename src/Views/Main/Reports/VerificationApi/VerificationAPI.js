@@ -73,7 +73,7 @@ const VerificationAPI = () => {
   };
   useEffect(() => {
     getAllVerApiData(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleSearchString = () => {
       getAllVerApiData(numberOfData, 0);

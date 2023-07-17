@@ -53,7 +53,7 @@ const Packages = () => {
   };
   useEffect(() => {
     getAllPackages(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [openModal, deleteModal]);
   const handleSearchString = () => {
     getAllPackages(numberOfData, 0);

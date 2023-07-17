@@ -60,7 +60,7 @@ function DMTsurcharges() {
   }
   useEffect(() => {
     getAllDmtsurcharge(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [fields]);
   const handleNavigate = () => {
     navigate("/common-settings/dmt-surcharge-setting/Change", {

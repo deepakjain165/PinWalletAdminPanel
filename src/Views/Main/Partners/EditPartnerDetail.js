@@ -66,7 +66,7 @@ const EditPartnerDetail = () => {
     getServiceListdata();
     getpartnerData();
     getPackageList();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleUpdate = () => {
     const formData = new FormData();

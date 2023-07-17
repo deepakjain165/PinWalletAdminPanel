@@ -56,7 +56,7 @@ function UpidmtSurcharge() {
   }
   useEffect(() => {
     getAllUpiDmtSurcharge(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [fields]);
   const handleNavigate = () => {
     navigate("/common-settings/upiDmt-surcharge-setting/change", {

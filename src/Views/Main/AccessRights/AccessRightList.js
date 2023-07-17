@@ -160,7 +160,7 @@ const AccessRightList = () => {
   }
   useEffect(() => {
     getAllPermission(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleChange = () => {
     const payload = {

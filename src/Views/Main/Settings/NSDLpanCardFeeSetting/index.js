@@ -1,22 +1,93 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../../../Common/Header";
-import { Select } from "antd";
-function NSDLpanCardFeeSetting() {
+import { Input, Select } from "antd";
+import { getPackageListdata } from "../../../../services/apiFunctions";
+import {  getNsdlPanfee } from "./ApiFun";
+import { ConvertInRs, ExtractDate, ExtractTime } from "../../../../Utils";
+import ConfirmModal from "../../../../Common/ConfirmModal";
+function NsDlPanCardFee() {
+  const [packageData, setPackageData] = useState([]);
+  const [nsdlData, setnsdlData] = useState({});
+  const [showToggle, setShowToggle] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
+  const [amount, setamount] = useState(0);
+  useEffect(() => {
+    getPackageListdata()
+      .then((res) => {
+        const changed = res.data.map((i, index) => {
+          return { label: i.text, value: i.value };
+        });
+        setPackageData(changed);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  const getNsdlData = (val) => {
+    getNsdlPanfee(val)
+      .then((res) => {
+        setnsdlData(res?.data);
+        setamount(res.data.amount);
+        setShowToggle(true);
+      })
+      .catch((err) => console.log(err));
+  };
+  const handleSubmit = () => {
+    setOpenModal(false);
+  };
   return (
-    <div>
-      <Header PageName={" NSDL PAN Card Fee Setting "} />
-      <div className="mt-3 text-center">
-        {/* <Spin spinning={showSpin} tip="Loading..."> */}
-        <div className="input_fields justify-items-center">
-          <h6>Package</h6>
-          <Select className="mb-2 w-1/4" 
-          defaultValue={"--Select value--"}/>
-          <br />
-          {/* <Input.Search value={fields.searchString} onChange={(e)=>setFields({...fields,searchString:e.target.value})} onSearch={handleSearchString} className="searchBar" placeholder="Select and Search" enterButton="Search" size="large"  /> */}
+    <>
+      <Header PageName={"NSDL PAN Card Fees Setting"} />
+      <div className="flex justify-center mt-3 items-center">
+        <div className="bg-white shadow-md font-semibold shadow-gray-500 p-3  ">
+          <div className="grid grid-cols-2 place-items-center gap-6 ">
+            <p className="required">Package</p>
+            <Select
+              className="w-full"
+              options={packageData}
+              onChange={(val) => getNsdlData(val)}
+              placeholder="Select an Option"
+            />
+            {showToggle && (
+              <>
+                <p>Previous Fee</p>
+                <p className="bg-gray-600 rounded-md p-2 text-end w-full">
+                  {ConvertInRs(nsdlData.amount ?? 0)}
+                </p>
+                <p>Latest Updated On</p>
+                <p className="bg-gray-600 rounded-md p-2 w-full text-end">
+                  {`${ExtractTime(nsdlData.latestUpdatedOn)} | ${ExtractDate(
+                    nsdlData.latestUpdatedOn
+                  )}`}
+                </p>
+                <p>Per PAN Card Fee</p>
+                <Input
+                  value={amount}
+                  onChange={(e) => setamount(Number(e.target.value))}
+                  type="number"
+                />
+              </>
+            )}
+          </div>
+          <div className="flex justify-end mt-3 items-center  col-span-2">
+            {" "}
+            <p
+              onClick={() => setOpenModal(true)}
+              className="bg-[#113150] cursor-pointer  rounded-md p-2 text-white"
+            >
+              Submit
+            </p>
+          </div>{" "}
         </div>
-        {/* </Spin> */}
       </div>
-    </div>
+      {openModal && (
+        <ConfirmModal
+          btnTxt={"Yes!"}
+          deleteModal={openModal}
+          desc={"You want Submit this Fees Setting."}
+          setDeleteModal={setOpenModal}
+          handleDelete={handleSubmit}
+        />
+      )}
+    </>
   );
 }
-export default NSDLpanCardFeeSetting;
+export default NsDlPanCardFee;

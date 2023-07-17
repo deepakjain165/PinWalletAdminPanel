@@ -65,7 +65,7 @@ function RechargeOperatorsAPI() {
   useEffect(() => {
     getApiList();
     getDetailsRechargeOpertatorsApi(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handlechange = () => {
     const payload = { text: field.label.label??"-Select API-", value: field.label.value??0 };

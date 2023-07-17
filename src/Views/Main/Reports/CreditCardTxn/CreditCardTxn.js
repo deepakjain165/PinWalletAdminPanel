@@ -99,7 +99,7 @@ const CreditCardTransaction = () => {
   };
   useEffect(() => {
     getAllCreditTxn(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleSearchString = () => {
       getAllCreditTxn(numberOfData, 0);

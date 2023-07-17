@@ -15,7 +15,7 @@ const[details,setDetails]=useState({})
   };
   useEffect(()=>{
 getChargeBackrrnDetails(rrnno).then(res=>setDetails(res.data)).catch(err=>console.log(err))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   },[])
 
   return (

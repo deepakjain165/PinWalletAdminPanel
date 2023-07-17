@@ -95,7 +95,7 @@ const BbpsBillFetch = () => {
   };
   useEffect(() => {
     getAllBbpsBillFetch(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleSearchString = () => {
       getAllBbpsBillFetch(numberOfData, 0);

@@ -64,7 +64,7 @@ const PartnerIps = () => {
   }
   useEffect(() => {
     getPArtnerIp(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [deleteModal]);
   const handleSearchString = () => {
     getPArtnerIp(numberOfData, 0);

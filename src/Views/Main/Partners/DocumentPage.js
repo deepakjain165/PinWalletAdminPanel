@@ -38,7 +38,7 @@ const DocumentPage = () => {
   useEffect(() => {
     getStaus();
     getAlldoc();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleImageChange = (file) => {
     // setCustomFileerror(false);

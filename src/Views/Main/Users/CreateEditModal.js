@@ -73,7 +73,7 @@ const CreateEditModal = ({ openModal, setOpenModal, openFrom, packageId }) => {
         .catch((err) => console.log(err));
     }
     openFrom === "add" && setData({ role: "", name: "", email: "", Phone: "" });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [packageId]);
   useEffect(() => {
     GetUserRoles()

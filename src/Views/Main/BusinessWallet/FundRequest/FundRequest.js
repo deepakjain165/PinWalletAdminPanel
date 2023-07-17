@@ -68,7 +68,7 @@ const FundRequest = () => {
   };
   useEffect(() => {
     getAllFundRequests(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleSearchString = () => {
       getAllFundRequests(numberOfData, 0);

@@ -94,7 +94,7 @@ const BbpsTxnData = () => {
   };
   useEffect(() => {
     getAllBbpsBillTxn(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleSearchString = () => {
       getAllBbpsBillTxn(numberOfData, 0);

@@ -1,4 +1,4 @@
-import { Delete,Get,Post,Put,FormData,getAPIUrl } from "../../../../services/apiMethod"
+import { Post,getAPIUrl } from "../../../../services/apiMethod"
 const endpoint={
     updaterechargeCommission:"api/settings/updateRechargeComm",
     rechargeCommission:"api/settings/getRechargeComm",

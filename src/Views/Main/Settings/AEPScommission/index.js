@@ -56,7 +56,7 @@ function AepsCommission() {
   }
   useEffect(() => {
     getAllAepsSurcharge(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [fields]);
   const handleNavigate = () => {
     navigate("/common-settings/aeps-comm-setting/change", {

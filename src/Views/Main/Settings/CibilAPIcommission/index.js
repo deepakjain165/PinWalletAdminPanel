@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import Header from "../../../../Common/Header";
 import { Input, Select } from "antd";
 import { getPackageListdata } from "../../../../services/apiFunctions";
-import { getutiCouponFee } from "./ApiFun";
+import { GetCibilApiComm } from "./ApiFun";
 import { ConvertInRs, ExtractDate, ExtractTime } from "../../../../Utils";
 import ConfirmModal from "../../../../Common/ConfirmModal";
-function UtiCouponFee() {
+function CibilAPIcommission() {
   const [packageData, setPackageData] = useState([]);
   const [cibilData, setCibilData] = useState({});
   const [showToggle, setShowToggle] = useState(false);
@@ -21,8 +21,8 @@ function UtiCouponFee() {
       })
       .catch((err) => console.log(err));
   }, []);
-  const getUpiRelatedData = (val) => {
-    getutiCouponFee(val)
+  const getCibilRelatedData = (val) => {
+    GetCibilApiComm(val)
       .then((res) => {
         setCibilData(res?.data);
         setamount(res.data.amount);
@@ -35,7 +35,7 @@ function UtiCouponFee() {
   };
   return (
     <>
-      <Header PageName={"UTI Coupon Fees Setting"} />
+      <Header PageName={"CibilAPI Commission"} />
       <div className="flex justify-center mt-3 items-center">
         <div className="bg-white shadow-md font-semibold shadow-gray-500 p-3  ">
           <div className="grid grid-cols-2 place-items-center gap-6 ">
@@ -43,7 +43,7 @@ function UtiCouponFee() {
             <Select
               className="w-full"
               options={packageData}
-              onChange={(val) => getUpiRelatedData(val)}
+              onChange={(val) => getCibilRelatedData(val)}
               placeholder="Select an Option"
             />
             {showToggle && (
@@ -58,7 +58,7 @@ function UtiCouponFee() {
                     cibilData.latestUpdatedOn
                   )}`}
                 </p>
-                <p>Per Coupon Fee</p>
+                <p>Amount</p>
                 <Input
                   value={amount}
                   onChange={(e) => setamount(Number(e.target.value))}
@@ -67,22 +67,24 @@ function UtiCouponFee() {
               </>
             )}
           </div>
-         {showToggle &&  <div className="flex justify-end mt-3 items-center  col-span-2">
-            {" "}
-            <p
-              onClick={() => setOpenModal(true)}
-              className="bg-[#113150] cursor-pointer  rounded-md p-2 text-white"
-            >
-              Submit
-            </p>
-          </div>}
+          {showToggle && (
+            <div className="flex justify-end mt-3 items-center  col-span-2">
+              {" "}
+              <p
+                onClick={() => setOpenModal(true)}
+                className="bg-[#113150] cursor-pointer  rounded-md p-2 text-white"
+              >
+                Submit
+              </p>
+            </div>
+          )}
         </div>
       </div>
       {openModal && (
         <ConfirmModal
           btnTxt={"Yes!"}
           deleteModal={openModal}
-          desc={"You want Submit this Fees Setting."}
+          desc={"You want Submit this Commission Setting."}
           setDeleteModal={setOpenModal}
           handleDelete={handleSubmit}
         />
@@ -90,4 +92,4 @@ function UtiCouponFee() {
     </>
   );
 }
-export default UtiCouponFee;
+export default CibilAPIcommission;

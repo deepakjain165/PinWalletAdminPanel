@@ -40,7 +40,11 @@ import UpidmtSurcharge from "../Views/Main/Settings/UPIdmtSurcharges";
 import DynamicUpiSurcharge from "../Views/Main/Settings/DynaminUpiSurcharges";
 import PayoutSurcharge from "../Views/Main/Settings/PayoutSurcharges";
 import AddDeduct from "../Views/Main/BusinessWallet/AddDeductFund/AddDeduct";
-
+import MiniStatementCommission from "../Views/Main/Settings/MiniStatementCommission";
+import CibilAPIcommission from "../Views/Main/Settings/CibilAPIcommission";
+import UtiCouponFee from "../Views/Main/Settings/UTIcouponFeeSetting";
+import NsDlPanCardFee from "../Views/Main/Settings/NSDLpanCardFeeSetting";
+import SettlementProcess from "../Views/Main/Settings/SettlementProcessSetting";
 const PrivateAdmin = () => {
   return [
     {
@@ -358,15 +362,15 @@ const PrivateAdmin = () => {
         },
       ],
     },
-    // {
-    //   element: <ProtectedAdmin />,
-    //   children: [
-    //     {
-    //       path: "/settings/civil-api-commission",
-    //       element: <CivilAPIcommission />,
-    //     },
-    //   ],
-    // },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/cibilApi-comm-setting",
+          element: <CibilAPIcommission />,
+        },
+      ],
+    },
     {
       element: <ProtectedAdmin />,
       children: [
@@ -448,15 +452,15 @@ const PrivateAdmin = () => {
     //     },
     //   ],
     // },
-    // {
-    //   element: <ProtectedAdmin />,
-    //   children: [
-    //     {
-    //       path: "/settings/nsdl-pan-card-fee-setting",
-    //       element: <NSDLpanCardFeeSetting />,
-    //     },
-    //   ],
-    // },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/nsdl-pan-card-fee-setting",
+          element: <NsDlPanCardFee />,
+        },
+      ],
+    },
     {
       element: <ProtectedAdmin />,
       children: [
@@ -502,15 +506,15 @@ const PrivateAdmin = () => {
     //     },
     //   ],
     // },
-    // {
-    //   element: <ProtectedAdmin />,
-    //   children: [
-    //     {
-    //       path: "/settings/settlement-process-setting",
-    //       element: <SettlementProcessSetting />,
-    //     },
-    //   ],
-    // },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/settlement-process-setting",
+          element: <SettlementProcess />,
+        },
+      ],
+    },
     {
       element: <ProtectedAdmin />,
       children: [
@@ -529,15 +533,15 @@ const PrivateAdmin = () => {
         },
       ],
     },
-    // {
-    //   element: <ProtectedAdmin />,
-    //   children: [
-    //     {
-    //       path: "/settings/uti-coupon-fee-setting",
-    //       element: <UTIcouponFeeSetting />,
-    //     },
-    //   ],
-    // },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/utiCoupon-fee-setting",
+          element: <UtiCouponFee />,
+        },
+      ],
+    },
     // {
     //   element: <ProtectedAdmin />,
     //   children: [

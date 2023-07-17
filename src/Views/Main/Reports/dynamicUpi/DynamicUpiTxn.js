@@ -103,7 +103,7 @@ const DynamicUpiTxn = () => {
   };
   useEffect(() => {
     getAllDynamicTxn(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, []);
   const handleSearchString = () => {
       getAllDynamicTxn(numberOfData, 0);

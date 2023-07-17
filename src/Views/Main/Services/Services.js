@@ -61,7 +61,7 @@ const Services = () => {
   };
   useEffect(() => {
     getAllServices(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [openModal, deleteModal]);
   const handleSearchString = () => {
     getAllServices(numberOfData, 0);

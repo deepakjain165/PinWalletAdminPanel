@@ -1,4 +1,4 @@
-import { Delete, FormData, Get, getAPIUrl, Post, Put } from "../../../../services/apiMethod";
+import { getAPIUrl, Post } from "../../../../services/apiMethod";
 const endpoint = {
   updateBBPScommission: "api/settings/updateBbpsServiceComm",
   getBBPSCommission: "api/settings/getBbpsService",

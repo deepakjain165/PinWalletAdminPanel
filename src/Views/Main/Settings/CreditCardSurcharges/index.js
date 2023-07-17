@@ -56,7 +56,7 @@ function CreditCardSurcharge() {
   }
   useEffect(() => {
     getAllCreditCardSurcharge(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [fields]);
   const handleNavigate = () => {
     navigate("/common-settings/creditCard-surcharge-setting/change", {

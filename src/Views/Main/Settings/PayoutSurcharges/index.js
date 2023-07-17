@@ -56,7 +56,7 @@ function PayoutSurcharge() {
   }
   useEffect(() => {
     getAllPayoutSurcharge(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [fields]);
   const handleNavigate = () => {
     navigate("/common-settings/payout-surcharge-setting/change", {

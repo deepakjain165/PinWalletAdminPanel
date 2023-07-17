@@ -313,8 +313,8 @@ export const items = [
       {
         key: "10.4",
         label: (
-          <NavLink to={"/settings/civil-api-commission"}>
-            Civil API Commission
+          <NavLink to={"/common-settings/cibilApi-comm-setting"}>
+            Cibil API Commission
           </NavLink>
         ),
         onClick: () => {
@@ -390,7 +390,7 @@ export const items = [
       {
         key: "10.11",
         label: (
-          <NavLink to={"/settings/nsdl-pan-card-fee-setting"}>
+          <NavLink to={"/common-settings/nsdl-pan-card-fee-setting"}>
             NSDL PAN Card Fee Setting
           </NavLink>
         ),
@@ -445,7 +445,7 @@ export const items = [
       {
         key: "10.16",
         label: (
-          <NavLink to={"/settings/settlement-process-setting"}>
+          <NavLink to={"/common-settings/settlement-process-setting"}>
             Settlement Process Setting
           </NavLink>
         ),
@@ -467,7 +467,7 @@ export const items = [
       {
         key: "10.18",
         label: (
-          <NavLink to={"/settings/uti-coupon-fee-setting"}>
+          <NavLink to={"/common-settings/utiCoupon-fee-setting"}>
             UTI coupon Fee Setting
           </NavLink>
         ),

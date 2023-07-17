@@ -56,7 +56,7 @@ function AadharPay() {
   }
   useEffect(() => {
     getAllAadharPaySurcharge(numberOfData, start);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   }, [fields]);
   const handleNavigate = () => {
     navigate("/common-settings/aadharPay-surcharge-setting/change", {
