@@ -57,6 +57,7 @@ partnerServiceList:"api/service/servicesListDrp",
 partnerfun:"api/partner/",
 packageListDropData:"api/package/packagesListDrp",
 editPartner:"api/partner/update",
+getPartnerList:"api/settings/walletCappingSetting/getPartners",
 // PARTNERS END
 packages:"api/package/grid",
 Packagefun:"api/package/",

@@ -1,4 +1,4 @@
-import { Delete, FormData, Get, getAPIUrl, Post, Put  } from "../../../../services/apiMethod"
+import {  Get, getAPIUrl, Post  } from "../../../../services/apiMethod"
 const endpoint={
     getMiniStatement:"api/settings/getMiniStmtComm/",
     getupdatedMiniStatement:"api/settings/submitMiniStmtComm",

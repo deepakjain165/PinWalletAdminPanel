@@ -56,88 +56,78 @@ function MiniStatementCommission() {
       .catch((error) => {
         console.log(error);
       })
+
       .finally(() => setOpenModal(false));
   }
+  // useEffect(() => {
+  //   getDetailsMiniStatement();
+  // }, [fields]);
   return (
     <div>
       <Header PageName={"Mini Statement Commission"} />
       <div>
-        <div className="mt-6 flex justify-center border-gray-100">
-          <div className="divide-y divide-gray-100 shadow-sm shadow-gray-300">
-            <div className="p-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-              <label className="text-sm font-medium leading-6 text-gray-900">
-                Package
-              </label>
+        <div className="flex justify-center items-center">
+          <div className="bg-white w-full lg:w-1/2 shadow-md shadow-gray-500 py-8 px-4">
+            <div className="grid font-semibold grid-cols-2 place-items-center px-8 py-6 gap-5 leading-6 items-center ">
+              <p className="required">Package</p>
               <Select
-                className=" mt-1 text-sm leading-6  sm:col-span-2 sm:mt-0 "
+                placeholder="Select an Option"
                 onChange={(val) => {
                   getDetailsMiniStatement(val);
                   setIsOpen(true);
                 }}
                 options={packageData}
+                className="w-full"
               />
+     
+              {isOpen && (
+                <>
+                  <p>Previous Amount</p>
+                  <p className="w-full ">
+                    {data.amount}
+                    {data.isFlat ? <span>Rs.</span> : <span>%</span>}
+                  </p>
+
+                  <p>Latest Updated On</p>
+                  <p className="w-full ">
+                    {ExtractTime(data.latestUpdatedOn)} | {""}
+                    {ExtractDate(data.latestUpdatedOn)}
+                  </p>
+
+                  <p>Amount</p>
+                  <Input
+                  
+                    type="number"
+                    min={0}
+                    value={fields.amount}
+                    onChange={(e) =>
+                      setFields({ ...fields, amount: Number(e.target.value) })
+                    }
+                  />
+
+                  <p>IsFlat</p>
+
+                  <Checkbox
+                    className="w-full "
+                    onChange={(e) =>
+                      setFields({ ...fields, isFlat: e.target.checked })
+                    }
+                    checked={fields.isFlat}
+                  />
+                </>
+              )}
+
+              {isOpen && (
+                <div className="flex justify-items-center col-span-2">
+                  <Button
+                    className="bg-gray-800 cursor-pointer text-white font-semibold p-2 h-10 rounded-md"
+                    onClick={setOpenModal}
+                  >
+                    Submit
+                  </Button>
+                </div>
+              )}
             </div>
-            {isOpen && (
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <label className="text-sm font-medium leading-6 text-gray-900">
-                  Previous Amount
-                </label>
-                <span className="mt-1 text-sm leading-6 p-1  sm:col-span-2 sm:mt-0 bg-slate-400 h-8">
-                  {data.amount}
-                  {data.isFlat ? <span>Rs.</span> : <span>%</span>}
-                </span>
-              </div>
-            )}
-            {isOpen && (
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <label className="text-sm font-medium leading-6 text-gray-900">
-                  Latest Updated On
-                </label>
-                <span className="mt-1 uppercase text-sm leading-6 p-1 sm:col-span-2 sm:mt-0 bg-slate-400 h-8">
-                  {ExtractTime(data.latestUpdatedOn)} | {""}
-                  {ExtractDate(data.latestUpdatedOn)}
-                </span>
-              </div>
-            )}
-
-            {isOpen && (
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <label className="text-sm font-medium leading-6 text-gray-900">
-                  Amount
-                </label>
-                <Input
-                  type="number"
-                  min={0}
-                  value={fields.amount}
-                  onChange={(e) =>
-                    setFields({ ...fields, amount: Number(e.target.value) })
-                  }
-                />
-              </div>
-            )}
-
-            {isOpen && (
-              <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                <label className="text-sm font-medium leading-6 ">IsFlat</label>
-
-                <Checkbox
-                  onChange={(e) =>
-                    setFields({ ...fields, isFlat: e.target.checked })
-                  }
-                  checked={fields.isFlat}
-                />
-              </div>
-            )}
-            {isOpen && (
-              <div className="flex justify-items-center p-2 sm:grid sm:grid-cols-1 sm:px-0 ">
-                <Button
-                  className="bg-black h-11 text-base  text-white hover:text-white"
-                  onClick={setOpenModal}
-                >
-                  Submit
-                </Button>
-              </div>
-            )}
           </div>
         </div>
         {openModal && (

@@ -40,6 +40,11 @@ import UpidmtSurcharge from "../Views/Main/Settings/UPIdmtSurcharges";
 import DynamicUpiSurcharge from "../Views/Main/Settings/DynaminUpiSurcharges";
 import PayoutSurcharge from "../Views/Main/Settings/PayoutSurcharges";
 import AddDeduct from "../Views/Main/BusinessWallet/AddDeductFund/AddDeduct";
+import MiniStatementCommission from "../Views/Main/Settings/MiniStatementCommission";
+import VerificationAPIserviceCommission from "../Views/Main/Settings/VerificationAPIserviceCommission";
+import WalletCappingSetting from "../Views/Main/Settings/WalletCappingSetting";
+import MoveServiceMemberSetting from "../Views/Main/Settings/MoveServiceMemberSetting";
+import MoveServiceAllSetting from "../Views/Main/Settings/MoveServiceAllSetting";
 
 const PrivateAdmin = () => {
   return [
@@ -430,24 +435,24 @@ const PrivateAdmin = () => {
         },
       ],
     },
-    // {
-    //   element: <ProtectedAdmin />,
-    //   children: [
-    //     {
-    //       path: "/settings/move-service-all-setting",
-    //       element: <MoveServiceAllSetting />,
-    //     },
-    //   ],
-    // },
-    // {
-    //   element: <ProtectedAdmin />,
-    //   children: [
-    //     {
-    //       path: "/settings/move-service-member-setting",
-    //       element: <MoveServiceMemberSetting />,
-    //     },
-    //   ],
-    // },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/move-service-all-member-setting",
+          element:<MoveServiceAllSetting />,
+        },
+      ],
+    },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/move-service-member-setting",
+          element: <MoveServiceMemberSetting />,
+        },
+      ],
+    },
     // {
     //   element: <ProtectedAdmin />,
     //   children: [
@@ -538,24 +543,24 @@ const PrivateAdmin = () => {
     //     },
     //   ],
     // },
-    // {
-    //   element: <ProtectedAdmin />,
-    //   children: [
-    //     {
-    //       path: "/settings/verification-api-service-commission",
-    //       element: <VerificationAPIserviceCommission />,
-    //     },
-    //   ],
-    // },
-    // {
-    //   element: <ProtectedAdmin />,
-    //   children: [
-    //     {
-    //       path: "/settings/wallet-capping-setting",
-    //       element: <WalletCappingSetting />,
-    //     },
-    //   ],
-    // },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/verification-api-services-commission-setting",
+          element: <VerificationAPIserviceCommission />,
+        },
+      ],
+    },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/wallet-capping-setting",
+          element: <WalletCappingSetting />,
+        },
+      ],
+    },
   ];
 };
 

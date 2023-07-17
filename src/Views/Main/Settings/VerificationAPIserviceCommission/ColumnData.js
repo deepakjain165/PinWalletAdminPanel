@@ -1,118 +1,41 @@
-import { ConvertInRs, ExtractDate, ExtractTime } from "../../../../Utils/index";
-
-export const columns = [
+import { ExtractDate } from "../../../../Utils/index";
+import { Input } from "antd";
+export const columns = (handleAmoutChange) => {
+  return [
     {
       title: "Id",
-      dataIndex: "id",
+      dataIndex: "sno",
     },
     {
       title: "Service Name",
-      dataIndex: "start_range",
-    //   render:(text,record)=><div className="text-xs">
-    //     <p>{text}</p>
-    //     <p>{record.partnerEmail}</p>
-    //   </div>,
-    //   sorter: (a, b) => a.partnerName.localeCompare(b.partnerName),
-    //   sortDirections: ['ascend'],
+      dataIndex: "serviceName",
     },
     {
       title: "Amount",
       dataIndex: "amount",
-    //   render: (text) => (
-    //     <p
-    //       className={`${
-    //         text === "SUCCESS" ? "bg-[#31ce36]" : "bg-red-600"
-    //       } text-xs text-center text-white p-2 rounded-full`}
-    //     >
-    //       {text}
-    //     </p>
-    //   ),
-      // filterDropdown:({ setSelectedKeys, selectedKeys, confirm })=>(
-      //   <div>
-      //      <Select
-      //                 placeholder="Select Status"
-      //                 value={selectedKeys[0]}
-      //                 className="w-full"
-      //                 onChange={(val)=>getAllTransaction(numberOfData,start)}
-      //                 onSelect={confirm}
-      //                 allowClear
-      //       >
-      //       <Option value="">All</Option>
-      //       <Option value="success">Success</Option>
-      //       <Option value="failed">Failed</Option>
-      //       <Option value="pending">Pending</Option>
-
-      //       </Select>
-      //   </div>
-      // ),
+      render: (text, record) => (
+        <div>
+          <Input
+            min={0}
+            value={text}
+            type="number"
+            className="w-1/2"
+            onChange={(e) => handleAmoutChange(record, e.target.value)}
+          />
+          {record.isFlat ? <span>Rs.</span> : <span>%</span>}
+        </div>
+      ),
     },
-    // {
-    //   title: "Surcharge(%/Rs.)",
-    //   dataIndex: "billerId",
-    // },
+
     {
       title: "Created On",
-      dataIndex: "created_on",
+      dataIndex: "createdOn",
+      render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
     },
     {
       title: "Updated On",
-      dataIndex: "updated_on",
+      dataIndex: "latestUpdatedOn",
+      render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
     },
-    // {
-    //     title: "Actions",
-    //     dataIndex: "actions",
-    //   },
-    // {
-    //   title: "User Transaction Id",
-    //   dataIndex: "userTransactionId",
-    // },
-    // {
-    //   title: "Amount",
-    //   dataIndex: "amount",
-    //   render: (text) => <p className="uppercase">{ConvertInRs(text)}</p>,
-
-    // },
-    // {
-    //   title: "PW Transaction Id",
-    //   dataIndex: "pinWalletTransactionId",
-    // },
-    // {
-    //   title: "Bill Date",
-    //   dataIndex: "billDate",
-    // },
-    // {
-    //     title: "Due Date",
-    //     dataIndex: "dueDate",
-    //   },
-      
-    // {
-    //     title: "Status Code",
-    //     dataIndex: "statusCode",
-        
-    //   },
-
-    // {
-    //   title: "StatusMessage",
-    //   dataIndex: "statusMessage",
-    // },
-    //   {
-    //     title: "Created On",
-    //     dataIndex: "createdOn",
-    //     render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
-    //   },
-    //   {
-    //     title: "Created Time",
-    //     dataIndex: "createdTime",
-    //     render: (text) => <p className="uppercase">{ExtractTime(text)}</p>,
-    //   },{
-    //     title: "Updated On",
-    //     dataIndex: "latestUpdatedOn",
-    //     render: (text) => <p className="uppercase">{ExtractDate(text)}</p>,
-
-    //   },{
-    //     title: "Updated Time",
-    //     dataIndex: "latestUpdatedTime",
-    //     render: (text) => <p className="uppercase">{ExtractTime(text)}</p>,
-
-    //   },
   ];
+};
