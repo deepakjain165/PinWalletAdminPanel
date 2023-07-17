@@ -45,6 +45,11 @@ import CibilAPIcommission from "../Views/Main/Settings/CibilAPIcommission";
 import UtiCouponFee from "../Views/Main/Settings/UTIcouponFeeSetting";
 import NsDlPanCardFee from "../Views/Main/Settings/NSDLpanCardFeeSetting";
 import SettlementProcess from "../Views/Main/Settings/SettlementProcessSetting";
+import VerificationAPIserviceCommission from "../Views/Main/Settings/VerificationAPIserviceCommission";
+import WalletCappingSetting from "../Views/Main/Settings/WalletCappingSetting";
+import MoveServiceMemberSetting from "../Views/Main/Settings/MoveServiceMemberSetting";
+import MoveServiceAllSetting from "../Views/Main/Settings/MoveServiceAllSetting";
+
 const PrivateAdmin = () => {
   return [
     {
@@ -497,6 +502,24 @@ const PrivateAdmin = () => {
         },
       ],
     },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/move-service-member-setting",
+          element: <MoveServiceMemberSetting />,
+        },
+      ],
+    },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/move-service-all-member-setting",
+          element: <MoveServiceAllSetting />,
+        },
+      ],
+    },
     // {
     //   element: <ProtectedAdmin />,
     //   children: [
@@ -537,29 +560,20 @@ const PrivateAdmin = () => {
       element: <ProtectedAdmin />,
       children: [
         {
-          path: "/common-settings/utiCoupon-fee-setting",
-          element: <UtiCouponFee />,
+          path: "/common-settings/verification-api-services-commission-setting",
+          element: <VerificationAPIserviceCommission />,
         },
       ],
     },
-    // {
-    //   element: <ProtectedAdmin />,
-    //   children: [
-    //     {
-    //       path: "/settings/verification-api-service-commission",
-    //       element: <VerificationAPIserviceCommission />,
-    //     },
-    //   ],
-    // },
-    // {
-    //   element: <ProtectedAdmin />,
-    //   children: [
-    //     {
-    //       path: "/settings/wallet-capping-setting",
-    //       element: <WalletCappingSetting />,
-    //     },
-    //   ],
-    // },
+    {
+      element: <ProtectedAdmin />,
+      children: [
+        {
+          path: "/common-settings/wallet-capping-setting",
+          element: <WalletCappingSetting />,
+        },
+      ],
+    },
   ];
 };
 

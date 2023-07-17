@@ -368,7 +368,7 @@ export const items = [
       {
         key: "10.9",
         label: (
-          <NavLink to={"/settings/move-service-all-setting"}>
+          <NavLink to={"/common-settings/move-service-all-member-setting"}>
             Move Service All Setting
           </NavLink>
         ),
@@ -379,7 +379,7 @@ export const items = [
       {
         key: "10.10",
         label: (
-          <NavLink to={"/settings/move-service-member-setting"}>
+          <NavLink to={"/common-settings/move-service-member-setting"}>
             Move Service Member Setting
           </NavLink>
         ),
@@ -478,7 +478,7 @@ export const items = [
       {
         key: "10.19",
         label: (
-          <NavLink to={"/settings/verification-api-service-commission"}>
+          <NavLink to={"/common-settings/verification-api-services-commission-setting"}>
             Verification API Service Commission
           </NavLink>
         ),
@@ -489,7 +489,7 @@ export const items = [
       {
         key: "10.20",
         label: (
-          <NavLink to={"/settings/wallet-capping-setting"}>
+          <NavLink to={"/common-settings/wallet-capping-setting"}>
             Wallet Capping Setting
           </NavLink>
         ),

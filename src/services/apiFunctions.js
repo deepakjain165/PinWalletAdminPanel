@@ -49,5 +49,8 @@ export const getupdateRechargeCommission=(data,param="")=>{
     const url=getAPIUrl(endpoint.updaterechargeCommission,param)
     return Post(url,data)
 }
-
+export const getPartnerList=(param="")=>{
+    const url=getAPIUrl(endpoint.getPartnerList,param)
+    return Get(url)
+}
 
